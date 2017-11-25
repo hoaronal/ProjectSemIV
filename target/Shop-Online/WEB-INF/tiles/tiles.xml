@@ -3,19 +3,31 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="defaultTemplate" template="/WEB-INF/views/template/template.jsp">
-        <put-attribute name="sidebar" value="/WEB-INF/views/template/sidebar.jsp" />
-        <put-attribute name="nav" value="/WEB-INF/views/template/nav.jsp" />
-        <put-attribute name="content" value="/WEB-INF/views/template/sidebar.jsp" />
-        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp" />
+    <definition name="webTemplate" template="/WEB-INF/views/template/web/template.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/template/web/header.jsp" />
+        <put-attribute name="slider" value="/WEB-INF/views/template/web/slider.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="/WEB-INF/views/template/web/footer.jsp" />
     </definition>
 
-    <definition name="home-administrator" extends="defaultTemplate">
+    <definition name="adminTemplate" template="/WEB-INF/views/template/manager/template.jsp">
+        <put-attribute name="sidebar" value="/WEB-INF/views/template/manager/sidebar.jsp" />
+        <put-attribute name="nav" value="/WEB-INF/views/template/manager/nav.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="/WEB-INF/views/template/manager/footer.jsp" />
+    </definition>
+
+    <definition name="home-administrator" extends="adminTemplate">
         <put-attribute name="title" value="Trang qu?n tr?" />
         <put-attribute name="content" value="/WEB-INF/views/manager/index.jsp" />
     </definition>
 
-    <definition name="admin-list" extends="defaultTemplate">
+    <definition name="home-web" extends="webTemplate">
+        <put-attribute name="title" value="Trang ch?" />
+        <put-attribute name="content" value="/WEB-INF/views/web/index.jsp" />
+    </definition>
+
+    <definition name="admin-list" extends="adminTemplate">
         <put-attribute name="title" value="Danh sách qu?n tr? viên" />
         <put-attribute name="content" value="/WEB-INF/views/manager/admin/list.jsp" />
     </definition>
