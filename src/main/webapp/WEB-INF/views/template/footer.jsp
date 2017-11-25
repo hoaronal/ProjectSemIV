@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <footer class="footer">
     <div class="container-fluid">
         <nav class="pull-left">
@@ -27,7 +28,8 @@
         </nav>
         <p class="copyright pull-right">
             ©
-            <script async="" src="img/analytics.js"></script><script>
+            <script type="text/javascript" src="<c:url value="/resources/js/analytics.js" />" ></script>
+            <script>
             document.write(new Date().getFullYear())
         </script>2017
         </p>

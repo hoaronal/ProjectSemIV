@@ -3,12 +3,7 @@ package com.bkap.vn.common.util;
 import com.bkap.vn.common.exception.DataAccessException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import org.hibernate.resource.transaction.spi.TransactionStatus;
+import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -188,15 +183,36 @@ public class AbtractDAOImpl implements AbtractDAO {
 
     @Override
     @Transactional
+    public List findRange(Class clazz, int firstResult, int pageSize) {
+        List objects = null;
+        try {
+            startOperation();
+            Query query = session.createQuery("from " + clazz.getName());
+            query.setFirstResult(firstResult);
+            query.setMaxResults(pageSize);
+            objects = query.list();
+            /*if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }*/
+            //tx.commit();
+            session.close();
+        } catch (HibernateException e) {
+            logger.error("findAll : " + e.toString());
+            handleException(e);
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return objects;
+    }
+
+    @Override
+    @Transactional
     public List findAll(Class clazz) {
         List objects = null;
         try {
             startOperation();
             Query query = session.createQuery("from " + clazz.getName());
             objects = query.list();
-            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
-                tx.commit();
-            }
             //tx.commit();
             session.close();
         } catch (HibernateException e) {

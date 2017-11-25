@@ -41,4 +41,10 @@ public class AdminServiceImpl implements AdminService {
     public List<Admin> listAdmin() {
         return adminDAO.findAll(Admin.class);
     }
+
+    @Override
+    @Transactional
+    public List<Admin> findRange(int firstRow, int lastRow) {
+        return adminDAO.findRange(Admin.class, firstRow, lastRow);
+    }
 }

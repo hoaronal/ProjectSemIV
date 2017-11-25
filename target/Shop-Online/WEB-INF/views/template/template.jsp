@@ -12,7 +12,7 @@
     <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/material-dashboard.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/demo.css" />" rel="stylesheet">
-    <link href="<c:url value="/resources/css/font-awesome.min.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/css.css" />" rel="stylesheet">
 
 </head>
@@ -20,7 +20,7 @@
 <body>
 <div class="wrapper">
     <tiles:insertAttribute name="sidebar"/>
-    <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="a1fc1d2c-f0c7-c635-2e5d-b3d320f6abd3">
+    <div class="main-panel ps-container ps-theme-default ps-active-y">
         <tiles:insertAttribute name="nav"/>
         <div class="content">
             <tiles:insertAttribute name="content"/>
@@ -28,98 +28,7 @@
         <tiles:insertAttribute name="footer"/>
     </div>
 </div>
-<%--<div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-        <a href="http://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html#" data-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-cog fa-2x"> </i>
-        </a>
-        <ul class="dropdown-menu">
-            <li class="header-title"> Sidebar Filters</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger active-color">
-                    <div class="badge-colors text-center">
-                        <span class="badge filter badge-purple" data-color="purple"></span>
-                        <span class="badge filter badge-blue" data-color="blue"></span>
-                        <span class="badge filter badge-green" data-color="green"></span>
-                        <span class="badge filter badge-orange" data-color="orange"></span>
-                        <span class="badge filter badge-red" data-color="red"></span>
-                        <span class="badge filter badge-rose active" data-color="rose"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Sidebar Background</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <div class="text-center">
-                        <span class="badge filter badge-white" data-color="white"></span>
-                        <span class="badge filter badge-black active" data-color="black"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Sidebar Mini</p>
-                    <div class="togglebutton switch-sidebar-mini">
-                        <label>
-                            <input type="checkbox" unchecked=""><span class="toggle"></span>
-                        </label>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Sidebar Image</p>
-                    <div class="togglebutton switch-sidebar-image">
-                        <label>
-                            <input type="checkbox" checked=""><span class="toggle"></span>
-                        </label>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Images</li>
-            <li class="active">
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="img/sidebar-1.jpg" alt="">
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="img/sidebar-2.jpg" alt="">
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="img/sidebar-3.jpg" alt="">
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="img/sidebar-4.jpg" alt="">
-                </a>
-            </li>
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-rose btn-block">Buy Now</a>
-                </div>
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-info btn-block">Get Free Demo</a>
-                </div>
-            </li>
-            <li class="header-title">Thank you for 95 shares!</li>
-            <li class="button-container">
-                <button id="twitter" class="btn btn-social btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 45</button>
-                <button id="facebook" class="btn btn-social btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"> ·</i>50</button>
-            </li>
-        </ul>
-    </div>
-</div>--%>
-<%--<script type="text/javascript" src="<c:url value="/resources/js/common.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/util.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/stats.js" />" ></script>--%>
+
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-3.1.1.min.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-ui.min.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js" />" ></script>
@@ -144,9 +53,20 @@
 <script type="text/javascript" src="<c:url value="/resources/js/material-dashboard.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/demo.js" />" ></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        demo.initDashboardPageCharts();
-        demo.initVectorMap();
+    $(document).ready(function() {
+        $('#datatables').DataTable({
+            "bLengthChange": false,
+            "bInfo": false,
+            "bFilter": false,
+            "bPaginate": false,
+            "bAutoWidth": false,
+            "sPaginationType":"full_numbers",
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
+        });
     });
 </script>
 <div class="jvectormap-tip">

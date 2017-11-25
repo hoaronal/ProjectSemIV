@@ -12,4 +12,6 @@ public interface AdminService {
     public int add();
 
     public List<Admin> listAdmin();
+
+    public List<Admin> findRange(int firstRow, int lastRow);
 }

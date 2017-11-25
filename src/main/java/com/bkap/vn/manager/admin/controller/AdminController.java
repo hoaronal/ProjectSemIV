@@ -25,9 +25,9 @@ public class AdminController extends BaseController {
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping(value = "/admin/list",method = RequestMethod.GET)
-    public String list(Model model){
-        List<Admin> adminList =  adminService.listAdmin();
+    @RequestMapping(value = "/admin/list", method = RequestMethod.GET)
+    public String list(Model model, HttpServletRequest request, HttpServletResponse response) {
+        List<Admin> adminList = adminService.findRange(1,3);
         model.addAttribute("adminList", adminList);
         return "admin-list";
     }

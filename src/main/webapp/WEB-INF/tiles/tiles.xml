@@ -12,16 +12,12 @@
 
     <definition name="home-administrator" extends="defaultTemplate">
         <put-attribute name="title" value="Trang qu?n tr?" />
-        <put-attribute name="content" value="/index.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/manager/index.jsp" />
     </definition>
 
     <definition name="admin-list" extends="defaultTemplate">
         <put-attribute name="title" value="Danh sách qu?n tr? viên" />
-        <put-attribute name="content" value="/WEB-INF/views/test.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/manager/admin/list.jsp" />
     </definition>
 
-    <definition name="user-list" extends="defaultTemplate">
-        <put-attribute name="title" value="Danh sách ng??i dùng" />
-        <put-attribute name="content" value="/WEB-INF/views/test1.jsp" />
-    </definition>
 </tiles-definitions>

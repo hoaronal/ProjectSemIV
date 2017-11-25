@@ -1,7 +1,7 @@
 package com.bkap.vn.common.util;
 
 import org.hibernate.HibernateException;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 
 import java.io.Serializable;
 import java.util.List;
@@ -25,7 +25,7 @@ public interface AbtractDAO {
     public List findByProperty(Class clazz, String propertyName, Object value);
 
     public List findLikeProperty(Class clazz, String propertyName, Object value);
-
+    public List findRange(Class clazz, int firstRow, int lastRow);
     public List findAll(Class clazz);
 
 }
