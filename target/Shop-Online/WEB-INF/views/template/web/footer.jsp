@@ -1,79 +1,74 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="footer-top-area">
-    <div class="zigzag-bottom"></div>
+<footer class="footer">
     <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="footer-about-us">
-                    <h2>u<span>Stora</span></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
-                    <div class="footer-social">
-                        <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
+        <a class="footer-brand" href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">Material
+            Kit PRO</a>
 
-            <div class="col-md-3 col-sm-6">
-                <div class="footer-menu">
-                    <h2 class="footer-wid-title">User Navigation </h2>
-                    <ul>
-                        <li><a href="#">My account</a></li>
-                        <li><a href="#">Order history</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Vendor contact</a></li>
-                        <li><a href="#">Front page</a></li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="col-md-3 col-sm-6">
-                <div class="footer-menu">
-                    <h2 class="footer-wid-title">Categories</h2>
-                    <ul>
-                        <li><a href="#">Mobile Phone</a></li>
-                        <li><a href="#">Home accesseries</a></li>
-                        <li><a href="#">LED TV</a></li>
-                        <li><a href="#">Computer</a></li>
-                        <li><a href="#">Gadets</a></li>
-                    </ul>
-                </div>
-            </div>
+        <ul class="pull-center">
+            <li>
+                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
+                    Blog
+                </a>
+            </li>
+            <li>
+                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
+                    Presentation
+                </a>
+            </li>
+            <li>
+                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
+                    Discover
+                </a>
+            </li>
+            <li>
+                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
+                    Payment
+                </a>
+            </li>
+            <li>
+                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
+                    Contact Us
+                </a>
+            </li>
+        </ul>
 
-            <div class="col-md-3 col-sm-6">
-                <div class="footer-newsletter">
-                    <h2 class="footer-wid-title">Newsletter</h2>
-                    <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
-                    <div class="newsletter-form">
-                        <form action="#">
-                            <input type="email" placeholder="Type your email">
-                            <input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ul class="social-buttons pull-right">
+            <li>
+                <a href="https://twitter.com/CreativeTim" target="_blank"
+                   class="btn btn-just-icon btn-twitter btn-simple">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.facebook.com/CreativeTim" target="_blank"
+                   class="btn btn-just-icon btn-facebook btn-simple">
+                    <i class="fa fa-facebook-square"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank"
+                   class="btn btn-just-icon btn-google btn-simple">
+                    <i class="fa fa-google"></i>
+                </a>
+            </li>
+        </ul>
+
     </div>
-</div> <!-- End footer top area -->
-
-<div class="footer-bottom-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="copyright">
-                    <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
-                </div>
+</footer>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
-
-            <div class="col-md-4">
-                <div class="footer-card-icon">
-                    <i class="fa fa-cc-discover"></i>
-                    <i class="fa fa-cc-mastercard"></i>
-                    <i class="fa fa-cc-paypal"></i>
-                    <i class="fa fa-cc-visa"></i>
-                </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

@@ -19,16 +19,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/administrator")
+@RequestMapping("/quan-tri")
 public class AdminController extends BaseController {
 
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping(value = "/admin/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/quan-tri-vien/danh-sach-quan-tri-vien", method = RequestMethod.GET)
     public String list(Model model, HttpServletRequest request, HttpServletResponse response) {
         List<Admin> adminList = adminService.findRange(1,3);
         model.addAttribute("adminList", adminList);
         return "admin-list";
+    }
+
+    @RequestMapping(value = "/quan-tri-vien/them-moi-quan-tri-vien", method = RequestMethod.GET)
+    public String add(Model model, HttpServletRequest request, HttpServletResponse response) {
+        List<Admin> adminList = adminService.findRange(1,3);
+        model.addAttribute("adminList", adminList);
+        return "admin-add";
     }
 }

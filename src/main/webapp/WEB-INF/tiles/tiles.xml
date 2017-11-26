@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="webTemplate" template="/WEB-INF/views/template/web/template.jsp">
+        <put-attribute name="navbar" value="/WEB-INF/views/template/web/nav.jsp" />
         <put-attribute name="header" value="/WEB-INF/views/template/web/header.jsp" />
-        <put-attribute name="slider" value="/WEB-INF/views/template/web/slider.jsp" />
         <put-attribute name="content" value="" />
         <put-attribute name="footer" value="/WEB-INF/views/template/web/footer.jsp" />
     </definition>
@@ -18,18 +18,32 @@
     </definition>
 
     <definition name="home-administrator" extends="adminTemplate">
-        <put-attribute name="title" value="Trang qu?n tr?" />
+        <put-attribute name="title" value="Trang quản trị" />
         <put-attribute name="content" value="/WEB-INF/views/manager/index.jsp" />
     </definition>
 
-    <definition name="home-web" extends="webTemplate">
-        <put-attribute name="title" value="Trang ch?" />
-        <put-attribute name="content" value="/WEB-INF/views/web/index.jsp" />
-    </definition>
-
     <definition name="admin-list" extends="adminTemplate">
-        <put-attribute name="title" value="Danh s�ch qu?n tr? vi�n" />
+        <put-attribute name="title" value="Danh sách quản trị viên" />
         <put-attribute name="content" value="/WEB-INF/views/manager/admin/list.jsp" />
     </definition>
 
+    <definition name="admin-add" extends="adminTemplate">
+        <put-attribute name="title" value="Thêm mới quản trị viên" />
+        <put-attribute name="content" value="/WEB-INF/views/manager/admin/add.jsp" />
+    </definition>
+
+    <definition name="user-list" extends="adminTemplate">
+        <put-attribute name="title" value="Danh sách người dùng" />
+        <put-attribute name="content" value="/WEB-INF/views/manager/user/list.jsp" />
+    </definition>
+
+    <definition name="home-web" extends="webTemplate">
+        <put-attribute name="title" value="Trang chủ" />
+        <put-attribute name="content" value="/WEB-INF/views/web/index.jsp" />
+    </definition>
+
+    <definition name="cart" extends="webTemplate">
+        <put-attribute name="title" value="Giỏ hàng" />
+        <put-attribute name="content" value="/WEB-INF/views/web/cart/cart.jsp" />
+    </definition>
 </tiles-definitions>

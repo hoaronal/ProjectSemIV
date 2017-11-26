@@ -3,13 +3,13 @@ package com.bkap.vn.common.pagination;
 import java.util.List;
 
 public class PaggingResult {
-    private int firstPage;
+    private int firstPage = 1;
     private int lastPage;
     private int currentPage;
     private int totalRecord;
     private int totalPage;
     private int[] pages;
-    private int pageRange;
+    private int pageRange = 20;
     private List item;
 
     public PaggingResult() {

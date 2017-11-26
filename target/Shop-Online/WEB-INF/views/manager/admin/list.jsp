@@ -8,7 +8,7 @@
                     <i class="material-icons">assignment</i>
                 </div>
                 <div class="card-content">
-                    <h4 class="card-title">DataTables.net</h4>
+                    <h4 class="card-title">Danh sách quản trị viên</h4>
                     <div class="toolbar">
                         <!--        Here you can write extra buttons/actions for the toolbar              -->
                     </div>
@@ -17,20 +17,20 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="dataTables_length" id="datatables_length">
-                                        <label class="form-group">Show <select name="datatables_length"
+                                        <label class="form-group">Hiển thị <select name="datatables_length"
                                                                                aria-controls="datatables"
                                                                                class="form-control input-sm">
                                             <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="50">50</option>
                                             <option value="-1">All</option>
-                                        </select> entries</label>
+                                        </select> mục</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div id="datatables_filter" class="dataTables_filter">
                                         <label class="form-group"><input type="search" class="form-control input-sm"
-                                                                         placeholder="Search records"
+                                                                         placeholder="Tìm kiếm"
                                                                          aria-controls="datatables"></label>
                                     </div>
                                 </div>

@@ -39,37 +39,25 @@
         </div>
         <ul class="nav">
             <li class="active">
-                <a href="">
+                <a href="<%=request.getContextPath()%>/quan-tri">
                     <i class="material-icons">dashboard</i>
-                    <p>Dashboard</p>
+                    <p>Trang chủ</p>
                 </a>
             </li>
             <li>
                 <a data-toggle="collapse" href="#pagesExamples" class="collapsed" aria-expanded="false">
                     <i class="material-icons">image</i>
-                    <p>Pages
+                    <p>Quản trị viên
                         <b class="caret"></b>
                     </p>
                 </a>
                 <div class="collapse" id="pagesExamples" aria-expanded="false" style="height: 0px;">
                     <ul class="nav">
-                        <li>
-                            <a href="">Pricing</a>
+                        <li class="active">
+                            <a href="">Danh sách</a>
                         </li>
                         <li>
-                            <a href="">Timeline</a>
-                        </li>
-                        <li>
-                            <a href="">Login Page</a>
-                        </li>
-                        <li>
-                            <a href="">Register Page</a>
-                        </li>
-                        <li>
-                            <a href="">Lock Screen Page</a>
-                        </li>
-                        <li>
-                            <a href="">User Profile</a>
+                            <a href="">Thêm mới</a>
                         </li>
                     </ul>
                 </div>
