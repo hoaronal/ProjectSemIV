@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="sidebar" data-active-color="rose" data-background-color="black" data-image="img/sidebar-1.jpg">
+<div class="sidebar" data-active-color="rose" data-background-color="black" data-image="<%=request.getContextPath()%>/resources/img/sidebar-1.jpg">
 
     <div class="logo">
         <a href="http://www.creative-tim.com/" class="simple-text">
@@ -199,6 +199,6 @@
             <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 397px;"></div>
         </div>
     </div>
-    <div class="sidebar-background" style="background-image: url(img/sidebar-1.jpg) ">
+    <div class="sidebar-background" style="background-image: url(<%=request.getContextPath()%>/resources/img/sidebar-1.jpg) ">
     </div>
 </div>
