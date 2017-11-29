@@ -4,6 +4,10 @@ import com.bkap.vn.common.exception.DataAccessException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.*;
+import org.hibernate.metadata.ClassMetadata;
+import org.hibernate.persister.entity.AbstractEntityPersister;
+import org.hibernate.query.Query;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +21,13 @@ public class AbtractDAOImpl implements AbtractDAO {
     final static Logger logger = LogManager.getLogger(AbtractDAOImpl.class);
     @Autowired
     private SessionFactory sessionFactory;
+
     private Session session;
+
     private Transaction tx;
+
+    public void setSessionFactory(org.hibernate.SessionFactory sessionFactory) {
+    }
 
     @Override
     @Transactional
@@ -27,6 +36,12 @@ public class AbtractDAOImpl implements AbtractDAO {
         try {
             startOperation();
             result = (Integer) session.save(obj);
+            /*session.flush();
+            session.clear();
+            */
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
         } catch (HibernateException e) {
             logger.error("save : " + e.toString());
             handleException(e);
@@ -61,7 +76,11 @@ public class AbtractDAOImpl implements AbtractDAO {
         try {
             startOperation();
             session.delete(obj);
-            //tx.commit();
+            session.flush();
+            session.clear();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
         } catch (HibernateException e) {
             logger.error("delete : " + e.toString());
             check = false;
@@ -191,10 +210,33 @@ public class AbtractDAOImpl implements AbtractDAO {
             query.setFirstResult(firstResult);
             query.setMaxResults(pageSize);
             objects = query.list();
-            /*if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
                 tx.commit();
-            }*/
+            }
             //tx.commit();
+            session.close();
+        } catch (HibernateException e) {
+            logger.error("findAll : " + e.toString());
+            handleException(e);
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return objects;
+    }
+
+    @Override
+    @Transactional
+    public List getRange(Class clazz, int firstRow, int lastRow) {
+        List objects = null;
+        String tableName = getNameTable(clazz);
+        try {
+            startOperation();
+            Query query = session.createNativeQuery("SELECT * FROM " + tableName + " ORDER BY id OFFSET " + firstRow + " ROWS FETCH NEXT " + lastRow + " ROWS ONLY")
+                    .addEntity(clazz);
+            objects = query.list();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
             session.close();
         } catch (HibernateException e) {
             logger.error("findAll : " + e.toString());
@@ -231,6 +273,19 @@ public class AbtractDAOImpl implements AbtractDAO {
 
     protected void startOperation() throws HibernateException {
         session = sessionFactory.openSession();
-        tx = session.getTransaction();
+        tx = session.beginTransaction();
+    }
+
+    public String getNameTable(Class aClass){
+        String tableName = "";
+        ClassMetadata hibernateMetadata = sessionFactory.getClassMetadata(aClass);
+        if (hibernateMetadata == null) {
+        }
+        if (hibernateMetadata instanceof AbstractEntityPersister) {
+            AbstractEntityPersister persister = (AbstractEntityPersister) hibernateMetadata;
+            tableName = persister.getTableName();
+            String[] columnNames = persister.getKeyColumnNames();
+        }
+        return tableName;
     }
 }

@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class HibernateFactory {
+public class HibernateFactory{
 
     @Autowired
     private static SessionFactory sessionFactory;
@@ -40,7 +40,7 @@ public class HibernateFactory {
 
     public static Session openSession() throws HibernateException {
         buildIfNeeded();
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 
     public static void closeFactory() {

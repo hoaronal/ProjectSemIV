@@ -1,17 +1,21 @@
 package com.bkap.vn.manager.user.service;
 
-import com.bkap.vn.common.entity.User;
+import com.bkap.vn.common.entity.Users;
 
 import java.util.List;
 
 public interface UserService {
-    public boolean delete();
+    public boolean delete(Users user);
 
-    public int update();
+    public boolean update(Users user);
 
-    public int add();
+    public int add(Users user);
 
-    public List<User> listAdmin();
+    public Users getById(int id);
 
-    public List<User> findRange(int firstRow, int lastRow);
+    public int countAll();
+
+    public List<Users> listAdmin();
+
+    public List<Users> findRange(int firstRow, int lastRow);
 }

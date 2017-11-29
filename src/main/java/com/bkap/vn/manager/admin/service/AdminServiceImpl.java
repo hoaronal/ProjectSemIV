@@ -20,8 +20,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     @Transactional
-    public boolean delete() {
-        return false;
+    public boolean delete(Object o) {
+        return adminDAO.delete(o);
     }
 
     @Override
@@ -34,6 +34,12 @@ public class AdminServiceImpl implements AdminService {
     @Transactional
     public int add() {
         return 0;
+    }
+
+    @Override
+    @Transactional
+    public Admin getById(int id){
+        return (Admin) adminDAO.getById(Admin.class, id);
     }
 
     @Override

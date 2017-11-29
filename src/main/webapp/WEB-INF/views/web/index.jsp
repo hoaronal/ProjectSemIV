@@ -28,7 +28,6 @@
                                 <li><a href="#">Iphone 7 plus</a></li>
                                 <li><a href="#">Iphone 8</a></li>
                                 <li><a href="#">Iphone X</a></li>
-
                             </ul>
                         </div>
                     </li>

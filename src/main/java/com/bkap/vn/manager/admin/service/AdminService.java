@@ -5,11 +5,13 @@ import com.bkap.vn.common.entity.Admin;
 import java.util.List;
 
 public interface AdminService {
-    public boolean delete();
+    public boolean delete(Object o);
 
     public int update();
 
     public int add();
+
+    public Admin getById(int id);
 
     public List<Admin> listAdmin();
 

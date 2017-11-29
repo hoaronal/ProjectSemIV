@@ -8,14 +8,15 @@ public class PaggingResult {
     private int currentPage;
     private int totalRecord;
     private int totalPage;
-    private int[] pages;
-    private int pageRange = 20;
+    private Integer[] pages;
+    private int pageRange = 7;
+    private int rowsPerPage = 10;
     private List item;
 
     public PaggingResult() {
     }
 
-    public PaggingResult(int firstPage, int lastPage, int currentPage, int totalRecord, int totalPage, int[] pages, int pageRange) {
+    public PaggingResult(int firstPage, int lastPage, int currentPage, int totalRecord, int totalPage, Integer[] pages, int pageRange) {
         this.firstPage = firstPage;
         this.lastPage = lastPage;
         this.currentPage = currentPage;
@@ -25,7 +26,7 @@ public class PaggingResult {
         this.pageRange = pageRange;
     }
 
-    public PaggingResult(int firstPage, int lastPage, int currentPage, int totalRecord, int totalPage, int[] pages, int pageRange, List item) {
+    public PaggingResult(int firstPage, int lastPage, int currentPage, int totalRecord, int totalPage, Integer[] pages, int pageRange, List item) {
         this.firstPage = firstPage;
         this.lastPage = lastPage;
         this.currentPage = currentPage;
@@ -76,11 +77,11 @@ public class PaggingResult {
         this.totalPage = totalPage;
     }
 
-    public int[] getPages() {
+    public Integer[] getPages() {
         return pages;
     }
 
-    public void setPages(int[] pages) {
+    public void setPages(Integer[] pages) {
         this.pages = pages;
     }
 
@@ -100,8 +101,32 @@ public class PaggingResult {
         this.item = item;
     }
 
-    public Integer[] paging(int totalRows, int firstRow) {
-        Integer[] pages;
+    public int getRowsPerPage() {
+        return rowsPerPage;
+    }
+
+    public void setRowsPerPage(int rowsPerPage) {
+        this.rowsPerPage = rowsPerPage;
+    }
+
+    public Integer[] paging(int currentPage, int totalPages, int totalRows, int rowsPerPage, int firstRow, int pageRange) {
+        currentPage = (totalRows / rowsPerPage) - ((totalRows - firstRow) / rowsPerPage) + 1;
+        totalPages = (totalRows / rowsPerPage) + ((totalRows % rowsPerPage != 0) ? 1 : 0);
+        // Size of list page link
+        int pagesLength = Math.min(pageRange, totalPages);
+        pages = new Integer[pagesLength];
+        // firstPage must be greater than 0 and lesser than
+        // totalPages-pageLength.
+        int firstPage = Math.min(Math.max(0, currentPage - (pageRange / 2)), totalPages - pagesLength);
+        // Create pages (page numbers for page links).
+        for (int i = 0; i < pagesLength; i++) {
+            pages[i] = ++firstPage;
+        }
+        lastPage = totalPages;
+        return pages;
+    }
+
+    /*public Integer[] paging(int totalRows, int firstRow, int currentPage) {
         currentPage = (totalRows / pageRange) - ((totalRows - firstRow) / pageRange) + 1;
         totalPage = (totalRows / pageRange) + ((totalRows % pageRange != 0) ? 1 : 0);
         int pagesLength = Math.min(pageRange, totalPage);
@@ -111,5 +136,5 @@ public class PaggingResult {
             pages[i] = ++firstPage;
         }
         return pages;
-    }
+    }*/
 }

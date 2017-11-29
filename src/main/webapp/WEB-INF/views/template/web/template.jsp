@@ -9,16 +9,11 @@
     <title><tiles:insertAttribute name="title"/></title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta name="viewport" content="width=device-width">
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
-          type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/material-kit.css" />">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/demo.css" />">
+    <%--<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/material-dashboard.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/css.css" rel="stylesheet" type="text/css" >--%>
 
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/material-dashboard.css" />" rel="stylesheet">
@@ -26,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css" />" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/main.css" />" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/material-kit.css" />">
     <style>
         #left_ads_float {
             bottom: 50px;
@@ -91,6 +87,9 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        $("#success-${style}").fadeTo(2000, 500).slideUp(500, function(){
+            $("#success-${style}").slideUp(500);
+        });
         // Optimalisation: Store the references outside the event handler:
         var $window = $(window);
         var $pane = $('#pane1');
