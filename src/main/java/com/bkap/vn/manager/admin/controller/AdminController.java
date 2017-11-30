@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,16 +20,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/administrator")
+@RequestMapping("quan-tri")
 public class AdminController extends BaseController {
 
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping(value = "/admin/list",method = RequestMethod.GET)
-    public String list(Model model){
-        List<Admin> adminList =  adminService.listAdmin();
+    @RequestMapping(value = "/quan-tri-vien/danh-sach-quan-tri-vien/{page}", method = RequestMethod.GET)
+    public String list(@PathVariable("page") int page, Model model, HttpServletRequest request, HttpServletResponse response) {
+        List<Admin> adminList = adminService.findRange(1,3);
         model.addAttribute("adminList", adminList);
         return "admin-list";
+    }
+
+    @RequestMapping(value = "/quan-tri-vien/them-moi-quan-tri-vien", method = RequestMethod.GET)
+    public String add(Model model, HttpServletRequest request, HttpServletResponse response) {
+        List<Admin> adminList = adminService.findRange(1,3);
+        model.addAttribute("adminList", adminList);
+        return "admin-add";
+    }
+
+    @RequestMapping(value = "/quan-tri-vien/xoa/{id}", method = RequestMethod.GET)
+    public ModelAndView remove(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
+        ModelAndView view = new ModelAndView();
+        Admin admin = adminService.getById(id);
+        adminService.delete(admin);
+        view.setViewName("redirect:/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/1");
+        return view;
     }
 }
