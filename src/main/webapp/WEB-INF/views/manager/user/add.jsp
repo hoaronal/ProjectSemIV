@@ -7,6 +7,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
+            Language: <a href="?lang=en_US">English</a> - <a href="?lang=vi_VN">Viet Nam</a> - <a href="?lang=ja_JP">日本語</a>
+            <h2>
+                <spring:message code="hello"/>
+            </h2>
+            Locale: ${pageContext.response.locale}
+            </body>
             <div class="card">
                 <form class="form-horizontal" action="${addUserAction}" method="post" enctype="multipart/form-data">
                     <input type="text" class="form-control" name="username">

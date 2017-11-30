@@ -39,7 +39,7 @@
 
     <definition name="user-add" extends="adminTemplate">
         <put-attribute name="title" value="Thêm mới người dùng" />
-        <put-attribute name="content" value="/WEB-INF/views/manager/user/test.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/manager/user/add.jsp" />
     </definition>
 
     <definition name="home-web" extends="webTemplate">

@@ -30,10 +30,6 @@ import java.util.Locale;
 @RequestMapping("quan-tri")
 public class UserController extends BaseController {
 
-
-
-    @Autowired
-    private Validator validator;
     @Autowired
     private UserService userService = new UserServiceImpl();
 
@@ -67,10 +63,7 @@ public class UserController extends BaseController {
     public ModelAndView add(@ModelAttribute("user") @Valid Users user, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
         response.setCharacterEncoding("UTF-8");
         if(result.hasErrors()){
-            String userMsg = result.getFieldError("username").toString();
-            userMsg = result.getFieldValue("username").toString();
-            //validator.validate(user, result);
-            System.out.println(getValidationErrorMessage(result, "username"));
+
             return view("user-add",user,"user");
         }
         user.setActiveStatus((byte) 1);

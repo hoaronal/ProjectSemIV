@@ -28,7 +28,7 @@ public class Users implements Serializable {
     @NotNull(message = "Tên người dùng không được để trống!")
     @Size(min = 5, max = 20,message = "Tên người dùng tối thiểu 5 kí tự, tối đa 20 kí tự!")
     private String username;
-    @Size(min=8, max=15)
+    @Size(min=8, max=20,message = "Mật khẩu tối thiểu 8 kí tự, tối đa 20 kí tự!")
     private String password;
 
     /*@NotNull

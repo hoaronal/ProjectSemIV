@@ -24,6 +24,16 @@
                         <p class="hidden-lg hidden-md">Dashboard</p>
                     </a>
                 </li>
+                <li>
+                    <a href="?lang=vi_VN" class="btn btn-white btn-round btn-just-icon">
+                        <img style="width: 30px;min-height: 30px" src="<%=request.getContextPath()%>/resources/img/vietnam_language.png">
+                    </a>
+                </li>
+                <li>
+                    <a href="?lang=en_US" class="btn btn-white btn-round btn-just-icon">
+                        <img style="width: 30px;min-height: 30px" src="<%=request.getContextPath()%>/resources/img/english.png">
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">notifications</i>
@@ -51,12 +61,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">person</i>
-                        <p class="hidden-lg hidden-md">Profile</p>
-                    </a>
-                </li>
+
                 <li class="separator hidden-lg hidden-md"></li>
             </ul>
             <form class="navbar-form navbar-right" role="search">

@@ -17,7 +17,6 @@ public class HomeWebController {
 
     @RequestMapping(value = {"","/trang-chu"},method = RequestMethod.GET)
     public String home(Model model){
-        System.out.println("sdsdsdsd");
         return "home-web";
     }
 

@@ -9,29 +9,28 @@
        					   http://www.springframework.org/schema/context/spring-context-4.0.xsd
        					   http://www.springframework.org/schema/mvc
        					   http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-    <!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
-
+    <!--Multi language and message-->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" p:defaultLocale="vi_VN" />
     <bean id="messageSource"
-          class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
-          p:basename="classpath:language" p:defaultEncoding="UTF-8"/>
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!--<property name="basenames" value="classpath:i18n/language,classpath:msg"/>-->
+        <property name="fallbackToSystemLocale" value="true"/>
+        <property name="fileEncodings" value="UTF-8"/>
+        <property name="cacheSeconds" value="3600"/>
+        <property name="basenames">
+            <list>
+                <value>classpath:i18n/language</value>
+                <value>classpath:validation/validation</value>
+            </list>
+        </property>
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
     <mvc:interceptors>
         <bean id="localeChangeInterceptor"
               class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="lang"/>
         </bean>
-    </mvc:interceptors>-->
-
-
-    <!--<bean id="messageSource"
-          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="classpath:language"/>
-        <property name="fallbackToSystemLocale" value="true"/>
-        <property name="fileEncodings" value="UTF-8"/>
-        <property name="defaultEncoding" value="UTF-8"/>
-        <property name="cacheSeconds" value="3600"/>
-    </bean>-->
-
-    <!--<bean id="messageAccessor" class="org.springframework.context.support.MessageSourceAccessor">
-        <constructor-arg ref="messageSource" index="0"/>
-    </bean>-->
+    </mvc:interceptors>
+    <!--Multi language and message-->
 </beans>

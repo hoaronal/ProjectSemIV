@@ -9,11 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 public class BaseController {
-    @Autowired
-    private Validator validator;
 
-    @Autowired
-    private MessageSourceAccessor messageSourceAccessor;
 
     public String trimspace(String str) {
         str = str.replaceAll("\\s+", " ");
@@ -29,14 +25,7 @@ public class BaseController {
     }
 
     public ModelAndView view(String viewName){
-        return new ModelAndView("viewName");
+        return new ModelAndView(viewName);
     }
 
-    public String getValidationErrorMessage(BindingResult result, String field) {
-        if (result.hasErrors()) {
-            FieldError fieldError = result.getFieldError(field);
-            return messageSourceAccessor.getMessage(fieldError);
-        }
-        return "";
-    }
 }
