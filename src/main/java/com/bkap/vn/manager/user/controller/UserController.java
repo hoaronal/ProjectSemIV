@@ -33,7 +33,7 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService = new UserServiceImpl();
 
-    @RequestMapping(value = "/nguoi-dung/danh-sach-nguoi-dung/{page}", method = RequestMethod.GET)
+    @RequestMapping(value = {"/nguoi-dung/{page}","/nguoi-dung/danh-sach-nguoi-dung/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@PathVariable("page") int page, PaggingResult paggingResult, Model model, HttpServletRequest request, HttpServletResponse response) {
         ModelAndView view = new ModelAndView();
         if (page <= 1) {
