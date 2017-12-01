@@ -14,6 +14,7 @@ import javax.persistence.*;
         , catalog = "shop_online"
 )
 public class Admin implements java.io.Serializable {
+	
     private int id;
     private String account;
     private String password;
