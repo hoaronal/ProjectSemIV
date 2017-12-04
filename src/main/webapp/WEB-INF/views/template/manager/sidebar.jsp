@@ -3,12 +3,12 @@
 
     <div class="logo">
         <a href="http://www.creative-tim.com/" class="simple-text">
-            Creative Tim
+            I-Store Manager
         </a>
     </div>
     <div class="logo logo-mini">
         <a href="http://www.creative-tim.com/" class="simple-text">
-            Ct
+            I-S
         </a>
     </div>
     <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y"
@@ -46,7 +46,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#pagesExamples" class="collapsed" aria-expanded="false">
-                    <i class="material-icons">image</i>
+                    <i class="material-icons">group</i>
                     <p>Quản trị viên
                         <b class="caret"></b>
                     </p>
@@ -64,8 +64,8 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#componentsExamples">
-                    <i class="material-icons">apps</i>
-                    <p>Components
+                    <i class="material-icons">perm_data_setting</i>
+                    <p>Quản trị hệ thống
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -97,87 +97,21 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#formsExamples">
-                    <i class="material-icons">content_paste</i>
-                    <p>Forms
+                    <i class="material-icons">widgets</i>
+                    <p>Báo cáo thống kê
                         <b class="caret"></b>
                     </p>
                 </a>
                 <div class="collapse" id="formsExamples">
                     <ul class="nav">
                         <li>
-                            <a href="">Regular Forms</a>
+                            <a href="">Thống kê doanh số</a>
                         </li>
                         <li>
-                            <a href="">Extended Forms</a>
-                        </li>
-                        <li>
-                            <a href="">Validation Forms</a>
-                        </li>
-                        <li>
-                            <a href="">Wizard</a>
+                            <a href="">Thống kê sản phẩm</a>
                         </li>
                     </ul>
                 </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#tablesExamples">
-                    <i class="material-icons">grid_on</i>
-                    <p>Tables
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="tablesExamples">
-                    <ul class="nav">
-                        <li>
-                            <a href="">Regular Tables</a>
-                        </li>
-                        <li>
-                            <a href="">Extended Tables</a>
-                        </li>
-                        <li>
-                            <a href="">DataTables.net</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#mapsExamples">
-                    <i class="material-icons">place</i>
-                    <p>Maps
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="mapsExamples">
-                    <ul class="nav">
-                        <li>
-                            <a href="">Google Maps</a>
-                        </li>
-                        <li>
-                            <a href="">Full Screen Map</a>
-                        </li>
-                        <li>
-                            <a href="">Vector Map</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a href="">
-                    <i class="material-icons">widgets</i>
-                    <p>Widgets</p>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="material-icons">timeline</i>
-                    <p>Charts</p>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="material-icons">date_range</i>
-                    <p>Calendar</p>
-                </a>
             </li>
         </ul>
         <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">

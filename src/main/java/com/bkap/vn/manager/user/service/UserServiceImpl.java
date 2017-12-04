@@ -40,6 +40,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public int countAllByKeySearch(String filter) {
+        return userDAO.getAllByKeySearch(Users.class,  filter).size();
+    }
+
+    @Override
+    @Transactional
     public int add(Users user) {
         return userDAO.save(user);
     }
@@ -52,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public List<Users> findRange(int firstRow, int lastRow) {
-        return userDAO.getRange(Users.class, firstRow, lastRow);
+    public List<Users> findRange(int firstRow, int lastRow, String filter) {
+        return userDAO.getRange(Users.class, firstRow, lastRow, filter);
     }
 }

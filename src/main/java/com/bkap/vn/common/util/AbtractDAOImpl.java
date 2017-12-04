@@ -58,6 +58,11 @@ public class AbtractDAOImpl implements AbtractDAO {
         try {
             startOperation();
             session.update(obj);
+            session.flush();
+            session.clear();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
             //tx.commit();
         } catch (HibernateException e) {
             logger.error("update : " + e.toString());
@@ -226,13 +231,35 @@ public class AbtractDAOImpl implements AbtractDAO {
 
     @Override
     @Transactional
-    public List getRange(Class clazz, int firstRow, int lastRow) {
+    public List getRange(Class clazz, int firstRow, int lastRow, String filter) {
         List objects = null;
         String tableName = getNameTable(clazz);
         try {
             startOperation();
-            Query query = session.createNativeQuery("SELECT * FROM " + tableName + " ORDER BY id OFFSET " + firstRow + " ROWS FETCH NEXT " + lastRow + " ROWS ONLY")
+            Query query = session.createNativeQuery("SELECT * FROM " + tableName + filter + " ORDER BY id OFFSET " + firstRow + " ROWS FETCH NEXT " + lastRow + " ROWS ONLY ")
                     .addEntity(clazz);
+            objects = query.list();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
+            session.close();
+        } catch (HibernateException e) {
+            logger.error("findAll : " + e.toString());
+            handleException(e);
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return objects;
+    }
+
+    @Override
+    @Transactional
+    public List getAllByKeySearch(Class clazz, String filter) {
+        List objects = null;
+        String tableName = getNameTable(clazz);
+        try {
+            startOperation();
+            Query query = session.createNativeQuery("SELECT * FROM " + tableName + filter).addEntity(clazz);
             objects = query.list();
             if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
                 tx.commit();
