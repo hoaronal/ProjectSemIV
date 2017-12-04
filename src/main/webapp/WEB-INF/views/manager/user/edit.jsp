@@ -2,15 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<spring:url value="/quan-tri/nguoi-dung/them-moi/luu" var="addUserAction"/>
+<spring:url value="/quan-tri/nguoi-dung/cap-nhat/luu" var="editUserAction"/>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <form:form id="myform" action="${addUserAction}" method="post" modelAttribute="user"
+                <form:form id="myform" action="${editUserAction}" method="post" modelAttribute="user"
                            cssClass="form-horizontal">
                     <div class="card-header card-header-text" data-background-color="rose">
-                        <h4 class="card-title"><spring:message code="label.adduser"/></h4>
+                        <h4 class="card-title"><spring:message code="label.updateuser"/></h4>
                     </div>
                     <form:hidden path="id"  cssClass="form-control" />
                     <div class="card-content">
@@ -69,7 +69,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="card-content">
                         <div class="row">
                             <label class="col-sm-2 label-on-left"><spring:message code="label.birthday"/></label>
@@ -91,27 +90,10 @@
                     </div>
                     <div class="card-content">
                         <div class="row">
-                            <label class="col-sm-2 label-on-left"><spring:message code="label.status"/></label>
-                            <div class="col-sm-10">
-                                <div class="radio">
-                                    <label>
-                                        <form:radiobutton path="status" value="1" />Kích hoạt
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <form:radiobutton path="status" value="0" />Không kích hoạt
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="row">
                             <label class="col-sm-2 label-on-left"></label>
                             <div class="col-sm-4">
                                 <div class="form-group label-floating is-empty">
-                                    <button type="submit" class="btn btn-fill btn-rose" value="Cập nhật"><spring:message code="label.addbtn"/><div class="ripple-container"></div></button>
+                                    <button type="submit" class="btn btn-fill btn-rose" value="Cập nhật"><spring:message code="label.updatebtn"/><div class="ripple-container"></div></button>
                                 </div>
                             </div>
                         </div>

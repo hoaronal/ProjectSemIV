@@ -27,7 +27,9 @@ public interface AbtractDAO {
     public List findLikeProperty(Class clazz, String propertyName, Object value);
     public List findRange(Class clazz, int firstRow, int lastRow);
 
-    public List getRange(Class clazz, int firstRow, int lastRow);
+    public List getRange(Class clazz, int firstRow, int lastRow, String filter);
+
+    public List getAllByKeySearch(Class clazz, String filter);
     public List findAll(Class clazz);
 
 }

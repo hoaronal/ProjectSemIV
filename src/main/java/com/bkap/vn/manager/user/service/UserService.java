@@ -15,7 +15,9 @@ public interface UserService {
 
     public int countAll();
 
+    public int countAllByKeySearch(String filter);
+
     public List<Users> listAdmin();
 
-    public List<Users> findRange(int firstRow, int lastRow);
+    public List<Users> findRange(int firstRow, int lastRow, String filter);
 }

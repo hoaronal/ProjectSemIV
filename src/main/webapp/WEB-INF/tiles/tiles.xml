@@ -42,6 +42,11 @@
         <put-attribute name="content" value="/WEB-INF/views/manager/user/add.jsp" />
     </definition>
 
+    <definition name="user-edit" extends="adminTemplate">
+        <put-attribute name="title" value="Cập nhật người dùng" />
+        <put-attribute name="content" value="/WEB-INF/views/manager/user/edit.jsp" />
+    </definition>
+
     <definition name="home-web" extends="webTemplate">
         <put-attribute name="title" value="Trang chủ" />
         <put-attribute name="content" value="/WEB-INF/views/web/index.jsp" />
@@ -54,6 +59,6 @@
 
     <definition name="test" extends="webTemplate">
         <put-attribute name="title" value="test" />
-        <put-attribute name="content" value="/WEB-INF/views/web/test.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/manager/user/test.jsp" />
     </definition>
 </tiles-definitions>
