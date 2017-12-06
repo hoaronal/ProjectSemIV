@@ -1,5 +1,5 @@
 package com.bkap.vn.common.entity;
-// Generated Aug 12, 2017 10:45:55 AM by Hibernate Tools 4.3.1
+// Generated Dec 6, 2017 9:49:55 PM by Hibernate Tools 4.3.1
 
 
 import java.io.Serializable;
@@ -22,14 +22,14 @@ import javax.persistence.TemporalType;
     ,schema="dbo"
     ,catalog="shop_online"
 )
-public class Province  implements Serializable {
+public class Province  implements java.io.Serializable {
 
 
      private int id;
      private Admin adminByAdminUpdate;
      private Admin adminByAdminCreate;
-     private Serializable provinceName;
-     private Serializable description;
+     private String provinceName;
+     private String description;
      private Date createDate;
      private Date updateDate;
 
@@ -37,11 +37,11 @@ public class Province  implements Serializable {
     }
 
 	
-    public Province(int id, Serializable provinceName) {
+    public Province(int id, String provinceName) {
         this.id = id;
         this.provinceName = provinceName;
     }
-    public Province(int id, Admin adminByAdminUpdate, Admin adminByAdminCreate, Serializable provinceName, Serializable description, Date createDate, Date updateDate) {
+    public Province(int id, Admin adminByAdminUpdate, Admin adminByAdminCreate, String provinceName, String description, Date createDate, Date updateDate) {
        this.id = id;
        this.adminByAdminUpdate = adminByAdminUpdate;
        this.adminByAdminCreate = adminByAdminCreate;
@@ -85,21 +85,21 @@ public class Province  implements Serializable {
 
     
     @Column(name="province_name", nullable=false)
-    public Serializable getProvinceName() {
+    public String getProvinceName() {
         return this.provinceName;
     }
     
-    public void setProvinceName(Serializable provinceName) {
+    public void setProvinceName(String provinceName) {
         this.provinceName = provinceName;
     }
 
     
     @Column(name="description")
-    public Serializable getDescription() {
+    public String getDescription() {
         return this.description;
     }
     
-    public void setDescription(Serializable description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

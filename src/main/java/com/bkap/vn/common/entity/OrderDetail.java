@@ -1,5 +1,5 @@
 package com.bkap.vn.common.entity;
-// Generated Aug 12, 2017 10:45:55 AM by Hibernate Tools 4.3.1
+// Generated Dec 6, 2017 9:49:55 PM by Hibernate Tools 4.3.1
 
 
 import java.io.Serializable;
@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
     ,schema="dbo"
     ,catalog="shop_online"
 )
-public class OrderDetail  implements Serializable {
+public class OrderDetail  implements java.io.Serializable {
 
 
      private int id;
@@ -31,7 +31,7 @@ public class OrderDetail  implements Serializable {
      private int orderId;
      private int productId;
      private double amount;
-     private Serializable data;
+     private String data;
      private Date createDate;
      private Date updateDate;
 
@@ -45,7 +45,7 @@ public class OrderDetail  implements Serializable {
         this.productId = productId;
         this.amount = amount;
     }
-    public OrderDetail(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, int orderId, int productId, double amount, Serializable data, Date createDate, Date updateDate) {
+    public OrderDetail(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, int orderId, int productId, double amount, String data, Date createDate, Date updateDate) {
        this.id = id;
        this.adminByAdminCreate = adminByAdminCreate;
        this.adminByAdminUpdate = adminByAdminUpdate;
@@ -121,11 +121,11 @@ public class OrderDetail  implements Serializable {
 
     
     @Column(name="data")
-    public Serializable getData() {
+    public String getData() {
         return this.data;
     }
     
-    public void setData(Serializable data) {
+    public void setData(String data) {
         this.data = data;
     }
 

@@ -1,5 +1,5 @@
 package com.bkap.vn.common.entity;
-// Generated Aug 12, 2017 10:45:55 AM by Hibernate Tools 4.3.1
+// Generated Dec 6, 2017 9:49:55 PM by Hibernate Tools 4.3.1
 
 
 import java.io.Serializable;
@@ -22,20 +22,20 @@ import javax.persistence.TemporalType;
     ,schema="dbo"
     ,catalog="shop_online"
 )
-public class HistoryAction  implements Serializable {
+public class HistoryAction  implements java.io.Serializable {
 
 
      private int id;
      private Admin admin;
-     private Serializable clientInfo;
-     private Serializable accessType;
+     private String clientInfo;
+     private String accessType;
      private Date executeDate;
-     private Serializable description;
+     private String description;
 
     public HistoryAction() {
     }
 
-    public HistoryAction(int id, Admin admin, Serializable clientInfo, Serializable accessType, Date executeDate, Serializable description) {
+    public HistoryAction(int id, Admin admin, String clientInfo, String accessType, Date executeDate, String description) {
        this.id = id;
        this.admin = admin;
        this.clientInfo = clientInfo;
@@ -68,21 +68,21 @@ public class HistoryAction  implements Serializable {
 
     
     @Column(name="client_info", nullable=false)
-    public Serializable getClientInfo() {
+    public String getClientInfo() {
         return this.clientInfo;
     }
     
-    public void setClientInfo(Serializable clientInfo) {
+    public void setClientInfo(String clientInfo) {
         this.clientInfo = clientInfo;
     }
 
     
     @Column(name="access_type", nullable=false)
-    public Serializable getAccessType() {
+    public String getAccessType() {
         return this.accessType;
     }
     
-    public void setAccessType(Serializable accessType) {
+    public void setAccessType(String accessType) {
         this.accessType = accessType;
     }
 
@@ -98,11 +98,11 @@ public class HistoryAction  implements Serializable {
 
     
     @Column(name="description", nullable=false)
-    public Serializable getDescription() {
+    public String getDescription() {
         return this.description;
     }
     
-    public void setDescription(Serializable description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
