@@ -31,7 +31,7 @@ import java.util.Locale;
 public class UserController extends BaseController {
 
     @Autowired
-    private UserService userService = new UserServiceImpl();
+    private UserService userService;
 
     @RequestMapping(value = {"/nguoi-dung/{page}", "/nguoi-dung/danh-sach-nguoi-dung/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("user") Users user, String clickSearch, @PathVariable("page") int page, PaggingResult paggingResult, String keySearch, Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -46,7 +46,7 @@ public class UserController extends BaseController {
         paging(paggingResult, page, keySearch);
         view.addObject("keySearch", keySearch);
         view.addObject("clickSearch", clickSearch);
-        view.addObject("searchRrl", contextPath + path + "?" + queryString);
+        view.addObject("searchUrl", contextPath + path + "?" + queryString);
         view.addObject("listItem", paggingResult);
         view.setViewName("user-list");
         return view;
@@ -74,33 +74,36 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/nguoi-dung/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView edit(@ModelAttribute("user") @Valid Users user, BindingResult result, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
         Users userUpdate = userService.getById(user.getId());
-        if (userUpdate != null) {
-            if (result.hasErrors() && !validateUpdate(user)) {
-                return view("user-edit", user, "user");
-            } else {
-                if(StringUtils.isBlank(user.getPassword())){
-                    user.setPassword(userUpdate.getPassword());
-                }else{
-                    user.setPassword(user.getPassword());
-                }
-                user.setUpdateDate(new Date());
-                user.setCreateDate(userUpdate.getCreateDate());
-                user.setAdminByAdminUpdate(new Admin());
-                user.setAdminByAdminCreate(userUpdate.getAdminByAdminCreate());
-                boolean check = userService.update(user);
-                if (check) {
-                    attributes.addFlashAttribute("style", "info");
-                    attributes.addFlashAttribute("msg", "Thành công");
-                    return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
+        try{
+            if (userUpdate != null) {
+                if (result.hasErrors() && !validateUpdate(user)) {
+                    return view("user-edit", user, "user");
                 } else {
-                    attributes.addFlashAttribute("style", "danger");
-                    attributes.addFlashAttribute("msg", "Thất bại");
-                    return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
+                    if(StringUtils.isBlank(user.getPassword())){
+                        user.setPassword(userUpdate.getPassword());
+                    }else{
+                        user.setPassword(user.getPassword());
+                    }
+                    user.setUpdateDate(new Date());
+                    user.setCreateDate(userUpdate.getCreateDate());
+                /*user.setAdminByAdminUpdate(new Admin());
+                user.setAdminByAdminCreate(userUpdate.getAdminByAdminCreate());*/
+                    boolean check = userService.update(user);
+                    if (check) {
+                        attributes.addFlashAttribute("style", "info");
+                        attributes.addFlashAttribute("msg", "Thành công");
+                    } else {
+                        attributes.addFlashAttribute("style", "danger");
+                        attributes.addFlashAttribute("msg", "Thất bại");
+                    }
                 }
+            } else {
+                return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
             }
-        } else {
-            return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
+        }catch (Exception e){
+            e.printStackTrace();
         }
+        return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
     }
 
     @RequestMapping(value = "/nguoi-dung/them-moi", method = RequestMethod.GET)

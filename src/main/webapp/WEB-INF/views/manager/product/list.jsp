@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<spring:url value="/quan-tri/nguoi-dung/xoa" var="deleteUserAction"/>
-<spring:url value="/quan-tri/nguoi-dung/cap-nhat" var="editUserAction"/>
+<spring:url value="/quan-tri/san-pham/xoa" var="deleteProductAction"/>
+<spring:url value="/quan-tri/san-pham/cap-nhat" var="editProductAction"/>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -42,17 +42,19 @@
                                             <%--<label class="form-group"><input type="search" class="form-control input-sm"
                                                                              placeholder="<spring:message code="label.search"/>"
                                                                              aria-controls="datatables"></label>--%>
-                                            <label class="form-group"><input type="text" class="form-control input-sm" placeholder="<spring:message code="label.search"/>"
-                                                   value="${keySearch}" name="keySearch"></label>
+                                            <label class="form-group"><input type="text" class="form-control input-sm"
+                                                                             placeholder="<spring:message code="label.search"/>"
+                                                                             value="${keySearch}"
+                                                                             name="keySearch"></label>
                                             <input type="hidden" class="form-control" name="page"
                                                    value="${listItem.currentPage}">
                                             <input type="hidden" class="form-control" name="clickSearch"
                                                    id="clickSearch" value="${clickSearch}">
-                                                <%--<button type="button" id="btnSearch"
-                                                        class="btn btn-white btn-round btn-just-icon">
-                                                    <i class="material-icons">search</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>--%>
+                                            <%--<button type="button" id="btnSearch"
+                                                    class="btn btn-white btn-round btn-just-icon">
+                                                <i class="material-icons">search</i>
+                                                <div class="ripple-container"></div>
+                                            </button>--%>
                                         </div>
 
                                     </form>
@@ -106,16 +108,19 @@
                                         <c:forEach var="item" items="${listItem.item}">
                                             <tr role="row" class="odd" id="rowRecord">
                                                 <td tabindex="0" class="sorting_1"><c:out value="${item.id}"/></td>
-                                                <td class="username" id="username<c:out value="${item.id}"/>"><c:out
-                                                        value="${item.username}"/></td>
-                                                <td><c:out value="${item.email}"/></td>
-                                                <td><c:out value="${item.phone}"/></td>
-                                                <td><c:out value="${item.birthday}"/></td>
-                                                <td><c:out value="${item.address}"/></td>
+                                                <td class="username" id="productName<c:out value="${item.id}"/>">
+                                                    <c:out value="${item.productName}"/></td>
+                                                <td><c:out value="${item.category.category}"/></td>
+                                                <td><c:out value="${item.price}"/></td>
+                                                <td><c:out value="${item.discount}"/></td>
+                                                <td><c:out value="${item.detail}"/></td>
+
                                                 <td class="text-right">
                                                     <a href="" class="btn btn-simple btn-info btn-icon like"><i
                                                             class="material-icons">favorite</i></a>
-                                                    <a href="${editUserAction}/${item.id}" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">edit</i></a>
+                                                    <a href="${editProductAction}/${item.id}"
+                                                       class="btn btn-simple btn-warning btn-icon edit"><i
+                                                            class="material-icons">edit</i></a>
                                                     <a class="btn btn-simple btn-danger btn-icon remove"
                                                        data-toggle="modal" data-target="#smallAlertModal${item.id}"><i
                                                             class="material-icons">close</i></a>
@@ -128,16 +133,21 @@
                                                     <div class="modal-content">
 
                                                         <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel" s><i class="material-icons" style="color: orange">warning</i> Xóa người dùng!</h4>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close"><span
+                                                                    aria-hidden="true">&times;</span></button>
+
+                                                            <h4 style="line-height: 40px"><i class="material-icons" style="color: orange;">warning</i>Xóa sản phẩm!</h4>
                                                         </div>
                                                         <div class="modal-body text-center">
-                                                            <h5>Bạn có muốn xóa người dùng có mã là ${item.id}? </h5>
+                                                            <h5>Bạn có muốn xóa sản phẩm có mã là ${item.id}? </h5>
                                                         </div>
                                                         <div class="modal-footer text-center">
-                                                                <a class="btn btn-default" data-dismiss="modal" style="margin: 0px !important;" >Hủy</a>
-                                                                <a href="<%=request.getContextPath()%>${deleteUserAction}/${item.id}" class="btn btn-primary" style="margin: 0px !important;" >
-                                                                    Đồng ý</a>
+                                                            <a class="btn btn-default" data-dismiss="modal"
+                                                               style="margin: 0px !important;">Hủy</a>
+                                                            <a href="<%=request.getContextPath()%>${deleteProductAction}/${item.id}"
+                                                               class="btn btn-primary" style="margin: 0px !important;">
+                                                                Đồng ý</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -157,7 +167,7 @@
                                     <div class="dataTables_paginate paging_full_numbers" id="datatables_paginate">
                                         <ul class="pagination">
                                             <li class="paginate_button first " id="datatables_first">
-                                                <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/danh-sach-nguoi-dung/${listItem.firstPage}">Trang
+                                                <a href="<%=request.getContextPath()%>/quan-tri/san-pham/${listItem.firstPage}">Trang
                                                     đầu</a>
                                             </li>
                                             <li class="paginate_button previous" id="datatables_previous">
@@ -166,18 +176,17 @@
                                             </li>
                                             <c:forEach var="page" items="${listItem.pages}">
                                                 <li class="paginate_button ${listItem.currentPage == page?"active":""}">
-                                                    <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/danh-sach-nguoi-dung/<c:out value="${page}"/>?keySearch<c:out value="${keySearch}"/>"
+                                                    <a href="<%=request.getContextPath()%>/quan-tri/san-pham/<c:out value="${page}"/>?keySearch<c:out value="${keySearch}"/>"
                                                        data-dt-idx="2" tabindex="0">${page}</a>
                                                 </li>
                                             </c:forEach>
-
                                             <li class="paginate_button next" id="datatables_next"><a
                                                     href=""
                                                     aria-controls="datatables" data-dt-idx="6" tabindex="0">Tiếp
                                                 theo</a>
                                             </li>
                                             <li class="paginate_button last" id="datatables_last">
-                                                <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/danh-sach-nguoi-dung/${listItem.lastPage}">Trang
+                                                <a href="<%=request.getContextPath()%>/quan-tri/san-pham/${listItem.lastPage}">Trang
                                                     cuối</a>
                                             </li>
                                         </ul>

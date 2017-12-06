@@ -32,6 +32,7 @@ public class Users implements Serializable {
     private String username;
     @Size(min=8, max=20,message = "Mật khẩu tối thiểu 8 kí tự, tối đa 20 kí tự!")
     private String password;
+
     @Pattern(regexp = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
     @Size(max = 200,message = "Email tối đa 200 kí tự!")
     private String email;
