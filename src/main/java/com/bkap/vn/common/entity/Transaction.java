@@ -1,5 +1,5 @@
 package com.bkap.vn.common.entity;
-// Generated Aug 12, 2017 10:45:55 AM by Hibernate Tools 4.3.1
+// Generated Dec 6, 2017 9:49:55 PM by Hibernate Tools 4.3.1
 
 
 import java.io.Serializable;
@@ -22,21 +22,21 @@ import javax.persistence.TemporalType;
     ,schema="dbo"
     ,catalog="shop_online"
 )
-public class Transaction  implements Serializable {
+public class Transaction  implements java.io.Serializable {
 
 
      private int id;
      private Admin adminByAdminCreate;
      private Admin adminByAdminUpdate;
      private int userId;
-     private Serializable userName;
-     private Serializable userEmail;
-     private Serializable userPhone;
+     private String userName;
+     private String userEmail;
+     private String userPhone;
      private double amount;
-     private Serializable payment;
-     private Serializable paymentInfo;
-     private Serializable message;
-     private Serializable security;
+     private String payment;
+     private String paymentInfo;
+     private String message;
+     private String security;
      private Date createDate;
      private Date updateDate;
 
@@ -44,7 +44,7 @@ public class Transaction  implements Serializable {
     }
 
 	
-    public Transaction(int id, int userId, Serializable userName, Serializable userEmail, Serializable userPhone, double amount, Serializable payment) {
+    public Transaction(int id, int userId, String userName, String userEmail, String userPhone, double amount, String payment) {
         this.id = id;
         this.userId = userId;
         this.userName = userName;
@@ -53,7 +53,7 @@ public class Transaction  implements Serializable {
         this.amount = amount;
         this.payment = payment;
     }
-    public Transaction(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, int userId, Serializable userName, Serializable userEmail, Serializable userPhone, double amount, Serializable payment, Serializable paymentInfo, Serializable message, Serializable security, Date createDate, Date updateDate) {
+    public Transaction(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, int userId, String userName, String userEmail, String userPhone, double amount, String payment, String paymentInfo, String message, String security, Date createDate, Date updateDate) {
        this.id = id;
        this.adminByAdminCreate = adminByAdminCreate;
        this.adminByAdminUpdate = adminByAdminUpdate;
@@ -114,31 +114,31 @@ public class Transaction  implements Serializable {
 
     
     @Column(name="user_name", nullable=false)
-    public Serializable getUserName() {
+    public String getUserName() {
         return this.userName;
     }
     
-    public void setUserName(Serializable userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
     
     @Column(name="user_email", nullable=false)
-    public Serializable getUserEmail() {
+    public String getUserEmail() {
         return this.userEmail;
     }
     
-    public void setUserEmail(Serializable userEmail) {
+    public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
 
     
     @Column(name="user_phone", nullable=false)
-    public Serializable getUserPhone() {
+    public String getUserPhone() {
         return this.userPhone;
     }
     
-    public void setUserPhone(Serializable userPhone) {
+    public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 
@@ -154,41 +154,41 @@ public class Transaction  implements Serializable {
 
     
     @Column(name="payment", nullable=false)
-    public Serializable getPayment() {
+    public String getPayment() {
         return this.payment;
     }
     
-    public void setPayment(Serializable payment) {
+    public void setPayment(String payment) {
         this.payment = payment;
     }
 
     
     @Column(name="payment_info")
-    public Serializable getPaymentInfo() {
+    public String getPaymentInfo() {
         return this.paymentInfo;
     }
     
-    public void setPaymentInfo(Serializable paymentInfo) {
+    public void setPaymentInfo(String paymentInfo) {
         this.paymentInfo = paymentInfo;
     }
 
     
     @Column(name="message")
-    public Serializable getMessage() {
+    public String getMessage() {
         return this.message;
     }
     
-    public void setMessage(Serializable message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
     
     @Column(name="security")
-    public Serializable getSecurity() {
+    public String getSecurity() {
         return this.security;
     }
     
-    public void setSecurity(Serializable security) {
+    public void setSecurity(String security) {
         this.security = security;
     }
 

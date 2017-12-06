@@ -1,5 +1,5 @@
 package com.bkap.vn.common.entity;
-// Generated Aug 12, 2017 10:45:55 AM by Hibernate Tools 4.3.1
+// Generated Dec 6, 2017 9:49:55 PM by Hibernate Tools 4.3.1
 
 
 import java.io.Serializable;
@@ -25,14 +25,14 @@ import javax.persistence.TemporalType;
     ,schema="dbo"
     ,catalog="shop_online"
 )
-public class Role  implements Serializable {
+public class Role  implements java.io.Serializable {
 
 
      private int id;
      private Admin adminByAdminCreate;
      private Admin adminByAdminUpdate;
-     private Serializable roleName;
-     private Serializable description;
+     private String roleName;
+     private String description;
      private Date createDate;
      private Date updateDate;
      private Set<RoleByGroupRole> roleByGroupRoles = new HashSet<RoleByGroupRole>(0);
@@ -41,11 +41,11 @@ public class Role  implements Serializable {
     }
 
 	
-    public Role(int id, Serializable roleName) {
+    public Role(int id, String roleName) {
         this.id = id;
         this.roleName = roleName;
     }
-    public Role(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, Serializable roleName, Serializable description, Date createDate, Date updateDate, Set<RoleByGroupRole> roleByGroupRoles) {
+    public Role(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, String roleName, String description, Date createDate, Date updateDate, Set<RoleByGroupRole> roleByGroupRoles) {
        this.id = id;
        this.adminByAdminCreate = adminByAdminCreate;
        this.adminByAdminUpdate = adminByAdminUpdate;
@@ -90,21 +90,21 @@ public class Role  implements Serializable {
 
     
     @Column(name="role_name", nullable=false)
-    public Serializable getRoleName() {
+    public String getRoleName() {
         return this.roleName;
     }
     
-    public void setRoleName(Serializable roleName) {
+    public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
 
     
     @Column(name="description")
-    public Serializable getDescription() {
+    public String getDescription() {
         return this.description;
     }
     
-    public void setDescription(Serializable description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
