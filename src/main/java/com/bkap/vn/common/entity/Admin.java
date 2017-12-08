@@ -167,7 +167,7 @@ public class Admin implements java.io.Serializable {
         this.phone = phone;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "birthday", length = 23)
     public Date getBirthday() {
         return this.birthday;
@@ -207,7 +207,7 @@ public class Admin implements java.io.Serializable {
         this.adminUpdate = adminUpdate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "create_date", length = 23)
     public Date getCreateDate() {
         return this.createDate;
@@ -217,7 +217,7 @@ public class Admin implements java.io.Serializable {
         this.createDate = createDate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "update_date", length = 23)
     public Date getUpdateDate() {
         return this.updateDate;

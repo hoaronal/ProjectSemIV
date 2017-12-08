@@ -84,6 +84,7 @@ public class UserController extends BaseController {
                     }else{
                         user.setPassword(user.getPassword());
                     }
+
                     user.setUpdateDate(new Date());
                     user.setCreateDate(userUpdate.getCreateDate());
                 /*user.setAdminByAdminUpdate(new Admin());

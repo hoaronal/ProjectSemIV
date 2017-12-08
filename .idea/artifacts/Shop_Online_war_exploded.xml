@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="ShopOnline:war exploded">
+  <artifact type="exploded-war" name="Shop-Online:war exploded">
     <output-path>$PROJECT_DIR$/target/Shop-Online</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="ShopOnline" />
+          <element id="module-output" name="Shop-Online" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.12.RELEASE" />
@@ -43,6 +43,9 @@
           <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
           <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.1.Final" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:5.4.2.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:5.2.12.Final" />
+          <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.6.14" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.7" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-dbcp2:2.0" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.2" />
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
@@ -86,7 +89,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/Shop-Online/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="ShopOnline/web/Web" />
+      <element id="javaee-facet-resources" facet="Shop-Online/web/Web" />
     </root>
   </artifact>
 </component>
