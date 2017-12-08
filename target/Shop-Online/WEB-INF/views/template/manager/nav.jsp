@@ -1,4 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-transparent navbar-absolute">
     <div class="container-fluid">
         <div class="navbar-minimize">
@@ -14,15 +18,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=""> Dashboard </a>
+
         </div>
+
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">dashboard</i>
-                        <p class="hidden-lg hidden-md">Dashboard</p>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" title="Ngôn ngữ">
+                        <i class="material-icons">g_translate</i>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="?lang=vi_VN">Tiếng việt</a>
+                        </li>
+                        <li>
+                            <a href="?lang=en_US">Tiếng anh</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -51,24 +63,23 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">person</i>
-                        <p class="hidden-lg hidden-md">Profile</p>
+                        <i class="material-icons">settings_applications</i>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="">Log out</a>
+                        </li>
+                        <li>
+                            <a href="">Test</a>
+                        </li>
+                    </ul>
                 </li>
+
                 <li class="separator hidden-lg hidden-md"></li>
             </ul>
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group form-search is-empty">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <span class="material-input"></span>
-                    <span class="material-input"></span></div>
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                    <i class="material-icons">search</i>
-                    <div class="ripple-container"></div>
-                </button>
-            </form>
+
         </div>
     </div>
 </nav>

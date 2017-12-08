@@ -4,56 +4,90 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="webTemplate" template="/WEB-INF/views/template/web/template.jsp">
-        <put-attribute name="navbar" value="/WEB-INF/views/template/web/nav.jsp" />
-        <put-attribute name="header" value="/WEB-INF/views/template/web/header.jsp" />
-        <put-attribute name="content" value="" />
-        <put-attribute name="footer" value="/WEB-INF/views/template/web/footer.jsp" />
+        <put-attribute name="navbar" value="/WEB-INF/views/template/web/nav.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/template/web/header.jsp"/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/web/footer.jsp"/>
     </definition>
 
     <definition name="adminTemplate" template="/WEB-INF/views/template/manager/template.jsp">
-        <put-attribute name="sidebar" value="/WEB-INF/views/template/manager/sidebar.jsp" />
-        <put-attribute name="nav" value="/WEB-INF/views/template/manager/nav.jsp" />
-        <put-attribute name="content" value="" />
-        <put-attribute name="footer" value="/WEB-INF/views/template/manager/footer.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/views/template/manager/sidebar.jsp"/>
+        <put-attribute name="nav" value="/WEB-INF/views/template/manager/nav.jsp"/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/manager/footer.jsp"/>
     </definition>
 
     <definition name="home-administrator" extends="adminTemplate">
-        <put-attribute name="title" value="Trang quản trị" />
-        <put-attribute name="content" value="/WEB-INF/views/manager/index.jsp" />
+        <put-attribute name="title" value="Trang quản trị"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/index.jsp"/>
     </definition>
 
     <definition name="admin-list" extends="adminTemplate">
-        <put-attribute name="title" value="Danh sách quản trị viên" />
-        <put-attribute name="content" value="/WEB-INF/views/manager/admin/list.jsp" />
+        <put-attribute name="title" value="Danh sách quản trị viên"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/admin/list.jsp"/>
     </definition>
 
     <definition name="admin-add" extends="adminTemplate">
-        <put-attribute name="title" value="Thêm mới quản trị viên" />
-        <put-attribute name="content" value="/WEB-INF/views/manager/admin/add.jsp" />
+        <put-attribute name="title" value="Thêm mới quản trị viên"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/admin/add.jsp"/>
     </definition>
 
     <definition name="user-list" extends="adminTemplate">
-        <put-attribute name="title" value="Danh sách người dùng" />
-        <put-attribute name="content" value="/WEB-INF/views/manager/user/list.jsp" />
+        <put-attribute name="title" value="Danh sách người dùng"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/user/list.jsp"/>
     </definition>
 
     <definition name="user-add" extends="adminTemplate">
-        <put-attribute name="title" value="Thêm mới người dùng" />
-        <put-attribute name="content" value="/WEB-INF/views/manager/user/test.jsp" />
+        <put-attribute name="title" value="Thêm mới người dùng"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/user/add.jsp"/>
+    </definition>
+
+    <definition name="user-edit" extends="adminTemplate">
+        <put-attribute name="title" value="Cập nhật người dùng"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/user/edit.jsp"/>
     </definition>
 
     <definition name="home-web" extends="webTemplate">
-        <put-attribute name="title" value="Trang chủ" />
-        <put-attribute name="content" value="/WEB-INF/views/web/index.jsp" />
+        <put-attribute name="title" value="Trang chủ"/>
+        <put-attribute name="content" value="/WEB-INF/views/web/index.jsp"/>
     </definition>
 
     <definition name="cart" extends="webTemplate">
-        <put-attribute name="title" value="Giỏ hàng" />
-        <put-attribute name="content" value="/WEB-INF/views/web/cart/cart.jsp" />
+        <put-attribute name="title" value="Giỏ hàng"/>
+        <put-attribute name="content" value="/WEB-INF/views/web/cart/cart.jsp"/>
     </definition>
 
     <definition name="test" extends="webTemplate">
-        <put-attribute name="title" value="test" />
-        <put-attribute name="content" value="/WEB-INF/views/web/test.jsp" />
+        <put-attribute name="title" value="test"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/user/test.jsp"/>
     </definition>
+
+
+    <!--Product-->
+    <definition name="product-list" extends="adminTemplate">
+        <put-attribute name="title" value="Danh sách sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/product/list.jsp"/>
+    </definition>
+
+    <definition name="product-add" extends="adminTemplate">
+        <put-attribute name="title" value="Thêm mới sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/product/add.jsp"/>
+    </definition>
+
+    <definition name="product-edit" extends="adminTemplate">
+        <put-attribute name="title" value="Cập nhật sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/product/edit.jsp"/>
+    </definition>
+
+
+    <definition name="province-list" extends="adminTemplate">
+        <put-attribute name="title" value="Danh sách tinh thanh"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/province/list.jsp"/>
+    </definition>
+
+    <definition name="province-edit" extends="adminTemplate">
+        <put-attribute name="title" value="Cập nhật tinh thanh"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/province/edit.jsp"/>
+    </definition>
+
 </tiles-definitions>

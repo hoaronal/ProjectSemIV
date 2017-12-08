@@ -17,7 +17,6 @@
         <mapping class="com.bkap.vn.common.entity.ProductGift"/>
         <mapping class="com.bkap.vn.common.entity.Gift"/>
         <mapping class="com.bkap.vn.common.entity.HistoryAction"/>
-        <mapping class="com.bkap.vn.common.entity.Order"/>
         <mapping class="com.bkap.vn.common.entity.OrderDetail"/>
         <mapping class="com.bkap.vn.common.entity.Transaction"/>
         <mapping class="com.bkap.vn.common.entity.Category"/>

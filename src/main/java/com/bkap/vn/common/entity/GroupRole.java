@@ -31,8 +31,8 @@ public class GroupRole  implements Serializable {
      private int id;
      private Admin adminByAdminUpdate;
      private Admin adminByAdminCreate;
-     private Serializable groupRoleName;
-     private Serializable description;
+     private String groupRoleName;
+     private String description;
      private Date createDate;
      private Date updateDate;
      private Set<RoleByGroupRole> roleByGroupRoles = new HashSet<RoleByGroupRole>(0);
@@ -41,11 +41,11 @@ public class GroupRole  implements Serializable {
     }
 
 	
-    public GroupRole(int id, Serializable groupRoleName) {
+    public GroupRole(int id, String groupRoleName) {
         this.id = id;
         this.groupRoleName = groupRoleName;
     }
-    public GroupRole(int id, Admin adminByAdminUpdate, Admin adminByAdminCreate, Serializable groupRoleName, Serializable description, Date createDate, Date updateDate, Set<RoleByGroupRole> roleByGroupRoles) {
+    public GroupRole(int id, Admin adminByAdminUpdate, Admin adminByAdminCreate, String groupRoleName, String description, Date createDate, Date updateDate, Set<RoleByGroupRole> roleByGroupRoles) {
        this.id = id;
        this.adminByAdminUpdate = adminByAdminUpdate;
        this.adminByAdminCreate = adminByAdminCreate;
@@ -90,21 +90,21 @@ public class GroupRole  implements Serializable {
 
     
     @Column(name="group_role_name", nullable=false)
-    public Serializable getGroupRoleName() {
+    public String getGroupRoleName() {
         return this.groupRoleName;
     }
     
-    public void setGroupRoleName(Serializable groupRoleName) {
+    public void setGroupRoleName(String groupRoleName) {
         this.groupRoleName = groupRoleName;
     }
 
     
     @Column(name="description")
-    public Serializable getDescription() {
+    public String getDescription() {
         return this.description;
     }
     
-    public void setDescription(Serializable description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

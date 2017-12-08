@@ -31,8 +31,8 @@ public class Gift  implements Serializable {
      private int id;
      private Admin adminByAdminCreate;
      private Admin adminByAdminUpdate;
-     private Serializable name;
-     private Serializable description;
+     private String name;
+     private String description;
      private Date createDate;
      private Date updateDate;
      private Set<ProductGift> productGifts = new HashSet<ProductGift>(0);
@@ -41,11 +41,11 @@ public class Gift  implements Serializable {
     }
 
 	
-    public Gift(int id, Serializable name) {
+    public Gift(int id, String name) {
         this.id = id;
         this.name = name;
     }
-    public Gift(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, Serializable name, Serializable description, Date createDate, Date updateDate, Set<ProductGift> productGifts) {
+    public Gift(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, String name, String description, Date createDate, Date updateDate, Set<ProductGift> productGifts) {
        this.id = id;
        this.adminByAdminCreate = adminByAdminCreate;
        this.adminByAdminUpdate = adminByAdminUpdate;
@@ -90,21 +90,21 @@ public class Gift  implements Serializable {
 
     
     @Column(name="name", nullable=false)
-    public Serializable getName() {
+    public String getName() {
         return this.name;
     }
     
-    public void setName(Serializable name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     
     @Column(name="description")
-    public Serializable getDescription() {
+    public String getDescription() {
         return this.description;
     }
     
-    public void setDescription(Serializable description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

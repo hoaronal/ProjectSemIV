@@ -30,7 +30,7 @@ public class RoleByGroupRole  implements Serializable {
      private Admin adminByAdminUpdate;
      private GroupRole groupRole;
      private Role role;
-     private Serializable description;
+     private String description;
      private Date createDate;
      private Date updateDate;
 
@@ -43,7 +43,7 @@ public class RoleByGroupRole  implements Serializable {
         this.groupRole = groupRole;
         this.role = role;
     }
-    public RoleByGroupRole(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, GroupRole groupRole, Role role, Serializable description, Date createDate, Date updateDate) {
+    public RoleByGroupRole(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, GroupRole groupRole, Role role, String description, Date createDate, Date updateDate) {
        this.id = id;
        this.adminByAdminCreate = adminByAdminCreate;
        this.adminByAdminUpdate = adminByAdminUpdate;
@@ -108,11 +108,11 @@ public class RoleByGroupRole  implements Serializable {
 
     
     @Column(name="description")
-    public Serializable getDescription() {
+    public String getDescription() {
         return this.description;
     }
     
-    public void setDescription(Serializable description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

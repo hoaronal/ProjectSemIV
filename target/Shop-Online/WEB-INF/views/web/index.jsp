@@ -5,100 +5,166 @@
 <div class="container">
     <div class="section">
         <div class="row">
-            <%--<div class="col-md-6 col-md-offset-3 text-center menu-category">--%>
             <div class="col-md-8 col-md-offset-2 text-center">
-                <ul class="nav nav-pills nav-pills-primary">
-                    <li class="active">
-                        <div class="dropdown">
-                            <a class="btn btn-primary btn-round" id="dropdownMenu1" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="true">
-                                Iphone
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">Iphone 4</a></li>
-                                <li><a href="#">Iphone 4s</a></li>
-                                <li><a href="#">Iphone 5</a></li>
-                                <li><a href="#">Iphone 5s</a></li>
-                                <li><a href="#">Iphone 6</a></li>
-                                <li><a href="#">Iphone 6 plus</a></li>
-                                <li><a href="#">Iphone 6s</a></li>
-                                <li><a href="#">Iphone 6s plus</a></li>
-                                <li><a href="#">Iphone 7</a></li>
-                                <li><a href="#">Iphone 7 plus</a></li>
-                                <li><a href="#">Iphone 8</a></li>
-                                <li><a href="#">Iphone X</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <a class="btn btn-primary btn-round" id="dropdownMenu2" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="true">
-                                Dropdown
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <a class="btn btn-primary btn-round" id="dropdownMenu3" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="true">
-                                Dropdown
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <a class="btn btn-primary btn-round" id="dropdownMenu4" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="true">
-                                Dropdown
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <a class="btn btn-primary btn-round" id="dropdownMenu5" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="true">
-                                Dropdown
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu5">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+                <nav id="cbp-hrmenu" class="cbp-hrmenu">
+                    <ul>
+                        <li>
+                            <a href="#">Products</a>
+                            <div class="cbp-hrsub" style="z-index: 99999">
+                                <div class="cbp-hrsub-inner">
+                                    <div>
+                                        <h4>Learning &amp; Games</h4>
+                                        <ul>
+                                            <li><a href="#">Catch the Bullet</a></li>
+                                            <li><a href="#">Snoopydoo</a></li>
+                                            <li><a href="#">Fallen Angel</a></li>
+                                            <li><a href="#">Sui Maker</a></li>
+                                            <li><a href="#">Wave Master</a></li>
+                                            <li><a href="#">Golf Pro</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Utilities</h4>
+                                        <ul>
+                                            <li><a href="#">Gadget Finder</a></li>
+                                            <li><a href="#">Green Tree Express</a></li>
+                                            <li><a href="#">Green Tree Pro</a></li>
+                                            <li><a href="#">Wobbler 3.0</a></li>
+                                            <li><a href="#">Coolkid</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Education</h4>
+                                        <ul>
+                                            <li><a href="#">Learn Thai</a></li>
+                                            <li><a href="#">Math Genius</a></li>
+                                            <li><a href="#">Chemokid</a></li>
+                                        </ul>
+                                        <h4>Professionals</h4>
+                                        <ul>
+                                            <li><a href="#">Success 1.0</a></li>
+                                            <li><a href="#">Moneymaker</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /cbp-hrsub-inner -->
+                            </div><!-- /cbp-hrsub -->
+                        </li>
+                        <li>
+                            <a href="#">Downloads</a>
+                            <div class="cbp-hrsub"  style="z-index: 99999">
+                                <div class="cbp-hrsub-inner">
+                                    <div>
+                                        <h4>Education &amp; Learning</h4>
+                                        <ul>
+                                            <li><a href="#">Learn Thai</a></li>
+                                            <li><a href="#">Math Genius</a></li>
+                                            <li><a href="#">Chemokid</a></li>
+                                        </ul>
+                                        <h4>Professionals</h4>
+                                        <ul>
+                                            <li><a href="#">Success 1.0</a></li>
+                                            <li><a href="#">Moneymaker</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Entertainment</h4>
+                                        <ul>
+                                            <li><a href="#">Gadget Finder</a></li>
+                                            <li><a href="#">Green Tree Express</a></li>
+                                            <li><a href="#">Green Tree Pro</a></li>
+                                            <li><a href="#">Holy Cannoli</a></li>
+                                            <li><a href="#">Wobbler 3.0</a></li>
+                                            <li><a href="#">Coolkid</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Games</h4>
+                                        <ul>
+                                            <li><a href="#">Catch the Bullet</a></li>
+                                            <li><a href="#">Snoopydoo</a></li>
+                                            <li><a href="#">Fallen Angel</a></li>
+                                            <li><a href="#">Sui Maker</a></li>
+                                            <li><a href="#">Wave Master</a></li>
+                                            <li><a href="#">Golf Pro</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /cbp-hrsub-inner -->
+                            </div><!-- /cbp-hrsub -->
+                        </li>
+                        <li>
+                            <a href="#">Applications</a>
+                            <div class="cbp-hrsub" style="z-index: 99999">
+                                <div class="cbp-hrsub-inner">
+                                    <div>
+                                        <h4>Learning &amp; Games</h4>
+                                        <ul>
+                                            <li><a href="#">Catch the Bullet</a></li>
+                                            <li><a href="#">Snoopydoo</a></li>
+                                        </ul>
+                                        <h4>Utilities</h4>
+                                        <ul>
+                                            <li><a href="#">Gadget Finder</a></li>
+                                            <li><a href="#">Green Tree Express</a></li>
+                                            <li><a href="#">Green Tree Pro</a></li>
+                                            <li><a href="#">Wobbler 3.0</a></li>
+                                            <li><a href="#">Coolkid</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Education</h4>
+                                        <ul>
+                                            <li><a href="#">Learn Thai</a></li>
+                                            <li><a href="#">Math Genius</a></li>
+                                            <li><a href="#">Chemokid</a></li>
+                                        </ul>
+                                        <h4>Professionals</h4>
+                                        <ul>
+                                            <li><a href="#">Success 1.0</a></li>
+                                            <li><a href="#">Moneymaker</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /cbp-hrsub-inner -->
+                            </div><!-- /cbp-hrsub -->
+                        </li>
+                        <li>
+                            <a href="#">Projects</a>
+                            <div class="cbp-hrsub" style="z-index: 99999">
+                                <div class="cbp-hrsub-inner">
+                                    <div>
+                                        <h4>Learning &amp; Games</h4>
+                                        <ul>
+                                            <li><a href="#">Catch the Bullet</a></li>
+                                            <li><a href="#">Snoopydoo</a></li>
+                                            <li><a href="#">Fallen Angel</a></li>
+                                            <li><a href="#">Sui Maker</a></li>
+                                            <li><a href="#">Wave Master</a></li>
+                                            <li><a href="#">Golf Pro</a></li>
+                                        </ul>
+                                        <h4>Utilities</h4>
+                                        <ul>
+                                            <li><a href="#">Gadget Finder</a></li>
+                                            <li><a href="#">Green Tree Express</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Entertainment</h4>
+                                        <ul>
+                                            <li><a href="#">Gadget Finder</a></li>
+                                            <li><a href="#">Green Tree Express</a></li>
+                                            <li><a href="#">Green Tree Pro</a></li>
+                                            <li><a href="#">Holy Cannoli</a></li>
+                                            <li><a href="#">Wobbler 3.0</a></li>
+                                            <li><a href="#">Coolkid</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /cbp-hrsub-inner -->
+                            </div><!-- /cbp-hrsub -->
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-        <div class="row  text-center">
+        <div class="row  text-center"  class="hidden-xs hidden-sm">
             <div class="col-md-4">
                 <div class="info">
                     Quảng cáo 1
@@ -609,7 +675,7 @@
     </div>
 </div>
 
-<div id="left_ads_float">
+<div id="left_ads_float" class="hidden-xs hidden-sm" style="z-index: 99999">
     <a href="Link đường dẫn" target="_blank">
         <img border="0"
              src="http://3.bp.blogspot.com/-DFWCRf2oANg/UmDs8ZxWtiI/AAAAAAAAFC0/0Ecu36I5MgI/s1600/fptarena1.png"

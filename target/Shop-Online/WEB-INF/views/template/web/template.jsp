@@ -9,19 +9,15 @@
     <title><tiles:insertAttribute name="title"/></title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta name="viewport" content="width=device-width">
-    <%--<link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/material-dashboard.css" rel="stylesheet">
-    <link href="css/demo.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="/css/css.css" rel="stylesheet" type="text/css" >--%>
 
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/material-dashboard.css" />" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/demo.css" />" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css" />" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/main.css" />" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/material-kit.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/default.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/component.css" />">
     <style>
         #left_ads_float {
             bottom: 50px;
@@ -75,17 +71,11 @@
 <script type="text/javascript" src="<c:url value="/resources/js/material-dashboard.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/demo.js" />" ></script>
 
-<%--<script type="text/javascript" async="" src="<c:url value="/resources/web/js/ga.js" />"></script>--%>
-<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
-<%--<script type="text/javascript" src="<c:url value="/resources/web/js/moment.min.js" />"></script>--%>
-<%--<script type="text/javascript" src="<c:url value="/resources/web/js/nouislider.min.js" />"></script>--%>
-<%--<script type="text/javascript" src="<c:url value="/resources/web/js/bootstrap-selectpicker.js" />"></script>--%>
-<%--<script type="text/javascript" src="<c:url value="/resources/web/js/bootstrap-tagsinput.js" />"></script>--%>
-<%--<script type="text/javascript" src="<c:url value="/resources/web/js/jasny-bootstrap.min.js" />"></script>--%>
-<%--<script type="text/javascript" src="<c:url value="/resources/web/js/js.js" />"></script>--%>
-<script type="text/javascript" src="<c:url value="/resources/web/js/material-kit.js" />"></script>
-
+<script type="text/javascript" src="<c:url value="/resources/js/cbpHorizontalMenu.min.js" />"></script>
 <script type="text/javascript">
+    $(function() {
+        cbpHorizontalMenu.init();
+    });
     $(document).ready(function() {
         $("#success-${style}").fadeTo(2000, 500).slideUp(500, function(){
             $("#success-${style}").slideUp(500);
@@ -97,7 +87,7 @@
         function checkWidth() {
             var windowsize = $window.width();
             if (windowsize < 800) {
-                alert('sdsdsdsd');
+
             }
         }
         // Execute on load

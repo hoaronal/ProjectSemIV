@@ -43,16 +43,16 @@
                                                                              placeholder="<spring:message code="label.search"/>"
                                                                              aria-controls="datatables"></label>--%>
                                             <label class="form-group"><input type="text" class="form-control input-sm" placeholder="<spring:message code="label.search"/>"
-                                                   value="${keySearch}" name="keySearch"></label>
+                                                                             value="${keySearch}" name="keySearch"></label>
                                             <input type="hidden" class="form-control" name="page"
                                                    value="${listItem.currentPage}">
                                             <input type="hidden" class="form-control" name="clickSearch"
                                                    id="clickSearch" value="${clickSearch}">
-                                                <%--<button type="button" id="btnSearch"
-                                                        class="btn btn-white btn-round btn-just-icon">
-                                                    <i class="material-icons">search</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>--%>
+                                            <%--<button type="button" id="btnSearch"
+                                                    class="btn btn-white btn-round btn-just-icon">
+                                                <i class="material-icons">search</i>
+                                                <div class="ripple-container"></div>
+                                            </button>--%>
                                         </div>
 
                                     </form>
@@ -80,21 +80,6 @@
                                                 colspan="1" aria-label="Position: activate to sort column ascending">
                                                 <spring:message code="label.email"/>
                                             </th>
-                                            <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
-                                                colspan="1"
-                                                aria-label="Office: activate to sort column ascending"><spring:message
-                                                    code="label.phone"/>
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
-                                                colspan="1"
-                                                aria-label="Age: activate to sort column ascending"><spring:message
-                                                    code="label.birthday"/>
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
-                                                colspan="1"
-                                                aria-label="Date: activate to sort column ascending"><spring:message
-                                                    code="label.address"/>
-                                            </th>
                                             <th class="disabled-sorting text-right sorting" tabindex="0"
                                                 aria-controls="datatables" rowspan="1" colspan="1"
                                                 aria-label="Actions: activate to sort column ascending"><spring:message
@@ -107,11 +92,8 @@
                                             <tr role="row" class="odd" id="rowRecord">
                                                 <td tabindex="0" class="sorting_1"><c:out value="${item.id}"/></td>
                                                 <td class="username" id="username<c:out value="${item.id}"/>"><c:out
-                                                        value="${item.username}"/></td>
-                                                <td><c:out value="${item.email}"/></td>
-                                                <td><c:out value="${item.phone}"/></td>
-                                                <td><c:out value="${item.birthday}"/></td>
-                                                <td><c:out value="${item.address}"/></td>
+                                                        value="${item.provinceName}"/></td>
+                                                <td><c:out value="${item.description}"/></td>
                                                 <td class="text-right">
                                                     <a href="" class="btn btn-simple btn-info btn-icon like"><i
                                                             class="material-icons">favorite</i></a>
@@ -122,8 +104,8 @@
                                                 </td>
                                             </tr>
                                             <div class="modal fade" style="margin-top: 50px"
-                                                 id="smallAlertModal${item.id}" tabindex="-1" role="dialog"
                                                  aria-labelledby="myModalLabel" aria-hidden="true">
+                                                 id="smallAlertModal${item.id}" tabindex="-1" role="dialog"
                                                 <div class="modal-dialog modal-small ">
                                                     <div class="modal-content">
 
@@ -135,9 +117,9 @@
                                                             <h5>Bạn có muốn xóa người dùng có mã là ${item.id}? </h5>
                                                         </div>
                                                         <div class="modal-footer text-center">
-                                                                <a class="btn btn-default" data-dismiss="modal" style="margin: 0px !important;" >Hủy</a>
-                                                                <a href="<%=request.getContextPath()%>${deleteUserAction}/${item.id}" class="btn btn-primary" style="margin: 0px !important;" >
-                                                                    Đồng ý</a>
+                                                            <a class="btn btn-default" data-dismiss="modal" style="margin: 0px !important;" >Hủy</a>
+                                                            <a href="<%=request.getContextPath()%>${deleteUserAction}/${item.id}" class="btn btn-primary" style="margin: 0px !important;" >
+                                                                Đồng ý</a>
                                                         </div>
                                                     </div>
                                                 </div>

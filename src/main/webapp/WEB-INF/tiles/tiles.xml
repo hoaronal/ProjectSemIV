@@ -79,4 +79,15 @@
         <put-attribute name="content" value="/WEB-INF/views/manager/product/edit.jsp"/>
     </definition>
 
+
+    <definition name="province-list" extends="adminTemplate">
+        <put-attribute name="title" value="Danh sách tinh thanh"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/province/list.jsp"/>
+    </definition>
+
+    <definition name="province-edit" extends="adminTemplate">
+        <put-attribute name="title" value="Cập nhật tinh thanh"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/province/edit.jsp"/>
+    </definition>
+
 </tiles-definitions>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <footer class="footer">
     <div class="container-fluid">
-        <nav class="pull-left">
+        <%--<nav class="pull-left"  style="bottom: 0px !important;">
             <ul>
                 <li>
                     <a href="">
@@ -32,7 +32,7 @@
             <script>
             document.write(new Date().getFullYear())
         </script>2017
-        </p>
+        </p>--%>
     </div>
 </footer>
 <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: -1040px;">

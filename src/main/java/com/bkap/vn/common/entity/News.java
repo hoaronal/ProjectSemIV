@@ -28,10 +28,10 @@ public class News  implements Serializable {
      private int id;
      private Admin adminByAdminCreate;
      private Admin adminByAdminUpdate;
-     private Serializable title;
-     private Serializable description;
-     private Serializable imageLink;
-     private Serializable imageList;
+     private String title;
+     private String description;
+     private String imageLink;
+     private String imageList;
      private Date createDate;
      private Date updateDate;
 
@@ -39,11 +39,11 @@ public class News  implements Serializable {
     }
 
 	
-    public News(int id, Serializable title) {
+    public News(int id, String title) {
         this.id = id;
         this.title = title;
     }
-    public News(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, Serializable title, Serializable description, Serializable imageLink, Serializable imageList, Date createDate, Date updateDate) {
+    public News(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, String title, String description, String imageLink, String imageList, Date createDate, Date updateDate) {
        this.id = id;
        this.adminByAdminCreate = adminByAdminCreate;
        this.adminByAdminUpdate = adminByAdminUpdate;
@@ -89,41 +89,41 @@ public class News  implements Serializable {
 
     
     @Column(name="title", nullable=false)
-    public Serializable getTitle() {
+    public String getTitle() {
         return this.title;
     }
     
-    public void setTitle(Serializable title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
     
     @Column(name="description")
-    public Serializable getDescription() {
+    public String getDescription() {
         return this.description;
     }
     
-    public void setDescription(Serializable description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
     
     @Column(name="image_link")
-    public Serializable getImageLink() {
+    public String getImageLink() {
         return this.imageLink;
     }
     
-    public void setImageLink(Serializable imageLink) {
+    public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
 
     
     @Column(name="image_list")
-    public Serializable getImageList() {
+    public String getImageList() {
         return this.imageList;
     }
     
-    public void setImageList(Serializable imageList) {
+    public void setImageList(String imageList) {
         this.imageList = imageList;
     }
 
