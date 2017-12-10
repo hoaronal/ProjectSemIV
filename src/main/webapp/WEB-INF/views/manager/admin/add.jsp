@@ -1,105 +1,133 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<spring:url value="/quan-tri/quan-tri-vien/them-moi/luu" var="addAdminAction"/>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <form method="get" action="http://demos.creative-tim.com/" class="form-horizontal">
+                <form:form id="myform" action="${addAdminAction}" method="post" modelAttribute="admin"
+                           cssClass="form-horizontal">
                     <div class="card-header card-header-text" data-background-color="rose">
-                        <h4 class="card-title">Form Elements</h4>
+                        <h4 class="card-title"><spring:message code="label.addadmin"/></h4>
                     </div>
+                    <form:hidden path="id" cssClass="form-control"/>
                     <div class="card-content">
                         <div class="row">
-                            <label class="col-sm-2 label-on-left">With help</label>
+                            <label class="col-sm-2 label-on-left"><spring:message code="label.account"/><span
+                                    style="color: red">*</span></label>
                             <div class="col-sm-10">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <input type="text" class="form-control" value="">
-                                    <span class="help-block">A block of help text that breaks onto a new line.</span>
-                                    <span class="material-input"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 label-on-left">Password</label>
-                            <div class="col-sm-10">
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label"></label>
-                                    <input type="password" class="form-control" value="">
-                                    <span class="material-input"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 label-on-left">Placeholder</label>
-                            <div class="col-sm-10">
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label"></label>
-                                    <input type="text" class="form-control" placeholder="placeholder">
-                                    <span class="material-input"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 label-on-left">Disabled</label>
-                            <div class="col-sm-10">
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label"></label>
-                                    <input type="text" placeholder="Disabled input here..." disabled="" class="form-control">
-                                    <span class="material-input"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 label-on-left">Static control</label>
-                            <div class="col-sm-10">
-                                <div class="form-group">
-                                    <p class="form-control-static">hello@creative-tim.com</p>
+                                    <form:input path="account" cssClass="form-control"/>
+                                    <span class="material-input" style="color: red"> <form:errors path="account"
+                                                                                                  cssClass="error"/></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 label-on-left">Checkboxes and radios</label>
-                            <div class="col-sm-10 checkbox-radios">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span> First Checkbox
-                                    </label>
+
+                            <label class="col-sm-2 label-on-left"><spring:message code="label.password"/></label>
+                            <div class="col-sm-4">
+                                <div class="form-group label-floating is-empty ${not empty msgPassword?'errors':''}">
+                                    <c:set var="msgPassword"><form:errors path="password"/></c:set>
+                                    <label class="control-label"></label>
+                                    <form:password path="password"
+                                                   cssClass="form-control ${not empty msgPassword?'errors':''}"/>
+                                    <span class="material-input" style="color: red"><form:errors path="password"
+                                                                                                 cssClass="error"/></span>
                                 </div>
-                                <div class="checkbox">
+                            </div>
+                            <label class="col-sm-2 label-on-left"><spring:message code="label.repassword"/></label>
+                            <div class="col-sm-4">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <input type="password" name="rePassword" class="form-control">
+                                    <span class="material-input" style="color: red"></span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"><spring:message code="label.email"/><span
+                                    style="color: red">*</span></label>
+                            <div class="col-sm-10">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <form:input path="email" cssClass="form-control"/>
+                                    <span class="material-input" style="color: red"><form:errors path="email"
+                                                                                                 cssClass="error"/></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"><spring:message code="label.address"/></label>
+                            <div class="col-sm-10">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <form:input path="address" cssClass="form-control"/>
+                                    <span class="material-input" style="color: red"><form:errors path="address"
+                                                                                                 cssClass="error"/></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"><spring:message code="label.birthday"/></label>
+                            <div class="col-sm-4">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <form:input path="birthday" cssClass="form-control datepicker"/>
+                                    <span class="material-input" style="color: red"><form:errors path="birthday"
+                                                                                                 cssClass="error"/></span>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 label-on-left"><spring:message code="label.phone"/></label>
+                            <div class="col-sm-4">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <form:input path="phone" cssClass="form-control"/>
+                                    <span class="material-input" style="color: red"><form:errors path="phone"
+                                                                                                 cssClass="error"/></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"><spring:message code="label.status"/></label>
+                            <div class="col-sm-10">
+                                <div class="radio">
                                     <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span> Second Checkbox
+                                        <form:radiobutton path="status" value="1"/><spring:message code="label.statusok"/>Kích hoạt
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" checked="true"><span class="circle"></span><span class="check"></span> First Radio
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios"><span class="circle"></span><span class="check"></span> Second Radio
+                                        <form:radiobutton path="status" value="0"/><spring:message code="label.statusnone"/>Không kích hoạt
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 label-on-left">Inline checkboxes</label>
-                            <div class="col-sm-10">
-                                <div class="checkbox checkbox-inline">
-                                    <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span>a
-                                    </label>
+                            <div class="col-lg-8 col-lg-offset-2 col-md-10">
+                                <div class="col-md-3">
                                 </div>
-                                <div class="checkbox checkbox-inline">
-                                    <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span>b
-                                    </label>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary btn-block" >
+                                        <spring:message code="label.addbtn"/>
+                                    </button>
                                 </div>
-                                <div class="checkbox checkbox-inline">
-                                    <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span>c
-                                    </label>
+                                <div class="col-md-3">
+                                    <button class="btn btn-default btn-block">
+                                        <spring:message code="label.cancel"/>
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                </form:form>
+
             </div>
         </div>
     </div>

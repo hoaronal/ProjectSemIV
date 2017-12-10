@@ -1,6 +1,7 @@
 package com.bkap.vn.manager.product.service;
 
 import com.bkap.vn.common.entity.Product;
+import com.bkap.vn.common.pagination.PaggingResult;
 
 import java.util.List;
 
@@ -13,11 +14,13 @@ public interface ProductService {
 
     public Product getById(int id);
 
-    public int countAll();
+    public int countAll(String filter);
 
     public int countAllByKeySearch(String filter);
 
     public List<Product> listAdmin();
 
-    public List<Product> findRange(int firstRow, int lastRow, String filter);
+    public PaggingResult findRange(int firstRow, int lastRow, String filter);
+
+    public String generateQuerySearchProduct(String keySearch);
 }

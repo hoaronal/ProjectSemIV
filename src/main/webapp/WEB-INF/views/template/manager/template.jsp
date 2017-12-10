@@ -17,7 +17,9 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/font-awesome/css/font-awesome.min.css" />"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css" />" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/bootstrap-datetimepicker.min.css" />" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/bootstrap-datetimepicker.min.css" />"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 
 </head>
 
@@ -46,7 +48,6 @@
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap-notify.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.sharrre.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap-datetimepicker.js" />"></script>
-<%--<script type="text/javascript" src="<c:url value="/resources/js/jquery-jvectormap.js" />"></script>--%>
 <%--<script type="text/javascript" src="<c:url value="/resources/js/nouislider.min.js" />"></script>--%>
 <%--<script type="text/javascript" src="<c:url value="/resources/js/js.js" />"></script>--%>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.select-bootstrap.js" />"></script>
@@ -67,15 +68,25 @@
     });
 
     $(document).ready(function () {
+        var checkAction = '${msg}';
+        var style = '${style}';
+        if (checkAction.length > 0) {
+            if(style == 'info'){
+                showMsgInfo('top', 'center', checkAction);
+            }else{
+                showMsgError('top', 'center', checkAction);
+            }
+        }
+
         demo.initFormExtendedDatetimepickers();
 
         var clickSearch = $('#clickSearch').val();
-        if(clickSearch == 'true'){
+        if (clickSearch == 'true') {
             var contentSearch = "";
-            $('table').each(function(ind) {
-                $(this).find('tr').each(function() {
-                    $(this).find('td').each(function(i) {
-                        var contentSearch= $(this).text();
+            $('table').each(function (ind) {
+                $(this).find('tr').each(function () {
+                    $(this).find('td').each(function (i) {
+                        var contentSearch = $(this).text();
                         var keySearch = '<c:out value="${keySearch}"/>';
                         if ($(this).text().indexOf(keySearch) > -1) {
                             var result = contentSearch.replace(keySearch, '<span style="background: orange;">' + keySearch + '</span>');
@@ -100,9 +111,51 @@
             }
         });
     });
-</script>
-<div class="jvectormap-tip">
 
-</div>
+    function showMsgInfo( froms, align, a) {
+        type = ['info'];
+        color = Math.floor((Math.random() * 6) + 1);
+        $.notify({
+            icon: "notifications",
+            message: a
+        }, {
+            type: type[0],
+            timer: 3000,
+            placement: {
+                from: froms,
+                align: align
+            }
+        });
+    }
+    function showMsgError( froms, align, a) {
+        type = ['danger'];
+        $.notify({
+            icon: "notifications",
+            message: a
+        }, {
+            type: type[0],
+            timer: 3000,
+            placement: {
+                from: froms,
+                align: align
+            }
+        });
+    }
+    /*function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function() {
+        readURL(this);
+    });*/
+</script>
 </body>
 </html>

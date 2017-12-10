@@ -2,6 +2,7 @@ package com.bkap.vn.common.entity;
 // Generated Dec 6, 2017 9:49:55 PM by Hibernate Tools 4.3.1
 
 
+import com.bkap.vn.common.validator.EmailWithTld;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,13 +27,12 @@ public class Users implements java.io.Serializable {
     private int id;
     @NotNull(message = "Tên người dùng không được để trống!")
     @Size(min = 5, max = 20, message = "Tên người dùng tối thiểu 5 kí tự, tối đa 20 kí tự!")
-    /*@Pattern(regexp = "^[A-Za-z0-9]*$",message = "Tên người dùng chỉ được dùng chữ hoa, chữ thường và số!")*/
     private String username;
     @Size(min = 8, max = 20, message = "Mật khẩu tối thiểu 8 kí tự, tối đa 20 kí tự!")
     private String password;
-    @Email(message = "Email không đúng định dạng!",flags={Pattern.Flag.CASE_INSENSITIVE})
+    @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message =  "Email không đúng định dạng!")
     private String email;
-    @Size(max = 500, message = "Address tối đa 500 kí tự!")
+    @Size(max = 20, message = "Số điện thoại tối đa 20 kí tự!")
     private String phone;
     private Date birthday;
     @Size(max = 500, message = "Address tối đa 500 kí tự!")

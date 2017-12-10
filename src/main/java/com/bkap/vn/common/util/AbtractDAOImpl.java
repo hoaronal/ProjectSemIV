@@ -1,6 +1,7 @@
 package com.bkap.vn.common.util;
 
 import com.bkap.vn.common.exception.DataAccessException;
+import com.bkap.vn.common.pagination.PaggingResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.*;
@@ -20,13 +21,34 @@ public class AbtractDAOImpl implements AbtractDAO {
 
     final static Logger logger = LogManager.getLogger(AbtractDAOImpl.class);
     @Autowired
-    private SessionFactory sessionFactory;
+    protected SessionFactory sessionFactory;
 
-    private Session session;
+    protected Session session;
 
-    private Transaction tx;
+    protected Transaction tx;
 
     public void setSessionFactory(org.hibernate.SessionFactory sessionFactory) {
+    }
+
+    @Override
+    public int countAll(Class clazz, String filter) {
+        try {
+            startOperation();
+            StringBuilder query = new StringBuilder("SELECT COUNT(1) from ");
+            query.append(clazz.getSimpleName()).append( " obj ")/*.append(filter)*/;
+            Query countQuery = session.createQuery(query.toString());
+            Long countResults = (Long) countQuery.uniqueResult();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
+            return countResults.intValue();
+        } catch (HibernateException e) {
+            logger.error("save : " + e.toString());
+            handleException(e);
+        } finally {
+            HibernateFactory.close(session);
+        }
+        return 0;
     }
 
     @Override
@@ -207,14 +229,15 @@ public class AbtractDAOImpl implements AbtractDAO {
 
     @Override
     @Transactional
-    public List findRange(Class clazz, int firstResult, int pageSize) {
-        List objects = null;
+    public PaggingResult findRange(Class clazz, int firstResult, int pageSize) {
+        PaggingResult paggingResult = new PaggingResult();
+
         try {
             startOperation();
             Query query = session.createQuery("from " + clazz.getName());
             query.setFirstResult(firstResult);
             query.setMaxResults(pageSize);
-            objects = query.list();
+            List objects = query.list();
             if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
                 tx.commit();
             }
@@ -226,19 +249,22 @@ public class AbtractDAOImpl implements AbtractDAO {
         } finally {
             HibernateFactory.close(session);
         }
-        return objects;
+        return paggingResult;
     }
 
     @Override
     @Transactional
-    public List getRange(Class clazz, int firstRow, int lastRow, String filter) {
-        List objects = null;
+    public PaggingResult getRange(Class clazz, int currentPage, int rowPerpage, String filter) {
+        PaggingResult paggingResult = new PaggingResult();
         String tableName = getNameTable(clazz);
+        int firstRow = (currentPage - 1) * rowPerpage;
         try {
             startOperation();
-            Query query = session.createNativeQuery("SELECT * FROM " + tableName + filter + " ORDER BY id OFFSET " + firstRow + " ROWS FETCH NEXT " + lastRow + " ROWS ONLY ")
+            Query query = session.createNativeQuery("SELECT * FROM " + tableName + filter + " ORDER BY id OFFSET " + firstRow + " ROWS FETCH NEXT " + rowPerpage + " ROWS ONLY ")
                     .addEntity(clazz);
-            objects = query.list();
+            List objects = query.list();
+            paggingResult.setItem(objects);
+            paggingResult.setNumRecordInPage(objects.size());
             if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
                 tx.commit();
             }
@@ -249,12 +275,13 @@ public class AbtractDAOImpl implements AbtractDAO {
         } finally {
             HibernateFactory.close(session);
         }
-        return objects;
+        return paggingResult;
     }
 
     @Override
     @Transactional
-    public List getAllByKeySearch(Class clazz, String filter) {
+    public PaggingResult getAllByKeySearch(Class clazz, String filter) {
+        PaggingResult paggingResult = new PaggingResult();
         List objects = null;
         String tableName = getNameTable(clazz);
         try {
@@ -271,7 +298,7 @@ public class AbtractDAOImpl implements AbtractDAO {
         } finally {
             HibernateFactory.close(session);
         }
-        return objects;
+        return paggingResult;
     }
 
     @Override
@@ -303,7 +330,7 @@ public class AbtractDAOImpl implements AbtractDAO {
         tx = session.beginTransaction();
     }
 
-    public String getNameTable(Class aClass){
+    public String getNameTable(Class aClass) {
         String tableName = "";
         ClassMetadata hibernateMetadata = sessionFactory.getClassMetadata(aClass);
         if (hibernateMetadata == null) {

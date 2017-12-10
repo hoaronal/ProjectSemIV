@@ -6,10 +6,11 @@ public class PaggingResult {
     private int firstPage = 1;
     private int lastPage;
     private int currentPage;
-    private int totalRecord;
+    private int totalRecord=0;
     private int totalPage;
+    private int numRecordInPage;
     private Integer[] pages;
-    private int pageRange = 7;
+    private int pageRange = 4;
     private int rowsPerPage = 10;
     private List item;
 
@@ -109,14 +110,20 @@ public class PaggingResult {
         this.rowsPerPage = rowsPerPage;
     }
 
+    public int getNumRecordInPage() {
+        return numRecordInPage;
+    }
+
+    public void setNumRecordInPage(int numRecordInPage) {
+        this.numRecordInPage = numRecordInPage;
+    }
+
     public Integer[] paging(int currentPage, int totalPages, int totalRows, int rowsPerPage, int firstRow, int pageRange) {
         currentPage = (totalRows / rowsPerPage) - ((totalRows - firstRow) / rowsPerPage) + 1;
         totalPages = (totalRows / rowsPerPage) + ((totalRows % rowsPerPage != 0) ? 1 : 0);
         // Size of list page link
         int pagesLength = Math.min(pageRange, totalPages);
         pages = new Integer[pagesLength];
-        // firstPage must be greater than 0 and lesser than
-        // totalPages-pageLength.
         int firstPage = Math.min(Math.max(0, currentPage - (pageRange / 2)), totalPages - pagesLength);
         // Create pages (page numbers for page links).
         for (int i = 0; i < pagesLength; i++) {
@@ -126,15 +133,17 @@ public class PaggingResult {
         return pages;
     }
 
-    /*public Integer[] paging(int totalRows, int firstRow, int currentPage) {
-        currentPage = (totalRows / pageRange) - ((totalRows - firstRow) / pageRange) + 1;
-        totalPage = (totalRows / pageRange) + ((totalRows % pageRange != 0) ? 1 : 0);
+    public Integer[] paging() {
+        int firstRow = (currentPage - 1) * rowsPerPage;
+        currentPage = (totalRecord / rowsPerPage) - ((totalRecord - firstRow) / rowsPerPage) + 1;
+        totalPage = (totalRecord / rowsPerPage) + ((totalRecord % rowsPerPage != 0) ? 1 : 0);
         int pagesLength = Math.min(pageRange, totalPage);
         pages = new Integer[pagesLength];
         int firstPage = Math.min(Math.max(0, currentPage - (pageRange / 2)), totalPage - pagesLength);
         for (int i = 0; i < pagesLength; i++) {
             pages[i] = ++firstPage;
         }
+        lastPage = totalPage;
         return pages;
-    }*/
+    }
 }
