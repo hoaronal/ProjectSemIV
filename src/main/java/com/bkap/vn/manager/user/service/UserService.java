@@ -1,6 +1,7 @@
 package com.bkap.vn.manager.user.service;
 
 import com.bkap.vn.common.entity.Users;
+import com.bkap.vn.common.pagination.PaggingResult;
 
 import java.util.List;
 
@@ -13,11 +14,13 @@ public interface UserService {
 
     public Users getById(int id);
 
-    public int countAll();
+    public int countAll(String filter);
 
     public int countAllByKeySearch(String filter);
 
-    public List<Users> listAdmin();
+    public List<Users> listUser();
 
-    public List<Users> findRange(int firstRow, int lastRow, String filter);
+    public PaggingResult findRange(int currentPage, int rowPerpage, String filter);
+
+    public String generateQuerySearchUser(String keySearch);
 }

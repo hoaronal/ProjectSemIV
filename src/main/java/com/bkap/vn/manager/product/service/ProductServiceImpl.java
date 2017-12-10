@@ -1,7 +1,9 @@
 package com.bkap.vn.manager.product.service;
 
 import com.bkap.vn.common.entity.Product;
+import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.manager.product.dao.ProductDAO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,14 +18,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public boolean delete(Product user) {
-        return productDAO.delete(user);
+    public boolean delete(Product product) {
+        return productDAO.delete(product);
     }
 
     @Override
     @Transactional
-    public boolean update(Product user) {
-        return productDAO.update(user);
+    public boolean update(Product product) {
+        return productDAO.update(product);
     }
 
     @Override
@@ -34,20 +36,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public int countAll() {
+    public int countAll(String filter) {
         return productDAO.findAll(Product.class).size();
     }
 
     @Override
     @Transactional
     public int countAllByKeySearch(String filter) {
-        return productDAO.getAllByKeySearch(Product.class,  filter).size();
+        return 0;
     }
 
     @Override
     @Transactional
-    public int add(Product user) {
-        return productDAO.save(user);
+    public int add(Product product) {
+        return productDAO.save(product);
     }
 
     @Override
@@ -58,7 +60,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public List<Product> findRange(int firstRow, int lastRow, String filter) {
+    public PaggingResult findRange(int firstRow, int lastRow, String filter) {
         return productDAO.getRange(Product.class, firstRow, lastRow, filter);
+    }
+
+    @Override
+    public String generateQuerySearchProduct(String keySearch) {
+        StringBuilder sql = new StringBuilder(" where 1=1");
+        if (!StringUtils.isBlank(keySearch)) {
+            sql.append(" and productName like N'%" + keySearch + "%'")
+                    .append(" or detail like N'%" + keySearch + "%'");
+            return sql.toString();
+        } else {
+            return sql.toString();
+        }
     }
 }

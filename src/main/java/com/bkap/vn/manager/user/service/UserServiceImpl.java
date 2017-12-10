@@ -1,7 +1,9 @@
 package com.bkap.vn.manager.user.service;
 
 import com.bkap.vn.common.entity.Users;
+import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.manager.user.dao.UserDAO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,14 +36,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public int countAll() {
-        return userDAO.findAll(Users.class).size();
+    public int countAll(String filter) {
+        return userDAO.countAll(Users.class,filter);
     }
 
     @Override
     @Transactional
     public int countAllByKeySearch(String filter) {
-        return userDAO.getAllByKeySearch(Users.class,  filter).size();
+        return 0;
     }
 
     @Override
@@ -52,13 +54,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public List<Users> listAdmin() {
+    public List<Users> listUser() {
         return userDAO.findAll(Users.class);
     }
 
     @Override
     @Transactional
-    public List<Users> findRange(int firstRow, int lastRow, String filter) {
-        return userDAO.getRange(Users.class, firstRow, lastRow, filter);
+    public PaggingResult findRange(int currentPage, int rowPerpage, String filter) {
+        return userDAO.getRange(Users.class, currentPage, rowPerpage, filter);
+    }
+
+    @Override
+    public String generateQuerySearchUser(String keySearch) {
+        StringBuilder sql = new StringBuilder(" where 1=1");
+        if (!StringUtils.isBlank(keySearch)) {
+            sql.append(" and username like N'%" + keySearch + "%'")
+                    .append(" or email like N'%" + keySearch + "%'")
+                    .append(" or phone like N'%" + keySearch + "%'")
+                    .append(" or address like N'%" + keySearch + "%'");
+            return sql.toString();
+        } else {
+            return sql.toString();
+        }
     }
 }

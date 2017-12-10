@@ -13,12 +13,14 @@
                 </div>
                 <div class="card-content">
                     <h4 class="card-title"><spring:message code="label.listUser"/></h4>
+                    <a style="float: right" href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/them-moi"
+                       class="btn btn-primary"><spring:message code="label.addbtn"/></a>
                     <div class="toolbar">
-                        <c:if test="${msg != null}">
+                        <%--<c:if test="${msg != null}">
                             <div class="alert alert-${style}" id="success-${style}" style="text-align: center">
                                 <b>${msg}</b>
                             </div>
-                        </c:if>
+                        </c:if>--%>
                     </div>
                     <div class="material-datatables">
                         <div id="datatables_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -35,27 +37,6 @@
                                             <option value="-1"><spring:message code="label.all"/></option>
                                         </select> <spring:message code="label.entry"/></label>
                                     </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <form action="${searchUrl}">
-                                        <div id="datatables_filter" class="dataTables_filter">
-                                            <%--<label class="form-group"><input type="search" class="form-control input-sm"
-                                                                             placeholder="<spring:message code="label.search"/>"
-                                                                             aria-controls="datatables"></label>--%>
-                                            <label class="form-group"><input type="text" class="form-control input-sm" placeholder="<spring:message code="label.search"/>"
-                                                   value="${keySearch}" name="keySearch"></label>
-                                            <input type="hidden" class="form-control" name="page"
-                                                   value="${listItem.currentPage}">
-                                            <input type="hidden" class="form-control" name="clickSearch"
-                                                   id="clickSearch" value="${clickSearch}">
-                                                <%--<button type="button" id="btnSearch"
-                                                        class="btn btn-white btn-round btn-just-icon">
-                                                    <i class="material-icons">search</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>--%>
-                                        </div>
-
-                                    </form>
                                 </div>
                             </div>
                             <div class="row">
@@ -115,7 +96,9 @@
                                                 <td class="text-right">
                                                     <a href="" class="btn btn-simple btn-info btn-icon like"><i
                                                             class="material-icons">favorite</i></a>
-                                                    <a href="${editUserAction}/${item.id}" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">edit</i></a>
+                                                    <a href="${editUserAction}/${item.id}"
+                                                       class="btn btn-simple btn-warning btn-icon edit"><i
+                                                            class="material-icons">edit</i></a>
                                                     <a class="btn btn-simple btn-danger btn-icon remove"
                                                        data-toggle="modal" data-target="#smallAlertModal${item.id}"><i
                                                             class="material-icons">close</i></a>
@@ -128,16 +111,23 @@
                                                     <div class="modal-content">
 
                                                         <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel" s><i class="material-icons" style="color: orange">warning</i> Xóa người dùng!</h4>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close"><span
+                                                                    aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel" s><i
+                                                                    class="material-icons"
+                                                                    style="color: orange">warning</i> Xóa người dùng!
+                                                            </h4>
                                                         </div>
                                                         <div class="modal-body text-center">
                                                             <h5>Bạn có muốn xóa người dùng có mã là ${item.id}? </h5>
                                                         </div>
                                                         <div class="modal-footer text-center">
-                                                                <a class="btn btn-default" data-dismiss="modal" style="margin: 0px !important;" >Hủy</a>
-                                                                <a href="<%=request.getContextPath()%>${deleteUserAction}/${item.id}" class="btn btn-primary" style="margin: 0px !important;" >
-                                                                    Đồng ý</a>
+                                                            <a class="btn btn-default" data-dismiss="modal"
+                                                               style="margin: 0px !important;">Hủy</a>
+                                                            <a href="<%=request.getContextPath()%>${deleteUserAction}/${item.id}"
+                                                               class="btn btn-primary" style="margin: 0px !important;">
+                                                                Đồng ý</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -148,12 +138,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-5">
+                                <div class="col-sm-3">
                                     <div class="dataTables_info" id="datatables_info" role="status" aria-live="polite">
-                                        Hiển thị 1 đến 10 của ${listItem.totalRecord}
+                                        Hiển thị <span style="color: red">${(listItem.currentPage-1)*10}</span> đến <span style="color: red">${(listItem.currentPage-1)*10 + listItem.numRecordInPage}</span>
+                                        của <span style="color: red">${listItem.totalRecord}</span> bản ghi
                                     </div>
                                 </div>
-                                <div class="col-sm-7">
+                                <div class="col-sm-9">
                                     <div class="dataTables_paginate paging_full_numbers" id="datatables_paginate">
                                         <ul class="pagination">
                                             <li class="paginate_button first " id="datatables_first">

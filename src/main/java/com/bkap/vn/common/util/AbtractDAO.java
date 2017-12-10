@@ -1,5 +1,6 @@
 package com.bkap.vn.common.util;
 
+import com.bkap.vn.common.pagination.PaggingResult;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 
@@ -25,11 +26,13 @@ public interface AbtractDAO {
     public List findByProperty(Class clazz, String propertyName, Object value);
 
     public List findLikeProperty(Class clazz, String propertyName, Object value);
-    public List findRange(Class clazz, int firstRow, int lastRow);
+    public PaggingResult findRange(Class clazz, int firstRow, int lastRow);
 
-    public List getRange(Class clazz, int firstRow, int lastRow, String filter);
+    public PaggingResult getRange(Class clazz, int currentPage, int rowPerpage, String filter);
 
-    public List getAllByKeySearch(Class clazz, String filter);
+    public PaggingResult getAllByKeySearch(Class clazz, String filter);
     public List findAll(Class clazz);
+
+    public int countAll(Class clazz, String filter);
 
 }

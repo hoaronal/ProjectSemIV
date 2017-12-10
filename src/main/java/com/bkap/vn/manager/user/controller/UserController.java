@@ -1,21 +1,17 @@
 package com.bkap.vn.manager.user.controller;
 
 
-import com.bkap.vn.common.entity.Admin;
 import com.bkap.vn.common.entity.Users;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
+import com.bkap.vn.common.util.PatternUtil;
 import com.bkap.vn.manager.user.service.UserService;
-import com.bkap.vn.manager.user.service.UserServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -34,28 +29,29 @@ public class UserController extends BaseController {
     private UserService userService;
 
     @RequestMapping(value = {"/nguoi-dung/{page}", "/nguoi-dung/danh-sach-nguoi-dung/{page}"}, method = RequestMethod.GET)
-    public ModelAndView list(@ModelAttribute("user") Users user, String clickSearch, @PathVariable("page") int page, PaggingResult paggingResult, String keySearch, Model model, HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView view = new ModelAndView();
-        String path = request.getServletPath();
-        String contextPath = request.getContextPath();
-        String queryString = request.getQueryString();
-        keySearch = request.getParameter("keySearch");
-        if (page <= 1) {
-            page = 1;
+    public ModelAndView list(@ModelAttribute("user") Users user,
+                             @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
+                             @PathVariable(value = "page") int currentPage,
+                             PaggingResult paggingResult, HttpServletRequest request, HttpServletResponse response) {
+        if (currentPage <= 1) {
+            currentPage = 1;
         }
-        paging(paggingResult, page, keySearch);
+        ModelAndView view = new ModelAndView();
+        String filter = userService.generateQuerySearchUser(keySearch);
+        int totalRecord = userService.countAll(filter);
+        paggingResult = userService.findRange(currentPage, 10, filter);
+        paggingResult.setTotalRecord(totalRecord);
+        paggingResult.setCurrentPage(currentPage);
+        paggingResult.paging();
         view.addObject("keySearch", keySearch);
-        view.addObject("clickSearch", clickSearch);
-        view.addObject("searchUrl", contextPath + path + "?" + queryString);
         view.addObject("listItem", paggingResult);
         view.setViewName("user-list");
         return view;
     }
 
     @RequestMapping(value = "/nguoi-dung/cap-nhat/{id}", method = RequestMethod.GET)
-    public String editView(@PathVariable("id") int id, @ModelAttribute("user") Users user, Model model, RedirectAttributes attributes, Locale locale) {
+    public String editView(@PathVariable(value = "id",required = false) int id, @ModelAttribute("user") Users user, Model model, RedirectAttributes attributes, Locale locale) {
         user = userService.getById(id);
-        /*System.out.println(locale.getLanguage());*/
         if (user != null) {
             model.addAttribute("user", user);
             return "user-edit";
@@ -74,14 +70,14 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/nguoi-dung/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView edit(@ModelAttribute("user") @Valid Users user, BindingResult result, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
         Users userUpdate = userService.getById(user.getId());
-        try{
+        try {
             if (userUpdate != null) {
                 if (result.hasErrors() && !validateUpdate(user)) {
-                    return view("user-edit", user, "user");
+                    return view("user-edit", user, "user","Cập nhật người dùng thất bại!","danger");
                 } else {
-                    if(StringUtils.isBlank(user.getPassword())){
+                    if (StringUtils.isBlank(user.getPassword())) {
                         user.setPassword(userUpdate.getPassword());
-                    }else{
+                    } else {
                         user.setPassword(user.getPassword());
                     }
 
@@ -92,16 +88,16 @@ public class UserController extends BaseController {
                     boolean check = userService.update(user);
                     if (check) {
                         attributes.addFlashAttribute("style", "info");
-                        attributes.addFlashAttribute("msg", "Thành công");
+                        attributes.addFlashAttribute("msg", "Cập nhật người dùng thành công");
                     } else {
                         attributes.addFlashAttribute("style", "danger");
-                        attributes.addFlashAttribute("msg", "Thất bại");
+                        attributes.addFlashAttribute("msg", "Cập nhật người dùng thất bại!");
                     }
                 }
             } else {
                 return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
@@ -116,10 +112,10 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/nguoi-dung/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView add(@ModelAttribute("user") @Valid Users user, BindingResult result, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
         if (user != null) {
-            if (result.hasErrors() && !validateUpdate(user)) {
-                return view("user-add", user, "user");
+            if (result.hasErrors() || !validateAdd(user)) {
+                return view("user-add", user, "user","Thêm mới người dùng thất bại!","danger");
             } else {
-                if(!StringUtils.isBlank(user.getPassword())){
+                if (!StringUtils.isBlank(user.getPassword())) {
                     user.setPassword(user.getPassword());
                 }
                 user.setUpdateDate(new Date());
@@ -131,11 +127,11 @@ public class UserController extends BaseController {
                 int check = userService.add(user);
                 if (check > 0) {
                     attributes.addFlashAttribute("style", "info");
-                    attributes.addFlashAttribute("msg", "Thêm mới thành công");
+                    attributes.addFlashAttribute("msg", "Thêm mới người dùng thành công");
                     return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
                 } else {
                     attributes.addFlashAttribute("style", "danger");
-                    attributes.addFlashAttribute("msg", "Thêm mới thất bại");
+                    attributes.addFlashAttribute("msg", "Thêm mới người dùng thất bại");
                     return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
                 }
             }
@@ -163,51 +159,8 @@ public class UserController extends BaseController {
             redirectAttributes.addFlashAttribute("style", "danger");
             redirectAttributes.addFlashAttribute("msg", "Xóa người dùng thất bại, người dùng không tồn tại!");
         }
-        view.setViewName("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
+        view.setViewName("redirect:/quan-tri/nguoi-dung/1");
         return view;
-    }
-
-    public PaggingResult paging(PaggingResult paggingResult, int page, String keySearch) {
-        try {
-            if (StringUtils.isBlank(keySearch)) {
-                int totalRecord = userService.countAll();
-                int totalPages = (totalRecord / paggingResult.getRowsPerPage()) + ((totalRecord % paggingResult.getRowsPerPage() != 0) ? 1 : 0);
-                paggingResult.setCurrentPage(page);
-                paggingResult.setTotalRecord(totalRecord);
-                int firstRecord = (page - 1) * paggingResult.getRowsPerPage();
-                int maxRecord = paggingResult.getRowsPerPage();
-                List<Users> userList = userService.findRange(firstRecord, maxRecord, generateQuerySearchUser(keySearch));
-                paggingResult.setItem(userList);
-                paggingResult.paging(page, totalPages, totalRecord, paggingResult.getRowsPerPage(), firstRecord, paggingResult.getPageRange());
-            } else {
-                int totalRecord = userService.countAllByKeySearch(generateQuerySearchUser(keySearch));
-                int totalPages = (totalRecord / paggingResult.getRowsPerPage()) + ((totalRecord % paggingResult.getRowsPerPage() != 0) ? 1 : 0);
-                paggingResult.setCurrentPage(page);
-                paggingResult.setTotalRecord(totalRecord);
-                int firstRecord = (page - 1) * paggingResult.getRowsPerPage();
-                int maxRecord = paggingResult.getRowsPerPage();
-                List<Users> userList = userService.findRange(firstRecord, maxRecord, generateQuerySearchUser(keySearch));
-                paggingResult.setItem(userList);
-                paggingResult.paging(page, totalPages, totalRecord, paggingResult.getRowsPerPage(), firstRecord, paggingResult.getPageRange());
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return paggingResult;
-    }
-
-    public String generateQuerySearchUser(String keySearch) {
-        StringBuilder sql = new StringBuilder(" where 1=1");
-        if (!StringUtils.isBlank(keySearch)) {
-            sql.append(" and username like N'%" + keySearch + "%'")
-                    .append(" or email like N'%" + keySearch + "%'")
-                    .append(" or phone like N'%" + keySearch + "%'")
-                    .append(" or address like N'%" + keySearch + "%'");
-            return sql.toString();
-        } else {
-            return " where 1=1";
-        }
     }
 
     public boolean validateAdd(Users user) {
@@ -240,6 +193,11 @@ public class UserController extends BaseController {
                 if (user.getEmail().trim().length() > 200) {
                     check = false;
                 }
+                if(!BaseController.checkPattern(PatternUtil.EMAIL,user.getEmail())){
+                    check = false;
+                }
+            }else{
+                check = false;
             }
             if (!StringUtils.isBlank(user.getAddress())) {
                 if (user.getAddress().trim().length() > 500) {
@@ -280,6 +238,11 @@ public class UserController extends BaseController {
                 if (user.getEmail().trim().length() > 200) {
                     check = false;
                 }
+                if(!BaseController.checkPattern(PatternUtil.EMAIL,user.getEmail())){
+                    check = false;
+                }
+            }else{
+                check = false;
             }
             if (!StringUtils.isBlank(user.getAddress())) {
                 if (user.getAddress().trim().length() > 500) {

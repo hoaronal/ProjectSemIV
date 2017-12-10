@@ -32,6 +32,16 @@
         <put-attribute name="content" value="/WEB-INF/views/manager/admin/add.jsp"/>
     </definition>
 
+    <definition name="admin-edit" extends="adminTemplate">
+        <put-attribute name="title" value="Cập nhật quản trị viên"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/admin/edit.jsp"/>
+    </definition>
+
+    <definition name="admin-info" extends="adminTemplate">
+        <put-attribute name="title" value="Thông tin quản trị viên"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/admin/info.jsp"/>
+    </definition>
+
     <definition name="user-list" extends="adminTemplate">
         <put-attribute name="title" value="Danh sách người dùng"/>
         <put-attribute name="content" value="/WEB-INF/views/manager/user/list.jsp"/>
@@ -56,12 +66,6 @@
         <put-attribute name="title" value="Giỏ hàng"/>
         <put-attribute name="content" value="/WEB-INF/views/web/cart/cart.jsp"/>
     </definition>
-
-    <definition name="test" extends="webTemplate">
-        <put-attribute name="title" value="test"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/user/test.jsp"/>
-    </definition>
-
 
     <!--Product-->
     <definition name="product-list" extends="adminTemplate">

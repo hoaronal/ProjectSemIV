@@ -1,105 +1,149 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<spring:url value="/quan-tri/quan-tri-vien/cap-nhat/luu" var="editAdminAction"/>
+<spring:message code="label.account" var="account"/>
+<spring:message code="label.password" var="password"/>
+<spring:message code="label.repassword" var="repassword"/>
+<spring:message code="label.email" var="email"/>
+<spring:message code="label.address" var="address"/>
+<spring:message code="label.birthday" var="birthday"/>
+<spring:message code="label.phone" var="phone"/>
+<spring:message code="label.sex" var="sex"/>
+<spring:message code="label.status" var="status"/>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <form method="get" action="http://demos.creative-tim.com/" class="form-horizontal">
+                <form:form id="myform" action="${editAdminAction}" method="post" modelAttribute="admin"
+                           cssClass="form-horizontal">
                     <div class="card-header card-header-text" data-background-color="rose">
-                        <h4 class="card-title">Form Elements</h4>
+                        <h4 class="card-title"><spring:message code="label.updateAdmin"/></h4>
                     </div>
+                    <form:hidden path="id"/>
                     <div class="card-content">
                         <div class="row">
-                            <label class="col-sm-2 label-on-left">With help</label>
+                            <label class="col-sm-2 label-on-left">${account}</label>
                             <div class="col-sm-10">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <input type="text" class="form-control" value="">
+                                    <form:input path="account" cssClass="form-control" placeholder="${account}"/>
                                     <span class="help-block">A block of help text that breaks onto a new line.</span>
-                                    <span class="material-input"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 label-on-left">Password</label>
-                            <div class="col-sm-10">
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label"></label>
-                                    <input type="password" class="form-control" value="">
-                                    <span class="material-input"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 label-on-left">Placeholder</label>
-                            <div class="col-sm-10">
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label"></label>
-                                    <input type="text" class="form-control" placeholder="placeholder">
-                                    <span class="material-input"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 label-on-left">Disabled</label>
-                            <div class="col-sm-10">
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label"></label>
-                                    <input type="text" placeholder="Disabled input here..." disabled="" class="form-control">
-                                    <span class="material-input"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 label-on-left">Static control</label>
-                            <div class="col-sm-10">
-                                <div class="form-group">
-                                    <p class="form-control-static">hello@creative-tim.com</p>
+                                    <span class="material-input" style="color: red">
+                                        <form:errors path="account" cssClass="error"/>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 label-on-left">Checkboxes and radios</label>
+                            <label class="col-sm-2 label-on-left">${password}</label>
+                            <div class="col-sm-4">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <form:password path="password" cssClass="form-control" placeholder="${password}"/>
+                                    <span class="material-input" style="color: red">
+                                        <form:errors path="password" cssClass="error"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 label-on-left">${repassword}</label>
+                            <div class="col-sm-4">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <input class="form-control" name="re_password" id="re_password" placeholder="${repassword}"/>
+                                    <%--<form:input path="password" cssClass="form-control" placeholder="${repassword}"/>--%>
+                                    <span class="material-input" style="color: red">
+                                        <form:errors path="password" cssClass="error"/>
+                                    </span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">${email}</label>
+                            <div class="col-sm-10">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <form:input path="email" cssClass="form-control" placeholder="${email}"/>
+                                    <span class="material-input" style="color: red">
+                                        <form:errors path="email" cssClass="error"/>
+                                    </span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">${address}</label>
+                            <div class="col-sm-10">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <form:input path="address" cssClass="form-control" placeholder="${address}"/>
+                                    <span class="material-input" style="color: red">
+                                        <form:errors path="address" cssClass="error"/>
+                                    </span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">${birthday}</label>
+                            <div class="col-sm-4">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <form:input path="birthday" cssClass="form-control datepicker" placeholder="${birthday}"/>
+                                    <span class="material-input" style="color: red">
+                                        <form:errors path="birthday" cssClass="error"/>
+                                    </span></div>
+                            </div>
+                            <label class="col-sm-2 label-on-left">${phone}</label>
+                            <div class="col-sm-4">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <form:input path="phone" cssClass="form-control" placeholder="${phone}"/>
+                                    <span class="material-input" style="color: red">
+                                        <form:errors path="phone" cssClass="error"/>
+                                    </span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">${sex}</label>
                             <div class="col-sm-10 checkbox-radios">
-                                <div class="checkbox">
+                                <div class="radio">
                                     <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span> First Checkbox
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span> Second Checkbox
+                                        <input type="radio" name="optionsRadios" checked="true"><span
+                                            class="circle"></span><span class="check"></span> <spring:message
+                                            code="label.male"/>
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" checked="true"><span class="circle"></span><span class="check"></span> First Radio
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios"><span class="circle"></span><span class="check"></span> Second Radio
+                                        <input type="radio" name="optionsRadios"><span class="circle"></span><span
+                                            class="check"></span> <spring:message code="label.female"/>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 label-on-left">Inline checkboxes</label>
+                            <label class="col-sm-2 label-on-left">${status}</label>
+                            <div class="col-sm-10 checkbox-radios">
+                                <div class="radio">
+                                    <label>
+                                        <form:radiobutton path="status"/><span
+                                            class="circle"></span><span class="check"></span> <spring:message
+                                            code="label.statusok"/>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <form:radiobutton path="status"/><span class="circle"></span><span
+                                            class="check"></span> <spring:message code="label.statusnone"/>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left"></label>
                             <div class="col-sm-10">
-                                <div class="checkbox checkbox-inline">
-                                    <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span>a
-                                    </label>
-                                </div>
-                                <div class="checkbox checkbox-inline">
-                                    <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span>b
-                                    </label>
-                                </div>
-                                <div class="checkbox checkbox-inline">
-                                    <label>
-                                        <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span>c
-                                    </label>
-                                </div>
+                                <button type="submit" class="btn btn-fill btn-rose" value="Cập nhật"><spring:message code="label.updatebtn"/><div class="ripple-container"></div></button>
                             </div>
                         </div>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>

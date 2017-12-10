@@ -1,26 +1,26 @@
 package com.bkap.vn.manager.product.controller;
 
 
+import com.bkap.vn.common.entity.Category;
 import com.bkap.vn.common.entity.Product;
-import com.bkap.vn.common.entity.Users;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
+import com.bkap.vn.manager.category.service.CategoryService;
 import com.bkap.vn.manager.product.service.ProductService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -32,20 +32,25 @@ public class ProductController extends BaseController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping(value = {"/san-pham/{page}", "/san-pham/danh-sach-san-pham/{page}"}, method = RequestMethod.GET)
-    public ModelAndView list(@ModelAttribute("product") Product product, String clickSearch, @PathVariable("page") int page, PaggingResult paggingResult, String keySearch, Model model, HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView view = new ModelAndView();
-        String path = request.getServletPath();
-        String contextPath = request.getContextPath();
-        String queryString = request.getQueryString();
-        keySearch = request.getParameter("keySearch");
-        if (page <= 1) {
-            page = 1;
+    public ModelAndView list(@ModelAttribute("product") Product product,
+                             @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
+                             @PathVariable(value = "page") int currentPage,
+                             PaggingResult paggingResult, HttpServletRequest request, HttpServletResponse response) {
+        if (currentPage <= 1) {
+            currentPage = 1;
         }
-        paging(paggingResult, page, keySearch);
+        ModelAndView view = new ModelAndView();
+        String filter = productService.generateQuerySearchProduct(keySearch);
+        int totalRecord = productService.countAll(filter);
+        paggingResult = productService.findRange(currentPage, 10, filter);
+        paggingResult.setTotalRecord(totalRecord);
+        paggingResult.setCurrentPage(currentPage);
+        paggingResult.paging();
         view.addObject("keySearch", keySearch);
-        view.addObject("clickSearch", clickSearch);
-        view.addObject("searchUrl", contextPath + path + "?" + queryString);
         view.addObject("listItem", paggingResult);
         view.setViewName("product-list");
         return view;
@@ -55,8 +60,9 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "/san-pham/cap-nhat/{id}", method = RequestMethod.GET)
     public String editView(@PathVariable("id") int id, @ModelAttribute("product") Product product, Model model, RedirectAttributes attributes, Locale locale) {
         product = productService.getById(id);
-        /*System.out.println(locale.getLanguage());*/
+        List<Category> listCategory = categoryService.listCategory();
         if (product != null) {
+            model.addAttribute("listCategory", listCategory);
             model.addAttribute("product", product);
             return "product-edit";
         } else {
@@ -72,53 +78,65 @@ public class ProductController extends BaseController {
     }
 
     @RequestMapping(value = "/san-pham/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView edit(@ModelAttribute("product") @Valid Product product, BindingResult result, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
+    public ModelAndView edit(@RequestParam("categoryId") String categoryId,
+                             @RequestParam("productImg") String productImg,
+                             @ModelAttribute("product") @Valid Product product,
+                             BindingResult result, RedirectAttributes attributes) {
         Product productUpdate = productService.getById(product.getId());
-        try{
+        Category category = categoryService.getById(Integer.parseInt(categoryId));
+        try {
             if (productUpdate != null) {
                 if (result.hasErrors() && !validateUpdate(product)) {
-                    return view("product-edit", product, "product");
+                    return view("product-edit", product, "product", "Cập nhật sản phẩm thất bại!", "danger");
                 } else {
-                    /*if(StringUtils.isBlank(user.getPassword())){
-                        product.setPassword(userUpdate.getPassword());
-                    }else{
-                        product.setPassword(user.getPassword());
-                    }*/
                     product.setUpdateDate(new Date());
                     product.setCreateDate(productUpdate.getCreateDate());
+                    product.setCategory(category);
                 /*user.setAdminByAdminUpdate(new Admin());
                 user.setAdminByAdminCreate(userUpdate.getAdminByAdminCreate());*/
                     boolean check = productService.update(product);
                     if (check) {
                         attributes.addFlashAttribute("style", "info");
-                        attributes.addFlashAttribute("msg", "Thành công");
+                        attributes.addFlashAttribute("msg", "Cập nhật sản phẩm thành công");
                     } else {
                         attributes.addFlashAttribute("style", "danger");
-                        attributes.addFlashAttribute("msg", "Thất bại");
+                        attributes.addFlashAttribute("msg", "Cập nhật sản phẩm thất bại!");
                     }
                 }
             } else {
-                return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
+                return view("redirect:/quan-tri/san-pham/danh-sach-san-pham/1");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
+        return view("redirect:/quan-tri/san-pham/danh-sach-san-pham/1");
     }
 
     @RequestMapping(value = "/san-pham/them-moi", method = RequestMethod.GET)
     public String addView(Model model) {
-        model.addAttribute("user", new Users());
-        return "user-add";
+        List<Category> listCategory = categoryService.listCategory();
+        model.addAttribute("product", new Product());
+        model.addAttribute("listCategory", listCategory);
+        return "product-add";
     }
 
     @RequestMapping(value = "/san-pham/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@ModelAttribute("product") @Valid Product product, BindingResult result, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
-        if (product != null) {
+    public ModelAndView add(@RequestParam(value = "categoryId",required = true) String categoryId,
+                            @RequestParam(value = "productImg",required = false) String productImg,
+                            @ModelAttribute(value = "product") @Valid Product product,
+                            @RequestParam(value = "multipartFile",required = false) MultipartFile files,
+                            BindingResult result, HttpServletRequest request,
+                            HttpServletResponse response, RedirectAttributes attributes) {
+        if (files.isEmpty()) {
+
+        }
+        Category category = categoryService.getById(Integer.parseInt(categoryId));
+        if (product != null && category != null) {
             if (result.hasErrors() && !validateUpdate(product)) {
-                return view("product-add", product, "product");
+                return view("product-edit", product, "product", "Thêm mới sản phẩm thất bại!", "danger");
             } else {
                 product.setUpdateDate(new Date());
+                product.setCategory(category);
                 product.setCreateDate(new Date());
                 /*user.setAdminByAdminUpdate(new Admin());
                 user.setAdminByAdminCreate(new Admin());*/
@@ -163,53 +181,10 @@ public class ProductController extends BaseController {
     }
 
 
-    public PaggingResult paging(PaggingResult paggingResult, int page, String keySearch) {
-        try {
-            if (StringUtils.isBlank(keySearch)) {
-                int totalRecord = productService.countAll();
-                int totalPages = (totalRecord / paggingResult.getRowsPerPage()) + ((totalRecord % paggingResult.getRowsPerPage() != 0) ? 1 : 0);
-                paggingResult.setCurrentPage(page);
-                paggingResult.setTotalRecord(totalRecord);
-                int firstRecord = (page - 1) * paggingResult.getRowsPerPage();
-                int maxRecord = paggingResult.getRowsPerPage();
-                List<Product> userList = productService.findRange(firstRecord, maxRecord, generateQuerySearchProduct(keySearch));
-                paggingResult.setItem(userList);
-                paggingResult.paging(page, totalPages, totalRecord, paggingResult.getRowsPerPage(), firstRecord, paggingResult.getPageRange());
-            } else {
-                int totalRecord = productService.countAllByKeySearch(generateQuerySearchProduct(keySearch));
-                int totalPages = (totalRecord / paggingResult.getRowsPerPage()) + ((totalRecord % paggingResult.getRowsPerPage() != 0) ? 1 : 0);
-                paggingResult.setCurrentPage(page);
-                paggingResult.setTotalRecord(totalRecord);
-                int firstRecord = (page - 1) * paggingResult.getRowsPerPage();
-                int maxRecord = paggingResult.getRowsPerPage();
-                List<Product> userList = productService.findRange(firstRecord, maxRecord, generateQuerySearchProduct(keySearch));
-                paggingResult.setItem(userList);
-                paggingResult.paging(page, totalPages, totalRecord, paggingResult.getRowsPerPage(), firstRecord, paggingResult.getPageRange());
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return paggingResult;
-    }
-
     public boolean validateUpdate(Product product) {
         boolean check = true;
 
         return check;
     }
 
-    public String generateQuerySearchProduct(String keySearch) {
-        StringBuilder sql = new StringBuilder(" where 1=1");
-        /*if (!StringUtils.isBlank(keySearch)) {
-            sql.append(" and username like N'%" + keySearch + "%'")
-                    .append(" or email like N'%" + keySearch + "%'")
-                    .append(" or phone like N'%" + keySearch + "%'")
-                    .append(" or address like N'%" + keySearch + "%'");
-            return sql.toString();
-        } else {
-            return " where 1=1";
-        }*/
-        return " where 1=1";
-    }
 }

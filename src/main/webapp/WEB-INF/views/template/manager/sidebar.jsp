@@ -1,13 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="sidebar" data-active-color="rose" data-background-color="black" data-image="<%=request.getContextPath()%>/resources/img/sidebar-1.jpg">
+<div class="sidebar" data-active-color="rose" data-background-color="black"
+     data-image="<%=request.getContextPath()%>/resources/img/sidebar-1.jpg">
 
     <div class="logo">
-        <a href="http://www.creative-tim.com/" class="simple-text">
+        <a href="<%=request.getContextPath()%>/quan-tri/" class="simple-text">
             I-Store Manager
         </a>
     </div>
     <div class="logo logo-mini">
-        <a href="http://www.creative-tim.com/" class="simple-text">
+        <a href="<%=request.getContextPath()%>/quan-tri/" class="simple-text">
             I-S
         </a>
     </div>
@@ -15,26 +16,13 @@
          data-ps-id="5bc7479d-70af-7121-f583-0993c4c36241">
         <div class="user">
             <div class="photo">
-                <img src="<%=request.getContextPath()%>/resources/img/avatar.png">
+                <a href="<%=request.getContextPath()%>/quan-tri/quan-tri-vien/thong-tin"><img
+                        src="<%=request.getContextPath()%>/resources/img/avatar.png"></a>
             </div>
             <div class="info">
-                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                <a href="<%=request.getContextPath()%>/quan-tri/quan-tri-vien/thong-tin">
                     Tania Andrew
-                    <b class="caret"></b>
                 </a>
-                <div class="collapse" id="collapseExample">
-                    <ul class="nav">
-                        <li>
-                            <a href="">My Profile</a>
-                        </li>
-                        <li>
-                            <a href="">Edit Profile</a>
-                        </li>
-                        <li>
-                            <a href="">Settings</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
         <ul class="nav">
@@ -43,24 +31,6 @@
                     <i class="material-icons">dashboard</i>
                     <p>Trang chủ</p>
                 </a>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#pagesExamples" class="collapsed" aria-expanded="false">
-                    <i class="material-icons">group</i>
-                    <p>Quản trị viên
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="pagesExamples" aria-expanded="false" style="height: 0px;">
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="">Thêm mới</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
             <li>
                 <a data-toggle="collapse" href="#componentsExamples">
@@ -72,25 +42,44 @@
                 <div class="collapse" id="componentsExamples">
                     <ul class="nav">
                         <li>
-                            <a href="">Buttons</a>
+                            <a href="<%=request.getContextPath()%>/quan-tri/quan-tri-vien/1">
+                                <span class="sidebar-normal"> Danh sách quản trị viên </span>
+                            </a>
                         </li>
                         <li>
-                            <a href="">Grid System</a>
+                            <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/1">
+                                <span class="sidebar-normal"> Danh sách người dùng </span>
+                            </a>
                         </li>
                         <li>
-                            <a href="">Panels</a>
+                            <a href="<%=request.getContextPath()%>/quan-tri/san-pham/1">
+                                <span class="sidebar-normal"> Danh sách sản phẩm </span>
+                            </a>
                         </li>
                         <li>
-                            <a href="">Sweet Alert</a>
+                            <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/1">
+                                <span class="sidebar-normal"> Danh sách người dùng </span>
+                            </a>
                         </li>
                         <li>
-                            <a href="">Notifications</a>
+                            <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/1">
+                                <span class="sidebar-normal"> Danh sách người dùng </span>
+                            </a>
                         </li>
                         <li>
-                            <a href="">Icons</a>
+                            <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/1">
+                                <span class="sidebar-normal"> Danh sách người dùng </span>
+                            </a>
                         </li>
                         <li>
-                            <a href="">Typography</a>
+                            <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/1">
+                                <span class="sidebar-normal"> Danh sách người dùng </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/1">
+                                <span class="sidebar-normal"> Danh sách người dùng </span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -113,6 +102,12 @@
                     </ul>
                 </div>
             </li>
+            <li>
+                <a href="#formsExamples">
+                    <i class="material-icons">backup</i>
+                    <p>Sao lưu dữ liệu</p>
+                </a>
+            </li>
         </ul>
         <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
             <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
@@ -121,6 +116,7 @@
             <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 397px;"></div>
         </div>
     </div>
-    <div class="sidebar-background" style="background-image: url(<%=request.getContextPath()%>/resources/img/sidebar-1.jpg) ">
+    <div class="sidebar-background"
+         style="background-image: url(<%=request.getContextPath()%>/resources/img/sidebar-1.jpg) ">
     </div>
 </div>
