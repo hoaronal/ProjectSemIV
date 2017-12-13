@@ -1,8 +1,8 @@
-package com.bkap.vn.manager.user.dao;
+package com.bkap.vn.manager.gift.dao;
 
 import com.bkap.vn.common.util.AbtractDAOImpl;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDAOImpl  extends AbtractDAOImpl implements UserDAO{
+public class GiftDAOImpl extends AbtractDAOImpl implements GiftDAO {
 }
