@@ -20,13 +20,14 @@ public class Category implements java.io.Serializable {
 
 
     private int id;
-    private Admin adminByAdminUpdate;
-    private Admin adminByAdminCreate;
+
     private Category category;
     private String name_category;
     private String description;
     private Date createDate;
     private Date updateDate;
+    private Admin adminByAdminUpdate;
+    private Admin adminByAdminCreate;
     private Set<Category> categories = new HashSet<Category>(0);
     private Set<Product> products = new HashSet<Product>(0);
 

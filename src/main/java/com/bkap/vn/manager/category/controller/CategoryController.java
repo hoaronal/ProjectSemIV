@@ -1,6 +1,7 @@
 package com.bkap.vn.manager.category.controller;
 
 import com.bkap.vn.common.entity.Category;
+import com.bkap.vn.common.entity.Product;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
 import com.bkap.vn.common.util.PatternUtil;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -44,16 +46,18 @@ public class CategoryController extends BaseController {
         paggingResult.paging();
         view.addObject("keySearch", keySearch);
         view.addObject("listItem", paggingResult);
-        view.setViewName("Category-list");
+        view.setViewName("category-list");
         return view;
     }
 
     @RequestMapping(value = "/danh-muc/cap-nhat/{id}", method = RequestMethod.GET)
-    public String editView(@PathVariable(value = "id", required = false) int id, @ModelAttribute("Category") Category Category, Model model, RedirectAttributes attributes, Locale locale) {
-        Category = categoryService.getById(id);
-        if (Category != null) {
-            model.addAttribute("Category", Category);
-            return "Category-edit";
+    public String editView(@PathVariable(value = "id", required = false) int id, @ModelAttribute("category") Category category, Model model, RedirectAttributes attributes, Locale locale) {
+        category = categoryService.getById(id);
+        if (category != null) {
+            List<Category> listCategory = categoryService.listCategory();
+            model.addAttribute("listCategory", listCategory);
+            model.addAttribute("category", category);
+            return "category-edit";
         } else {
             if (locale.getLanguage().equals("en")) {
                 attributes.addFlashAttribute("style", "danger");
@@ -100,26 +104,10 @@ public class CategoryController extends BaseController {
 
     @RequestMapping(value = "/danh-muc/them-moi", method = RequestMethod.GET)
     public String addView(Model model) {
+        List<Category> listCategory = categoryService.listCategory();
         model.addAttribute("category", new Category());
+        model.addAttribute("listCategory", listCategory);
         return "category-add";
-    }
-
-    @RequestMapping(value = "/danh-muc/thong-tin", method = RequestMethod.GET)
-    public String info(Model model, HttpServletRequest request, @ModelAttribute("category") Category category, HttpServletResponse response, RedirectAttributes attributes, Locale locale) {
-        category = categoryService.getById(1);
-        if (category != null) {
-            model.addAttribute("category", category);
-            return "category-info";
-        } else {
-            if (locale.getLanguage().equals("en")) {
-                attributes.addFlashAttribute("style", "danger");
-                attributes.addFlashAttribute("msg", "Category not exits!");
-            } else {
-                attributes.addFlashAttribute("style", "danger");
-                attributes.addFlashAttribute("msg", "Danh mục không tồn tại!");
-            }
-            return "redirect:/quan-tri/danh-muc/1";
-        }
     }
 
     @RequestMapping(value = "/danh-muc/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})

@@ -57,8 +57,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/1">
-                                <span class="sidebar-normal"> Danh sách người dùng </span>
+                            <a href="<%=request.getContextPath()%>/quan-tri/danh-muc/1">
+                                <span class="sidebar-normal"> Danh sách danh mục </span>
                             </a>
                         </li>
                         <li>

@@ -83,4 +83,20 @@
         <put-attribute name="content" value="/WEB-INF/views/manager/product/edit.jsp"/>
     </definition>
 
+    <!--danh mục-->
+    <definition name="category-list" extends="adminTemplate">
+        <put-attribute name="title" value="Danh sách danh mục"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/category/list.jsp"/>
+    </definition>
+
+    <definition name="category-add" extends="adminTemplate">
+        <put-attribute name="title" value="Thêm mới danh mục"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/category/add.jsp"/>
+    </definition>
+
+    <definition name="category-edit" extends="adminTemplate">
+        <put-attribute name="title" value="Cập nhật danh mục"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/category/edit.jsp"/>
+    </definition>
+
 </tiles-definitions>
