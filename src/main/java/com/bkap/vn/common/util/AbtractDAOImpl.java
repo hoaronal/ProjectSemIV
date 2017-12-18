@@ -244,7 +244,7 @@ public class AbtractDAOImpl implements AbtractDAO {
             //tx.commit();
             session.close();
         } catch (HibernateException e) {
-            logger.error("findAll : " + e.toString());
+            logger.error("findRange : " + e.toString());
             handleException(e);
         } finally {
             HibernateFactory.close(session);
@@ -270,7 +270,7 @@ public class AbtractDAOImpl implements AbtractDAO {
             }
             session.close();
         } catch (HibernateException e) {
-            logger.error("findAll : " + e.toString());
+            logger.error("getRange : " + e.toString());
             handleException(e);
         } finally {
             HibernateFactory.close(session);
@@ -293,7 +293,7 @@ public class AbtractDAOImpl implements AbtractDAO {
             }
             session.close();
         } catch (HibernateException e) {
-            logger.error("findAll : " + e.toString());
+            logger.error("getAllByKeySearch : " + e.toString());
             handleException(e);
         } finally {
             HibernateFactory.close(session);

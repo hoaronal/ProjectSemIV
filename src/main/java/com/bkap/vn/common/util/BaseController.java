@@ -8,6 +8,9 @@ import org.springframework.validation.Validator;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class BaseController {
@@ -59,5 +62,71 @@ public class BaseController {
     public static boolean checkPattern(String regex, String input){
         return input.matches(regex);
     }
+
+
+    public String generateMessageJson(BindingResult result) {
+        StringBuilder sb = new StringBuilder("{");
+        if (result.hasErrors()) {
+            List<FieldError> fieldErrorList = result.getFieldErrors();
+            int size = fieldErrorList.size();
+            for (int i = 0; i < size; i++) {
+                FieldError fieldError = fieldErrorList.get(i);
+                String field = fieldError.getField();
+                String msg = fieldError.getDefaultMessage();
+                if (i != size - 1) {
+                    sb.append(field + "=").append(msg + ",").append('\'');
+                } else {
+                    sb.append(field + "=").append(msg).append('\'');
+                }
+            }
+            sb.append('}');
+        }
+        return sb.toString();
+    }
+
+    public Map<String, String> generateMessageMap(BindingResult result) {
+        Map<String, String> map = new HashMap<String, String>();
+        if (result.hasErrors()) {
+            List<FieldError> fieldErrorList = result.getFieldErrors();
+            int size = fieldErrorList.size();
+            for (int i = 0; i < size; i++) {
+                FieldError fieldError = fieldErrorList.get(i);
+                String field = fieldError.getField();
+                String msg = fieldError.getDefaultMessage();
+                map.put(field, msg);
+            }
+        }
+        return map;
+    }
+
+    /*@PostMapping(value = "/update")
+    public @ResponseBody
+    ResponseEntity<CustomResponse> update(@Valid @RequestBody PPackage pPackage, BindingResult result, Model model) {
+        trimAllFieldOfObject(pPackage);
+        Set<CustomError> errors = pPackageService.validate(pPackage);
+        CustomResponse customResponse = new CustomResponse();
+        if (result.hasErrors()) {
+            Map<String, String> listMessage = generateMessageMap(result);
+            customResponse.setListMsg(listMessage);
+            customResponse.setResultCode(Constants.ResultCode.FAIL);
+            customResponse.setErrors(errors);
+            return new ResponseEntity<>(customResponse, HttpStatus.OK);
+        }
+        if (errors.isEmpty()) {
+            try {
+                PPackage ppackage1 = pPackageService.saveAndFlush(pPackage);
+                customResponse.setId(ppackage1.getId());
+            } catch (Exception e) {
+                e.printStackTrace();
+                errors.add(new CustomError(1));
+                customResponse.setErrors(errors);
+            }
+        } else {
+            customResponse.setResultCode(Constants.ResultCode.FAIL);
+            customResponse.setErrors(errors);
+        }
+        return new ResponseEntity<>(customResponse, HttpStatus.OK);
+    }*/
+
 
 }

@@ -9,6 +9,7 @@ import com.bkap.vn.manager.category.service.CategoryService;
 import com.bkap.vn.manager.product.service.ProductService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +36,9 @@ public class ProductController extends BaseController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     @RequestMapping(value = {"/san-pham/{page}", "/san-pham/danh-sach-san-pham/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("product") Product product,
@@ -121,14 +126,24 @@ public class ProductController extends BaseController {
     }
 
     @RequestMapping(value = "/san-pham/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@RequestParam(value = "categoryId",required = true) String categoryId,
+    public ModelAndView add(@RequestParam(value = "categoryId",required = true,defaultValue = "1") String categoryId,
                             @RequestParam(value = "productImg",required = false) String productImg,
                             @ModelAttribute(value = "product") @Valid Product product,
-                            @RequestParam(value = "multipartFile",required = false) MultipartFile files,
+                            @RequestParam(value = "multipartFile",required = false) MultipartFile file,
                             BindingResult result, HttpServletRequest request,
                             HttpServletResponse response, RedirectAttributes attributes) {
-        if (files.isEmpty()) {
 
+        if (!file.isEmpty()) {
+            try {
+                String fileName2 = request.getSession().getServletContext().getRealPath("/");
+                String saveDirectory =fileName2+"images\\";
+                String fileName = file.getOriginalFilename();
+                System.out.println("applied directory : " + saveDirectory+fileName);
+                file.transferTo(new File(saveDirectory + fileName));
+               //file.transferTo(resourceLoader.getResource("resources/upload/images/"+new Date().getTime()+".png").getFile());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         Category category = categoryService.getById(Integer.parseInt(categoryId));
         if (product != null && category != null) {
