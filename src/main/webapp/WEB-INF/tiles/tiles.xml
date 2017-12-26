@@ -4,8 +4,9 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="webTemplate" template="/WEB-INF/views/template/web/template.jsp">
-        <put-attribute name="navbar" value="/WEB-INF/views/template/web/nav.jsp"/>
         <put-attribute name="header" value="/WEB-INF/views/template/web/header.jsp"/>
+        <put-attribute name="mainmenu" value="/WEB-INF/views/template/web/mainmenu.jsp"/>
+        <put-attribute name="slider" value="/WEB-INF/views/template/web/slider.jsp"/>
         <put-attribute name="content" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/template/web/footer.jsp"/>
     </definition>
@@ -55,16 +56,6 @@
     <definition name="user-edit" extends="adminTemplate">
         <put-attribute name="title" value="Cập nhật người dùng"/>
         <put-attribute name="content" value="/WEB-INF/views/manager/user/edit.jsp"/>
-    </definition>
-
-    <definition name="home-web" extends="webTemplate">
-        <put-attribute name="title" value="Trang chủ"/>
-        <put-attribute name="content" value="/WEB-INF/views/web/index.jsp"/>
-    </definition>
-
-    <definition name="cart" extends="webTemplate">
-        <put-attribute name="title" value="Giỏ hàng"/>
-        <put-attribute name="content" value="/WEB-INF/views/web/cart/cart.jsp"/>
     </definition>
 
     <!--Product-->
@@ -186,6 +177,22 @@
         <put-attribute name="content" value="/WEB-INF/views/manager/history_action/list.jsp"/>
     </definition>
 
+    <!--news-->
+    <definition name="accessories-list" extends="adminTemplate">
+        <put-attribute name="title" value="Danh sách phụ kiện"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/accessories/list.jsp"/>
+    </definition>
+
+    <definition name="accessories-add" extends="adminTemplate">
+        <put-attribute name="title" value="Thêm mới phụ kiện"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/accessories/add.jsp"/>
+    </definition>
+
+    <definition name="accessories-edit" extends="adminTemplate">
+        <put-attribute name="title" value="Cập nhật phụ kiện"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/accessories/edit.jsp"/>
+    </definition>
+
 
     <!--news-->
     <definition name="news-list" extends="adminTemplate">
@@ -201,5 +208,30 @@
     <definition name="news-edit" extends="adminTemplate">
         <put-attribute name="title" value="Cập nhật tin tức"/>
         <put-attribute name="content" value="/WEB-INF/views/manager/news/edit.jsp"/>
+    </definition>
+
+
+
+    <!--Web-->
+    <!--Product-->
+    <definition name="home-web" extends="webTemplate">
+        <put-attribute name="title" value="Trang chủ"/>
+        <put-attribute name="content" value="/WEB-INF/views/web/index.jsp"/>
+    </definition>
+
+    <definition name="cart" extends="webTemplate">
+        <put-attribute name="title" value="Giỏ hàng"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/web/cart/cart.jsp"/>
+    </definition>
+    <definition name="product-web-list" extends="webTemplate">
+        <put-attribute name="title" value="Danh sách sản phẩm"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/web/product/list.jsp"/>
+    </definition>
+    <definition name="product-web-detail" extends="webTemplate">
+        <put-attribute name="title" value="Chi tiết sản phẩm"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/web/product/detail.jsp"/>
     </definition>
 </tiles-definitions>

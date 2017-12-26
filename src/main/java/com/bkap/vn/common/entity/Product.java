@@ -23,8 +23,8 @@ public class Product implements java.io.Serializable {
 
     private Category category;
     private String productName;
-    private double price;
-    private double discount;
+    private String price;
+    private String discount;
     private String imageLink;
     private String imageList;
     private Double countView;
@@ -40,7 +40,7 @@ public class Product implements java.io.Serializable {
     }
 
 
-    public Product(int id, Category category, String productName, double price, double discount, byte status) {
+    public Product(int id, Category category, String productName, String price, String discount, byte status) {
         this.id = id;
         this.category = category;
         this.productName = productName;
@@ -49,7 +49,7 @@ public class Product implements java.io.Serializable {
         this.status = status;
     }
 
-    public Product(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, Category category, String productName, double price, double discount, String imageLink, String imageList, Double countView, Date createDate, Date updateDate, String detail, byte status) {
+    public Product(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, Category category, String productName, String price, String discount, String imageLink, String imageList, Double countView, Date createDate, Date updateDate, String detail, byte status) {
         this.id = id;
         this.adminByAdminCreate = adminByAdminCreate;
         this.adminByAdminUpdate = adminByAdminUpdate;
@@ -121,21 +121,21 @@ public class Product implements java.io.Serializable {
 
 
     @Column(name = "price", nullable = false, precision = 53, scale = 0)
-    public double getPrice() {
+    public String getPrice() {
         return this.price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
 
     @Column(name = "discount", nullable = false, precision = 53, scale = 0)
-    public double getDiscount() {
+    public String getDiscount() {
         return this.discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(String discount) {
         this.discount = discount;
     }
 

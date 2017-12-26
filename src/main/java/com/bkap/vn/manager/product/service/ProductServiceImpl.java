@@ -47,6 +47,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public int countAllByCategory(int idCategory) {
+        return productDAO.countAllByCategory(idCategory);
+    }
+
+    @Override
     @Transactional
     public int add(Product product) {
         return productDAO.save(product);
@@ -54,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public List<Product> listAdmin() {
+    public List<Product> listProduct() {
         return productDAO.findAll(Product.class);
     }
 
@@ -62,6 +67,16 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public PaggingResult findRange(int firstRow, int lastRow, String filter) {
         return productDAO.getRange(Product.class, firstRow, lastRow, filter);
+    }
+
+    @Override
+    public List<Product> getNewProduct() {
+        return productDAO.getNewProduct();
+    }
+
+    @Override
+    public List<Product> getSaleProduct(String filter) {
+        return productDAO.getProductByFilter(filter);
     }
 
     @Override
@@ -74,5 +89,10 @@ public class ProductServiceImpl implements ProductService {
         } else {
             return sql.toString();
         }
+    }
+
+    @Override
+    public List<Product> getByCategory(int idCategory) {
+        return productDAO.getByCategory(idCategory);
     }
 }

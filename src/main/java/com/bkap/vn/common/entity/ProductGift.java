@@ -18,14 +18,14 @@ public class ProductGift  implements java.io.Serializable {
 
 
      private int id;
-     private Admin adminByAdminCreate;
-     private Admin adminByAdminUpdate;
+
      private Gift gift;
      private Product product;
      private String description;
      private Date createDate;
      private Date updateDate;
-
+    private Admin adminByAdminCreate;
+    private Admin adminByAdminUpdate;
     public ProductGift() {
     }
 

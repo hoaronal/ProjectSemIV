@@ -16,9 +16,17 @@ public interface ProductService {
 
     public int countAll(String filter);
 
+    public List<Product> getNewProduct();
+
+    public List<Product> getSaleProduct(String filter);
+
+    public List<Product> getByCategory(int idCategory);
+
     public int countAllByKeySearch(String filter);
 
-    public List<Product> listAdmin();
+    public int countAllByCategory(int idCategory);
+
+    public List<Product> listProduct();
 
     public PaggingResult findRange(int firstRow, int lastRow, String filter);
 

@@ -45,12 +45,9 @@ public class Admin implements java.io.Serializable {
     private Date updateDate;
     private byte activeStatus;
     private byte status;
-    private Set<RoleByGroupRole> roleByGroupRolesForAdminCreate = new HashSet<RoleByGroupRole>(0);
     private Set<Users> usersesForAdminCreate = new HashSet<Users>(0);
-    private Set<OrderDetail> orderDetailsForAdminCreate = new HashSet<OrderDetail>(0);
     private Set<Product> productsForAdminCreate = new HashSet<Product>(0);
     private Set<Role> rolesForAdminCreate = new HashSet<Role>(0);
-    private Set<RoleByGroupRole> roleByGroupRolesForAdminUpdate = new HashSet<RoleByGroupRole>(0);
     private Set<Users> usersesForAdminUpdate = new HashSet<Users>(0);
     private Set<Order> ordersForAdminUpdate = new HashSet<Order>(0);
     private Set<GroupRole> groupRolesForAdminUpdate = new HashSet<GroupRole>(0);
@@ -58,7 +55,6 @@ public class Admin implements java.io.Serializable {
     private Set<HistoryAction> historyActions = new HashSet<HistoryAction>(0);
     private Set<ProductGift> productGiftsForAdminCreate = new HashSet<ProductGift>(0);
     private Set<Product> productsForAdminUpdate = new HashSet<Product>(0);
-    private Set<OrderDetail> orderDetailsForAdminUpdate = new HashSet<OrderDetail>(0);
     private Set<ProductGift> productGiftsForAdminUpdate = new HashSet<ProductGift>(0);
     private Set<Category> categoriesForAdminUpdate = new HashSet<Category>(0);
     private Set<Province> provincesForAdminUpdate = new HashSet<Province>(0);
@@ -86,7 +82,7 @@ public class Admin implements java.io.Serializable {
         this.status = status;
     }
 
-    public Admin(int id, String account, String password, String email, String phone, Date birthday, String address, Integer adminCreate, Integer adminUpdate, Date createDate, Date updateDate, byte activeStatus, byte status, Set<RoleByGroupRole> roleByGroupRolesForAdminCreate, Set<Users> usersesForAdminCreate, Set<OrderDetail> orderDetailsForAdminCreate, Set<Product> productsForAdminCreate, Set<Role> rolesForAdminCreate, Set<RoleByGroupRole> roleByGroupRolesForAdminUpdate, Set<Users> usersesForAdminUpdate, Set<Order> ordersForAdminUpdate, Set<GroupRole> groupRolesForAdminUpdate, Set<News> newsesForAdminCreate, Set<HistoryAction> historyActions, Set<ProductGift> productGiftsForAdminCreate, Set<Product> productsForAdminUpdate, Set<OrderDetail> orderDetailsForAdminUpdate, Set<ProductGift> productGiftsForAdminUpdate, Set<Category> categoriesForAdminUpdate, Set<Province> provincesForAdminUpdate, Set<News> newsesForAdminUpdate, Set<Transaction> transactionsForAdminCreate, Set<Transaction> transactionsForAdminUpdate, Set<Order> ordersForAdminCreate, Set<Gift> giftsForAdminCreate, Set<Role> rolesForAdminUpdate, Set<Gift> giftsForAdminUpdate, Set<Category> categoriesForAdminCreate, Set<Province> provincesForAdminCreate, Set<GroupRole> groupRolesForAdminCreate) {
+    public Admin(int id, String account, String password, String email, String phone, Date birthday, String address, Integer adminCreate, Integer adminUpdate, Date createDate, Date updateDate, byte activeStatus, byte status, Set<Users> usersesForAdminCreate, Set<Product> productsForAdminCreate, Set<Role> rolesForAdminCreate, Set<Users> usersesForAdminUpdate, Set<Order> ordersForAdminUpdate, Set<GroupRole> groupRolesForAdminUpdate, Set<News> newsesForAdminCreate, Set<HistoryAction> historyActions, Set<ProductGift> productGiftsForAdminCreate, Set<Product> productsForAdminUpdate,  Set<ProductGift> productGiftsForAdminUpdate, Set<Category> categoriesForAdminUpdate, Set<Province> provincesForAdminUpdate, Set<News> newsesForAdminUpdate, Set<Transaction> transactionsForAdminCreate, Set<Transaction> transactionsForAdminUpdate, Set<Order> ordersForAdminCreate, Set<Gift> giftsForAdminCreate, Set<Role> rolesForAdminUpdate, Set<Gift> giftsForAdminUpdate, Set<Category> categoriesForAdminCreate, Set<Province> provincesForAdminCreate, Set<GroupRole> groupRolesForAdminCreate) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -100,12 +96,9 @@ public class Admin implements java.io.Serializable {
         this.updateDate = updateDate;
         this.activeStatus = activeStatus;
         this.status = status;
-        this.roleByGroupRolesForAdminCreate = roleByGroupRolesForAdminCreate;
         this.usersesForAdminCreate = usersesForAdminCreate;
-        this.orderDetailsForAdminCreate = orderDetailsForAdminCreate;
         this.productsForAdminCreate = productsForAdminCreate;
         this.rolesForAdminCreate = rolesForAdminCreate;
-        this.roleByGroupRolesForAdminUpdate = roleByGroupRolesForAdminUpdate;
         this.usersesForAdminUpdate = usersesForAdminUpdate;
         this.ordersForAdminUpdate = ordersForAdminUpdate;
         this.groupRolesForAdminUpdate = groupRolesForAdminUpdate;
@@ -113,7 +106,6 @@ public class Admin implements java.io.Serializable {
         this.historyActions = historyActions;
         this.productGiftsForAdminCreate = productGiftsForAdminCreate;
         this.productsForAdminUpdate = productsForAdminUpdate;
-        this.orderDetailsForAdminUpdate = orderDetailsForAdminUpdate;
         this.productGiftsForAdminUpdate = productGiftsForAdminUpdate;
         this.categoriesForAdminUpdate = categoriesForAdminUpdate;
         this.provincesForAdminUpdate = provincesForAdminUpdate;
@@ -261,14 +253,6 @@ public class Admin implements java.io.Serializable {
         this.status = status;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminByAdminCreate")
-    public Set<RoleByGroupRole> getRoleByGroupRolesForAdminCreate() {
-        return this.roleByGroupRolesForAdminCreate;
-    }
-
-    public void setRoleByGroupRolesForAdminCreate(Set<RoleByGroupRole> roleByGroupRolesForAdminCreate) {
-        this.roleByGroupRolesForAdminCreate = roleByGroupRolesForAdminCreate;
-    }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminByAdminCreate")
     public Set<Users> getUsersesForAdminCreate() {
@@ -279,14 +263,6 @@ public class Admin implements java.io.Serializable {
         this.usersesForAdminCreate = usersesForAdminCreate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminByAdminCreate")
-    public Set<OrderDetail> getOrderDetailsForAdminCreate() {
-        return this.orderDetailsForAdminCreate;
-    }
-
-    public void setOrderDetailsForAdminCreate(Set<OrderDetail> orderDetailsForAdminCreate) {
-        this.orderDetailsForAdminCreate = orderDetailsForAdminCreate;
-    }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminByAdminCreate")
     public Set<Product> getProductsForAdminCreate() {
@@ -304,15 +280,6 @@ public class Admin implements java.io.Serializable {
 
     public void setRolesForAdminCreate(Set<Role> rolesForAdminCreate) {
         this.rolesForAdminCreate = rolesForAdminCreate;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminByAdminUpdate")
-    public Set<RoleByGroupRole> getRoleByGroupRolesForAdminUpdate() {
-        return this.roleByGroupRolesForAdminUpdate;
-    }
-
-    public void setRoleByGroupRolesForAdminUpdate(Set<RoleByGroupRole> roleByGroupRolesForAdminUpdate) {
-        this.roleByGroupRolesForAdminUpdate = roleByGroupRolesForAdminUpdate;
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminByAdminUpdate")
@@ -376,15 +343,6 @@ public class Admin implements java.io.Serializable {
 
     public void setProductsForAdminUpdate(Set<Product> productsForAdminUpdate) {
         this.productsForAdminUpdate = productsForAdminUpdate;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminByAdminUpdate")
-    public Set<OrderDetail> getOrderDetailsForAdminUpdate() {
-        return this.orderDetailsForAdminUpdate;
-    }
-
-    public void setOrderDetailsForAdminUpdate(Set<OrderDetail> orderDetailsForAdminUpdate) {
-        this.orderDetailsForAdminUpdate = orderDetailsForAdminUpdate;
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "adminByAdminUpdate")

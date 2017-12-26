@@ -18,15 +18,16 @@ public class Order implements java.io.Serializable {
 
 
     private int id;
-    private Admin adminByAdminUpdate;
-    private Admin adminByAdminCreate;
     private int qty;
     private double amount;
     private String data;
     private byte status;
+    private Transaction transaction;
+    private Product product;
     private Date createDate;
     private Date updateDate;
-
+    private Admin adminByAdminUpdate;
+    private Admin adminByAdminCreate;
     public Order() {
     }
 
@@ -100,6 +101,24 @@ public class Order implements java.io.Serializable {
         this.amount = amount;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "transaction_id")
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     @Column(name = "data")
     public String getData() {

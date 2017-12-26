@@ -2,11 +2,15 @@ package com.bkap.vn.manager.product.controller;
 
 
 import com.bkap.vn.common.entity.Category;
+import com.bkap.vn.common.entity.Gift;
 import com.bkap.vn.common.entity.Product;
+import com.bkap.vn.common.entity.ProductGift;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
 import com.bkap.vn.manager.category.service.CategoryService;
+import com.bkap.vn.manager.gift.service.GiftService;
 import com.bkap.vn.manager.product.service.ProductService;
+import com.bkap.vn.manager.product_gift.service.ProductGiftService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -36,6 +40,12 @@ public class ProductController extends BaseController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private GiftService giftService;
+
+    @Autowired
+    private ProductGiftService productGiftService;
 
     @Autowired
     private ResourceLoader resourceLoader;
@@ -120,27 +130,33 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "/san-pham/them-moi", method = RequestMethod.GET)
     public String addView(Model model) {
         List<Category> listCategory = categoryService.listCategory();
+        List<Gift> listGift = giftService.listGift();
         model.addAttribute("product", new Product());
+        model.addAttribute("listGift", listGift);
         model.addAttribute("listCategory", listCategory);
         return "product-add";
     }
 
     @RequestMapping(value = "/san-pham/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@RequestParam(value = "categoryId",required = true,defaultValue = "1") String categoryId,
-                            @RequestParam(value = "productImg",required = false) String productImg,
+    public ModelAndView add(@RequestParam(value = "categoryId", required = true, defaultValue = "1") String categoryId,
+                            @RequestParam(value = "giftId", required = false) String giftId,
+                            @RequestParam(value = "image", required = false) String image,
                             @ModelAttribute(value = "product") @Valid Product product,
-                            @RequestParam(value = "multipartFile",required = false) MultipartFile file,
+                            @RequestParam(value = "multipartFile", required = false) MultipartFile file,
                             BindingResult result, HttpServletRequest request,
                             HttpServletResponse response, RedirectAttributes attributes) {
-
-        if (!file.isEmpty()) {
+        if (file != null && !file.isEmpty()) {
             try {
-                String fileName2 = request.getSession().getServletContext().getRealPath("/");
-                String saveDirectory =fileName2+"images\\";
-                String fileName = file.getOriginalFilename();
-                System.out.println("applied directory : " + saveDirectory+fileName);
-                file.transferTo(new File(saveDirectory + fileName));
-               //file.transferTo(resourceLoader.getResource("resources/upload/images/"+new Date().getTime()+".png").getFile());
+                String fileName = new Date().getTime() + ".png";
+                String phyPath = request.getSession().getServletContext().getRealPath("/");
+                String filepath = phyPath + "resources/img/" + fileName;
+                File files = new File(filepath);
+                if (!files.exists()) {
+                    files.createNewFile();
+                }
+                file.transferTo(files);
+                product.setImageLink(fileName);
+                //file.transferTo(resourceLoader.getResource("resources/upload/images/"+).getFile());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -158,6 +174,16 @@ public class ProductController extends BaseController {
                 product.setStatus((byte) 1);
                 int check = productService.add(product);
                 if (check > 0) {
+                    product.setId(check);
+                    if (!StringUtils.isBlank(giftId)) {
+                        for (String i : giftId.split(",")) {
+                            Gift gift = giftService.getById(Integer.parseInt(i));
+                            ProductGift productGift = new ProductGift();
+                            productGift.setGift(gift);
+                            productGift.setProduct(product);
+                            productGiftService.add(productGift);
+                        }
+                    }
                     attributes.addFlashAttribute("style", "info");
                     attributes.addFlashAttribute("msg", "Thêm mới sản phẩm thành công");
                     return view("redirect:/quan-tri/san-pham/1");

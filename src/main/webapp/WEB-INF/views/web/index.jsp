@@ -1,715 +1,273 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style>
-
-</style>
-<div class="container">
-    <div class="section">
+<div class="promo-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <nav id="cbp-hrmenu" class="cbp-hrmenu">
-                    <ul>
-                        <li>
-                            <a href="#">Products</a>
-                            <div class="cbp-hrsub" style="z-index: 99999">
-                                <div class="cbp-hrsub-inner">
-                                    <div>
-                                        <h4>Learning &amp; Games</h4>
-                                        <ul>
-                                            <li><a href="#">Catch the Bullet</a></li>
-                                            <li><a href="#">Snoopydoo</a></li>
-                                            <li><a href="#">Fallen Angel</a></li>
-                                            <li><a href="#">Sui Maker</a></li>
-                                            <li><a href="#">Wave Master</a></li>
-                                            <li><a href="#">Golf Pro</a></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4>Utilities</h4>
-                                        <ul>
-                                            <li><a href="#">Gadget Finder</a></li>
-                                            <li><a href="#">Green Tree Express</a></li>
-                                            <li><a href="#">Green Tree Pro</a></li>
-                                            <li><a href="#">Wobbler 3.0</a></li>
-                                            <li><a href="#">Coolkid</a></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4>Education</h4>
-                                        <ul>
-                                            <li><a href="#">Learn Thai</a></li>
-                                            <li><a href="#">Math Genius</a></li>
-                                            <li><a href="#">Chemokid</a></li>
-                                        </ul>
-                                        <h4>Professionals</h4>
-                                        <ul>
-                                            <li><a href="#">Success 1.0</a></li>
-                                            <li><a href="#">Moneymaker</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /cbp-hrsub-inner -->
-                            </div><!-- /cbp-hrsub -->
-                        </li>
-                        <li>
-                            <a href="#">Downloads</a>
-                            <div class="cbp-hrsub"  style="z-index: 99999">
-                                <div class="cbp-hrsub-inner">
-                                    <div>
-                                        <h4>Education &amp; Learning</h4>
-                                        <ul>
-                                            <li><a href="#">Learn Thai</a></li>
-                                            <li><a href="#">Math Genius</a></li>
-                                            <li><a href="#">Chemokid</a></li>
-                                        </ul>
-                                        <h4>Professionals</h4>
-                                        <ul>
-                                            <li><a href="#">Success 1.0</a></li>
-                                            <li><a href="#">Moneymaker</a></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4>Entertainment</h4>
-                                        <ul>
-                                            <li><a href="#">Gadget Finder</a></li>
-                                            <li><a href="#">Green Tree Express</a></li>
-                                            <li><a href="#">Green Tree Pro</a></li>
-                                            <li><a href="#">Holy Cannoli</a></li>
-                                            <li><a href="#">Wobbler 3.0</a></li>
-                                            <li><a href="#">Coolkid</a></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4>Games</h4>
-                                        <ul>
-                                            <li><a href="#">Catch the Bullet</a></li>
-                                            <li><a href="#">Snoopydoo</a></li>
-                                            <li><a href="#">Fallen Angel</a></li>
-                                            <li><a href="#">Sui Maker</a></li>
-                                            <li><a href="#">Wave Master</a></li>
-                                            <li><a href="#">Golf Pro</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /cbp-hrsub-inner -->
-                            </div><!-- /cbp-hrsub -->
-                        </li>
-                        <li>
-                            <a href="#">Applications</a>
-                            <div class="cbp-hrsub" style="z-index: 99999">
-                                <div class="cbp-hrsub-inner">
-                                    <div>
-                                        <h4>Learning &amp; Games</h4>
-                                        <ul>
-                                            <li><a href="#">Catch the Bullet</a></li>
-                                            <li><a href="#">Snoopydoo</a></li>
-                                        </ul>
-                                        <h4>Utilities</h4>
-                                        <ul>
-                                            <li><a href="#">Gadget Finder</a></li>
-                                            <li><a href="#">Green Tree Express</a></li>
-                                            <li><a href="#">Green Tree Pro</a></li>
-                                            <li><a href="#">Wobbler 3.0</a></li>
-                                            <li><a href="#">Coolkid</a></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4>Education</h4>
-                                        <ul>
-                                            <li><a href="#">Learn Thai</a></li>
-                                            <li><a href="#">Math Genius</a></li>
-                                            <li><a href="#">Chemokid</a></li>
-                                        </ul>
-                                        <h4>Professionals</h4>
-                                        <ul>
-                                            <li><a href="#">Success 1.0</a></li>
-                                            <li><a href="#">Moneymaker</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /cbp-hrsub-inner -->
-                            </div><!-- /cbp-hrsub -->
-                        </li>
-                        <li>
-                            <a href="#">Projects</a>
-                            <div class="cbp-hrsub" style="z-index: 99999">
-                                <div class="cbp-hrsub-inner">
-                                    <div>
-                                        <h4>Learning &amp; Games</h4>
-                                        <ul>
-                                            <li><a href="#">Catch the Bullet</a></li>
-                                            <li><a href="#">Snoopydoo</a></li>
-                                            <li><a href="#">Fallen Angel</a></li>
-                                            <li><a href="#">Sui Maker</a></li>
-                                            <li><a href="#">Wave Master</a></li>
-                                            <li><a href="#">Golf Pro</a></li>
-                                        </ul>
-                                        <h4>Utilities</h4>
-                                        <ul>
-                                            <li><a href="#">Gadget Finder</a></li>
-                                            <li><a href="#">Green Tree Express</a></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4>Entertainment</h4>
-                                        <ul>
-                                            <li><a href="#">Gadget Finder</a></li>
-                                            <li><a href="#">Green Tree Express</a></li>
-                                            <li><a href="#">Green Tree Pro</a></li>
-                                            <li><a href="#">Holy Cannoli</a></li>
-                                            <li><a href="#">Wobbler 3.0</a></li>
-                                            <li><a href="#">Coolkid</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /cbp-hrsub-inner -->
-                            </div><!-- /cbp-hrsub -->
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div class="row  text-center"  class="hidden-xs hidden-sm">
-            <div class="col-md-4">
-                <div class="info">
-                    Quảng cáo 1
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo1">
+                    <i class="fa fa-refresh"></i>
+                    <p>Đổi trả trong 30 ngày</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="info">
-                    Quảng cáo 2
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo2">
+                    <i class="fa fa-truck"></i>
+                    <p>Miễn phí vận chuyển</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="info">
-                    Quảng cáo 3
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo3">
+                    <i class="fa fa-lock"></i>
+                    <p>Thanh toán an toàn</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo promo4">
+                    <i class="fa fa-gift"></i>
+                    <p>Đa dạng mặt hàng</p>
                 </div>
             </div>
         </div>
-        <div class="features text-center">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="info">
-                        <div class="icon " style="color:#00bcd4">
-                            <i class="material-icons">local_shipping</i>
-                        </div>
-                        <h4 class="info-title">Giao hàng trong 2 ngày</h4>
-                        <p>Divide details about your product or agency work into parts. Write a few lines about each
-                            one. A paragraph describing a feature will be enough.</p>
-                    </div>
-                </div>
+    </div>
+</div>
+<!-- End promo area -->
 
-                <div class="col-md-4">
-                    <div class="info">
-                        <div class="icon icon-success">
-                            <i class="material-icons">verified_user</i>
-                        </div>
-                        <h4 class="info-title">Chính sách hoàn lại tiền</h4>
-                        <p>Divide details about your product or agency work into parts. Write a few lines about each
-                            one. A paragraph describing a feature will be enough.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="info">
-                        <div class="icon icon-rose">
-                            <i class="material-icons">favorite</i>
-                        </div>
-                        <h4 class="info-title">Đa dạng sản phẩm</h4>
-                        <p>Divide details about your product or agency work into parts. Write a few lines about each
-                            one. A paragraph describing a feature will be enough.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card card-product" data-count="0">
-                    <div class="card-image" data-header-animation="true">
-                        <a href="" style="z-index:999">
-                            <img class="img" src="<%=request.getContextPath()%>/resources/img/card-2.jpeg">
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-actions" style="z-index:0">
-                            <button type="button" class="btn btn-danger btn-simple fix-broken-card">
-                                <i class="material-icons">build</i> Fix Header!
-                            </button>
-                            <button type="button" class="btn btn-default btn-simple" rel="tooltip"
-                                    data-placement="bottom" title="" data-original-title="View">
-                                <i class="material-icons">art_track</i>
-                            </button>
-                            <button type="button" class="btn btn-success btn-simple" rel="tooltip"
-                                    data-placement="bottom" title="" data-original-title="Edit">
-                                <i class="material-icons">edit</i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-simple" rel="tooltip"
-                                    data-placement="bottom" title="" data-original-title="Remove">
-                                <i class="material-icons">close</i>
-                            </button>
-                        </div>
-                        <h4 class="card-title">
-                            <a href="http://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html#pablo">Cozy
-                                5 Stars Apartment</a>
-                        </h4>
-                        <div class="card-description">
-                            The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to
-                            "Naviglio" where you can enjoy the main night life in Barcelona.
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="price">
-                            <h4>$899/night</h4>
-                        </div>
-                        <div class="stats pull-right">
-                            <p class="category"><i class="material-icons">place</i> Barcelona, Spain</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-product" data-count="1">
-                    <div class="card-image" data-header-animation="true">
-                        <a href="" style="z-index:999">
-                            <img class="img" src="<%=request.getContextPath()%>/resources/img/card-3.jpeg">
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-actions" style="z-index:0">
-                            <button type="button" class="btn btn-danger btn-simple fix-broken-card">
-                                <i class="material-icons">build</i> Fix Header!
-                            </button>
-                            <button type="button" class="btn btn-default btn-simple" rel="tooltip"
-                                    data-placement="bottom" title="" data-original-title="View">
-                                <i class="material-icons">art_track</i>
-                            </button>
-                            <button type="button" class="btn btn-success btn-simple" rel="tooltip"
-                                    data-placement="bottom" title="" data-original-title="Edit">
-                                <i class="material-icons">edit</i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-simple" rel="tooltip"
-                                    data-placement="bottom" title="" data-original-title="Remove">
-                                <i class="material-icons">close</i>
-                            </button>
-                        </div>
-                        <h4 class="card-title">
-                            <a href="http://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html#pablo">Office
-                                Studio</a>
-                        </h4>
-                        <div class="card-description">
-                            The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio"
-                            where you can enjoy the night life in London, UK.
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="price">
-                            <h4>$1.119/night</h4>
-                        </div>
-                        <div class="stats pull-right">
-                            <p class="category"><i class="material-icons">place</i> London, UK</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-product">
-                    <div class="card-image" data-header-animation="true">
-                        <a href="" style="z-index:999">
-                            <img class="img" src="<%=request.getContextPath()%>/resources/img/card-1.jpeg">
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-actions" style="z-index: 0">
-                            <button type="button" class="btn btn-danger btn-simple fix-broken-card">
-                                <i class="material-icons">build</i> Fix Header!
-                            </button>
-                            <button type="button" class="btn btn-default btn-simple" rel="tooltip"
-                                    data-placement="bottom" title="" data-original-title="View">
-                                <i class="material-icons">art_track</i>
-                            </button>
-                            <button type="button" class="btn btn-success btn-simple" rel="tooltip"
-                                    data-placement="bottom" title="" data-original-title="Edit">
-                                <i class="material-icons">edit</i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-simple" rel="tooltip"
-                                    data-placement="bottom" title="" data-original-title="Remove">
-                                <i class="material-icons">close</i>
-                            </button>
-                        </div>
-                        <h4 class="card-title">
-                            <a href="http://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html#pablo">Beautiful
-                                Castle</a>
-                        </h4>
-                        <div class="card-description">
-                            The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio"
-                            where you can enjoy the main night life in Milan.
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="price">
-                            <h4>$459/night</h4>
-                        </div>
-                        <div class="stats pull-right">
-                            <p class="category"><i class="material-icons">place</i> Milan, Italy</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="col-md-6">
-                <div class="card card-raised card-background"
-                     style="background-image: url(&#39;../assets/img/examples/office2.jpg&#39;)">
-                    <div class="card-content">
-                        <h6 class="category text-info">Worlds</h6>
-                        <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
-                            <h3 class="card-title">The Best Productivity Apps on Market</h3>
-                        </a>
-                        <p class="card-description">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And I
-                            love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                        </p>
-                        <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                           class="btn btn-danger btn-round">
-                            <i class="material-icons">format_align_left</i> Read Article
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card card-raised card-background"
-                     style="background-image: url(&#39;../assets/img/examples/blog8.jpg&#39;)">
-                    <div class="card-content">
-                        <h6 class="category text-info">Business</h6>
-                        <h3 class="card-title">Working on Wallstreet is Not So Easy</h3>
-                        <p class="card-description">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And I
-                            love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                        </p>
-                        <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                           class="btn btn-primary btn-round">
-                            <i class="material-icons">format_align_left</i> Read Article
-                        </a>
-                    </div>
-                </div>
-            </div>
-
             <div class="col-md-12">
-                <div class="card card-raised card-background"
-                     style="background-image: url(&#39;../assets/img/examples/card-project6.jpg&#39;)">
-                    <div class="card-content">
-                        <h6 class="category text-info">Marketing</h6>
-                        <h3 class="card-title">0 to 100.000 Customers in 6 months</h3>
-                        <p class="card-description">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And I
-                            love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                        </p>
-                        <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                           class="btn btn-warning btn-round">
-                            <i class="material-icons">subject</i> Read Case Study
-                        </a>
-                        <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                           class="btn btn-white btn-just-icon btn-simple" title="" rel="tooltip"
-                           data-original-title="Save to Pocket">
-                            <i class="fa fa-get-pocket"></i>
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Pricing Plans Wrapper -->
-            <div class="pricing-wrapper col-md-12">
-                <!-- Pricing Plan -->
-                <div class="pricing-plan">
-                    <!-- Pricing Plan Ribbon -->
-                    <div class="ribbon-wrapper">
-                        <div class="price-ribbon ribbon-red">Popular</div>
-                    </div>
-                    <h2 class="pricing-plan-title">Starter</h2>
-                    <p class="pricing-plan-price">FREE</p>
-                    <!-- Pricing Plan Features -->
-                    <ul class="pricing-plan-features">
-                        <li><strong>1</strong> user</li>
-                        <li><strong>Unlimited</strong> projects</li>
-                        <li><strong>2GB</strong> storage</li>
-                    </ul>
-                    <a href="index.html" class="btn">Order Now</a>
-                </div>
-                <!-- End Pricing Plan -->
-                <div class="pricing-plan">
-                    <h2 class="pricing-plan-title">Advanced</h2>
-                    <p class="pricing-plan-price">$49<span>/mo</span></p>
-                    <ul class="pricing-plan-features">
-                        <li><strong>10</strong> users</li>
-                        <li><strong>Unlimited</strong> projects</li>
-                        <li><strong>20GB</strong> storage</li>
-                    </ul>
-                    <a href="index.html" class="btn">Order Now</a>
-                </div>
-                <!-- Promoted Pricing Plan -->
-                <div class="pricing-plan pricing-plan-promote">
-                    <h2 class="pricing-plan-title">Premium</h2>
-                    <p class="pricing-plan-price">$99<span>/mo</span></p>
-                    <ul class="pricing-plan-features">
-                        <li><strong>Unlimited</strong> users</li>
-                        <li><strong>Unlimited</strong> projects</li>
-                        <li><strong>100GB</strong> storage</li>
-                    </ul>
-                    <a href="index.html" class="btn">Order Now</a>
-                </div>
-                <div class="pricing-plan">
-                    <!-- Pricing Plan Ribbon -->
-                    <div class="ribbon-wrapper">
-                        <div class="price-ribbon ribbon-green">New</div>
-                    </div>
-                    <h2 class="pricing-plan-title">Mega</h2>
-                    <p class="pricing-plan-price">$199<span>/mo</span></p>
-                    <ul class="pricing-plan-features">
-                        <li><strong>Unlimited</strong> users</li>
-                        <li><strong>Unlimited</strong> projects</li>
-                        <li><strong>100GB</strong> storage</li>
-                    </ul>
-                    <a href="index.html" class="btn">Order Now</a>
-                </div>
-            </div>
-            <!-- End Pricing Plans Wrapper -->
-        </div>
-    </div>
-
-
-    <div class="section">
-        <h3 class="title text-center">You may also be interested in</h3>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card card-plain card-blog">
-                    <div class="card-image">
-                        <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
-                            <img class="img img-raised" src="./Blog Posts _files/bg5.jpg">
-                        </a>
-                    </div>
-
-                    <div class="card-content">
-                        <h6 class="category text-info">Enterprise</h6>
-                        <h4 class="card-title">
-                            <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">Autodesk
-                                looks to future of 3D printing with Project Escher</a>
-                        </h4>
-                        <p class="card-description">
-                            Like so many organizations these days, Autodesk is a company in transition. It was until
-                            recently a traditional boxed software company selling licenses.<a
-                                href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
-                            Read More </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card card-plain card-blog">
-                    <div class="card-image">
-                        <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
-                            <img class="img img-raised" src="./Blog Posts _files/blog5.jpg">
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <h6 class="category text-success">
-                            Startups
-                        </h6>
-                        <h4 class="card-title">
-                            <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">Lyft
-                                launching cross-platform service this week</a>
-                        </h4>
-                        <p class="card-description">
-                            Like so many organizations these days, Autodesk is a company in transition. It was until
-                            recently a traditional boxed software company selling licenses.<a
-                                href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
-                            Read More </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card card-plain card-blog">
-                    <div class="card-image">
-                        <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
-                            <img class="img img-raised" src="./Blog Posts _files/blog6.jpg">
-                        </a>
-                    </div>
-
-                    <div class="card-content">
-                        <h6 class="category text-danger">
-                            <i class="material-icons">trending_up</i> Enterprise
-                        </h6>
-                        <h4 class="card-title">
-                            <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">6
-                                insights into the French Fashion landscape</a>
-                        </h4>
-                        <p class="card-description">
-                            Like so many organizations these days, Autodesk is a company in transition. It was until
-                            recently a traditional boxed software company selling licenses.<a
-                                href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
-                            Read More </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="team-5 section-image" style="background-image: url(&#39;../assets/img/bg10.jpg&#39;)">
-
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-6">
-                <div class="card card-profile card-plain">
-                    <div class="col-md-5">
-                        <div class="card-image">
-                            <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
-                                <img class="img" src="./Blog Posts _files/card-profile1-square.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-content">
-                            <h4 class="card-title">Alec Thompson</h4>
-                            <h6 class="category text-muted">Author of the Month</h6>
-
-                            <p class="card-description">
-                                Don't be scared of the truth because we need to restart the human foundation in truth...
-                            </p>
-
-                            <div class="footer">
-                                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                                   class="btn btn-just-icon btn-simple btn-white"><i class="fa fa-twitter"></i></a>
-                                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                                   class="btn btn-just-icon btn-simple btn-white"><i class="fa fa-facebook-square"></i></a>
-                                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                                   class="btn btn-just-icon btn-simple btn-white"><i class="fa fa-google"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card card-profile card-plain">
-                    <div class="col-md-5">
-                        <div class="card-image">
-                            <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo">
-                                <img class="img" src="./Blog Posts _files/card-profile4-square.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-content">
-                            <h4 class="card-title">Kendall Andrew</h4>
-                            <h6 class="category text-muted">Author of the Week</h6>
-
-                            <p class="card-description">
-                                Don't be scared of the truth because we need to restart the human foundation in truth...
-                            </p>
-
-                            <div class="footer">
-                                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                                   class="btn btn-just-icon btn-simple btn-white"><i class="fa fa-linkedin"></i></a>
-                                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                                   class="btn btn-just-icon btn-simple btn-white"><i class="fa fa-facebook-square"></i></a>
-                                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                                   class="btn btn-just-icon btn-simple btn-white"><i class="fa fa-dribbble"></i></a>
-                                <a href="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html#pablo"
-                                   class="btn btn-just-icon btn-simple btn-white"><i class="fa fa-google"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<div class="subscribe-line">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h3 class="title">Get Tips &amp; Tricks every Week!</h3>
-                <p class="description">
-                    Join our newsletter and get news in your inbox every week! We hate spam too, so no worries about
-                    this.
-                </p>
-            </div>
-            <div class="col-md-6">
-                <div class="card card-plain card-form-horizontal">
-                    <div class="card-content">
-                        <form method=""
-                              action="http://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html">
-                            <div class="row">
-                                <div class="col-md-8">
-
-                                    <div class="input-group">
-												<span class="input-group-addon">
-													<i class="material-icons">mail</i>
-												</span>
-                                        <div class="form-group is-empty"><input type="email" value=""
-                                                                                placeholder="Your Email..."
-                                                                                class="form-control"><span
-                                                class="material-input"></span></div>
+                <div class="latest-product">
+                    <h2 class="section-title">Sản phẩm mới nhất</h2>
+                    <div class="product-carousel">
+                        <c:forEach items="${newProductList}" var="item">
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="<%=request.getContextPath()%>/resources/web/img/${item.imageLink}" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm
+                                            vào giỏ</a>
+                                        <a href="single-product.html" class="view-details-link"><i
+                                                class="fa fa-link"></i> Xem chi tiết</a>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-round btn-block">Subscribe</button>
+
+                                <h2><a href="single-product.html">${item.productName}</a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins>${item.price}</ins>
+                                    <del>${item.discount}</del>
                                 </div>
                             </div>
-                        </form>
+                        </c:forEach>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+<!-- End main content area -->
 
-<div id="left_ads_float" class="hidden-xs hidden-sm" style="z-index: 99999">
-    <a href="Link đường dẫn" target="_blank">
-        <img border="0"
-             src="http://3.bp.blogspot.com/-DFWCRf2oANg/UmDs8ZxWtiI/AAAAAAAAFC0/0Ecu36I5MgI/s1600/fptarena1.png"
-             width="120"/></a>
+<div class="brands-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="brand-wrapper">
+                    <div class="brand-list">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/brand1.png" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/brand2.png" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/brand3.png" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/brand4.png" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/brand5.png" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/brand6.png" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/brand1.png" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/brand2.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- End brands area -->
 
-<style>
-    #left_ads_float {
-
-        bottom: 50px;
-        left: 30px;
-        position: fixed;
-    }
-</style>
-
-<script>
-    var vtlai_remove_fads = false;
-
-    function vtlai_check_adswidth() {
-        if (vtlai_remove_fads) {
-            document.getElementById('left_ads_float').style.display = 'none';
-            return;
-        } else if (document.cookie.indexOf('vtlai_remove_float_ads') != -1) {
-            vtlai_remove_fads = true;
-            vtlai_check_adswidth();
-            return;
-        } else {
-            var lwidth = parseInt(document.body.clientWidth);
-            if (lwidth < 1110) {
-                document.getElementById('left_ads_float').style.display = 'none';
-            } else {
-                document.getElementById('left_ads_float').style.display = 'block';
-            }
-            setTimeout('vtlai_check_adswidth()', 10);
-        }
-    }
-</script>
+<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Hàng giảm giá</h2>
+                    <a href="" class="wid-view-more">View All</a>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img
+                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" alt=""
+                                class="product-thumb"></a>
+                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins>
+                            <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img
+                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-2.jpg" alt=""
+                                class="product-thumb"></a>
+                        <h2><a href="single-product.html">Apple new mac book 2015</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins>
+                            <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img
+                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-3.jpg" alt=""
+                                class="product-thumb"></a>
+                        <h2><a href="single-product.html">Apple new i phone 6</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins>
+                            <del>$425.00</del>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Xem nhiều nhất</h2>
+                    <a href="#" class="wid-view-more">View All</a>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img
+                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-4.jpg" alt=""
+                                class="product-thumb"></a>
+                        <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins>
+                            <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img
+                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" alt=""
+                                class="product-thumb"></a>
+                        <h2><a href="single-product.html">Sony Smart Air Condtion</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins>
+                            <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img
+                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-2.jpg" alt=""
+                                class="product-thumb"></a>
+                        <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins>
+                            <del>$425.00</del>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Sản phẩm mới</h2>
+                    <a href="#" class="wid-view-more">View All</a>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img
+                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-3.jpg" alt=""
+                                class="product-thumb"></a>
+                        <h2><a href="single-product.html">Apple new i phone 6</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins>
+                            <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img
+                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-4.jpg" alt=""
+                                class="product-thumb"></a>
+                        <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins>
+                            <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img
+                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" alt=""
+                                class="product-thumb"></a>
+                        <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins>
+                            <del>$425.00</del>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End product widget area -->

@@ -258,9 +258,10 @@ public class AbtractDAOImpl implements AbtractDAO {
         PaggingResult paggingResult = new PaggingResult();
         String tableName = getNameTable(clazz);
         int firstRow = (currentPage - 1) * rowPerpage;
+        String sql = "SELECT * FROM " + tableName + filter + " ORDER BY id OFFSET " + firstRow + " ROWS FETCH NEXT " + rowPerpage + " ROWS ONLY ";
         try {
             startOperation();
-            Query query = session.createNativeQuery("SELECT * FROM " + tableName + filter + " ORDER BY id OFFSET " + firstRow + " ROWS FETCH NEXT " + rowPerpage + " ROWS ONLY ")
+            Query query = session.createNativeQuery(sql)
                     .addEntity(clazz);
             List objects = query.list();
             paggingResult.setItem(objects);
