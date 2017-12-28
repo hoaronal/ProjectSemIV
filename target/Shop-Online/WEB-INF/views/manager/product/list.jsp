@@ -47,6 +47,11 @@
                                                 code="label.id"/>
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
+                                            colspan="1"
+                                            aria-label="Date: activate to sort column ascending"><spring:message
+                                                code="label.img"/>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending"><spring:message
                                                 code="label.productName"/>
@@ -65,11 +70,7 @@
                                             aria-label="Age: activate to sort column ascending"><spring:message
                                                 code="label.discount"/>
                                         </th>
-                                        <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
-                                            colspan="1"
-                                            aria-label="Date: activate to sort column ascending"><spring:message
-                                                code="label.detail"/>
-                                        </th>
+
                                         <th class="disabled-sorting text-right sorting" tabindex="0"
                                             aria-controls="datatables" rowspan="1" colspan="1"
                                             aria-label="Actions: activate to sort column ascending"><spring:message
@@ -81,12 +82,15 @@
                                     <c:forEach var="item" items="${listItem.item}">
                                         <tr role="row" class="odd" id="rowRecord">
                                             <td tabindex="0" class="sorting_1"><c:out value="${item.id}"/></td>
+                                            <td class="product-thumbnail">
+                                                <img width="145" height="145" alt="poster_1_up" src="<%=request.getContextPath()%>/resources/img/${item.imageLink}"/>
+                                            </td>
                                             <td class="username" id="productName<c:out value="${item.id}"/>">
                                                 <c:out value="${item.productName}"/></td>
                                             <td><c:out value="${item.category.name_category}"/></td>
                                             <td><c:out value="${item.price}"/></td>
                                             <td><c:out value="${item.discount}"/></td>
-                                            <td><c:out value="${item.detail}"/></td>
+
 
                                             <td class="text-right">
                                                 <a href="" class="btn btn-simple btn-info btn-icon like"><i

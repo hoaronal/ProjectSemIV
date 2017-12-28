@@ -32,6 +32,19 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <label class="col-sm-4 label-on-left">Mã sản phẩm<span
+                                        style="color: red">*</span></label>
+                                <div class="col-sm-8">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        <form:input path="code" cssClass="form-control"/>
+                                        <span class="material-input" style="color: red"> <form:errors path="code"
+                                                                                                      cssClass="error"/></span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <label class="col-sm-4 label-on-left"><spring:message code="label.category"/><span
                                         style="color: red">*</span></label>
@@ -108,7 +121,7 @@
                             <input type="hidden" name="image" id="imageUpload"/>
                             <br/>
 
-                            <input type="file" name="upload" id="upload" style="display: none">
+                            <input type="file" name="upload" id="upload"  style="display: none">
                         </div>
                         <div class="row">
                             <div class="col-lg-8 col-lg-offset-2 col-md-10">

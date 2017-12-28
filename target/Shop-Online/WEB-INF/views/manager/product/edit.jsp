@@ -10,7 +10,7 @@
                 <form:form id="myform" action="${updateProductAction}" method="post" modelAttribute="product"
                            cssClass="form-horizontal">
                     <div class="card-header card-header-text" data-background-color="rose">
-                        <h4 class="card-title"><spring:message code="label.addproductName"/></h4>
+                        <h4 class="card-title"><spring:message code="label.updateproductName"/></h4>
                     </div>
                     <form:hidden path="id" cssClass="form-control"/>
                     <div class="card-content">
@@ -23,6 +23,18 @@
                                         <label class="control-label"></label>
                                         <form:input path="productName" cssClass="form-control"/>
                                         <span class="material-input" style="color: red"> <form:errors path="productName"
+                                                                                                      cssClass="error"/></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Mã sản phẩm<span
+                                        style="color: red">*</span></label>
+                                <div class="col-sm-10">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        <form:input path="code" cssClass="form-control"/>
+                                        <span class="material-input" style="color: red"> <form:errors path="code"
                                                                                                       cssClass="error"/></span>
                                     </div>
                                 </div>

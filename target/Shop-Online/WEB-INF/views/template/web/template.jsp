@@ -10,91 +10,111 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/material-dashboard.css" />" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css" />" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/main.css" />" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/material-kit.css" />">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/default.css" />">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/component.css" />">
-    <style>
-        #left_ads_float {
-            bottom: 50px;
-            left: 30px;
-            position: fixed;
-        }
-        #right_ads_float {
-            bottom: 50px;
-            left: 30px;
-            position: fixed;
-        }
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=inherit:400,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="<c:url value="/resources/web/css/bootstrap.min.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/web/css/font-awesome.min.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/web/css/owl.carousel.css" />">
 
-        .icon.icon-info {
-            color: white !important;
-        }
-    </style>
+    <link rel="stylesheet" href="<c:url value="/resources/web/css/responsive.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/web/css/style.css" />">
+
 </head>
 
-<body class="blog-posts">
-<tiles:insertAttribute name="navbar"/>
-<div class="wrapper">
-    <tiles:insertAttribute name="header"/>
-    <div class="main main-raised">
-        <tiles:insertAttribute name="content"/>
-    </div>
-    <tiles:insertAttribute name="footer"/>
-</div>
+<body>
+<tiles:insertAttribute name="header"/>
+<tiles:insertAttribute name="mainmenu"/>
+<tiles:insertAttribute name="slider"/>
+<tiles:insertAttribute name="content"/>
+<tiles:insertAttribute name="footer"/>
 
 
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-3.1.1.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/material.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/perfect-scrollbar.jquery.min.js" />" ></script>
-<script  type="text/javascript"src="<c:url value="/resources/js/jquery.validate.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/moment.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/chartist.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.bootstrap-wizard.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/bootstrap-notify.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.sharrre.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/bootstrap-datetimepicker.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-jvectormap.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/nouislider.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/js.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.select-bootstrap.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.datatables.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/sweetalert2.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jasny-bootstrap.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/fullcalendar.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.tagsinput.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/material-dashboard.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/demo.js" />" ></script>
-
-<script type="text/javascript" src="<c:url value="/resources/js/cbpHorizontalMenu.min.js" />"></script>
+<!-- Latest jQuery form server -->
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/web/js/owl.carousel.min.js" />"></script>
+<script src="<c:url value="/resources/web/js/jquery.sticky.js" />"></script>
+<script src="<c:url value="/resources/web/js/jquery.easing.1.3.min.js" />"></script>
+<script src="<c:url value="/resources/web/js/main.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/web/js/bxslider.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/web/js/script.slider.js" />"></script>
 <script type="text/javascript">
-    $(function() {
-        cbpHorizontalMenu.init();
-    });
-    $(document).ready(function() {
-        $("#success-${style}").fadeTo(2000, 500).slideUp(500, function(){
-            $("#success-${style}").slideUp(500);
-        });
-        // Optimalisation: Store the references outside the event handler:
+    $(document).ready(function () {
+        var category = '${category}';
+        if(category === 'dien-thoai'){
+            $('.phone').addClass('active');
+        }else if(category === 'may-tinh'){
+            $('.pc').addClass('active');
+        }else if(category === 'lap-top'){
+            $('.laptop').addClass('active');
+        }else if(category === 'phu-kien'){
+            $('.accessories').addClass('active');
+        }else if(category === '' || category === 'trang-chu'){
+            $('.home').addClass('active');
+        }else if(category === 'other'){
+            $('.other').addClass('active');
+        }
         var $window = $(window);
-        var $pane = $('#pane1');
-
         function checkWidth() {
             var windowsize = $window.width();
             if (windowsize < 800) {
 
             }
         }
+
         // Execute on load
         checkWidth();
         // Bind event listener
         $(window).resize(checkWidth);
     });
+</script>
+<script type="text/javascript">
+    $uploadCrop = $('#upload-demo').croppie({
+        enableExif: true,
+        viewport: {
+            width: 120,
+            height: 120
+        },
+        boundary: {
+            width: 200,
+            height: 200
+        }
+    });
+
+    $('#upload').on('change', function () {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $uploadCrop.croppie('bind', {
+                url: e.target.result
+            }).then(function () {
+                console.log('jQuery bind complete');
+            });
+
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $('.upload-result').on('click', function (ev) {
+        $uploadCrop.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then(function (resp) {
+            $('#imageUpload').val(resp);
+            $('#myform').submit();
+            /*$.ajax({
+                url: "san-pham/them-moi/luu",
+                type: "POST",
+                data: {"image":resp},
+                success: function (data) {
+                    alert();
+                    html = '<img src="' + resp + '" />';
+                    $("#upload-demo-i").html(html);
+                }
+            });*/
+        });
+    });
+
 </script>
 </body>
 </html>

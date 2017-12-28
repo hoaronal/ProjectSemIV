@@ -23,6 +23,7 @@ public class Product implements java.io.Serializable {
 
     private Category category;
     private String productName;
+    private String code;
     private String price;
     private String discount;
     private String imageLink;
@@ -64,11 +65,9 @@ public class Product implements java.io.Serializable {
         this.updateDate = updateDate;
         this.detail = detail;
         this.status = status;
-        /*this.productGifts = productGifts;*/
     }
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     public int getId() {
@@ -207,6 +206,15 @@ public class Product implements java.io.Serializable {
 
     public void setStatus(byte status) {
         this.status = status;
+    }
+
+    @Column(name = "code", nullable = false)
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")

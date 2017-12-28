@@ -7,17 +7,12 @@ import com.bkap.vn.common.util.BaseController;
 import com.bkap.vn.manager.history_action.service.HistoryActionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-import java.util.Date;
-import java.util.Locale;
 
 @Controller
 @RequestMapping("quan-tri")
@@ -37,7 +32,7 @@ public class HistoryActionController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = historyActionService.generateQuerySearchHistoryAction(keySearch);
         int totalRecord = historyActionService.countAll(filter);
-        paggingResult = historyActionService.findRange(currentPage, 10, filter);
+        paggingResult = historyActionService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();

@@ -38,7 +38,7 @@ public class GiftController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = giftService.generateQuerySearchRole(keySearch);
         int totalRecord = giftService.countAll(filter);
-        paggingResult = giftService.findRange(currentPage, 10, filter);
+        paggingResult = giftService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();

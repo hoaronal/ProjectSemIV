@@ -20,6 +20,14 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/bootstrap-datetimepicker.min.css" />"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value="/resources/editor/css/froala_editor.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/editor/css/froala_style.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/editor/css/plugins/code_view.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/editor/css/plugins/image_manager.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/editor/css/plugins/image.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/editor/css/plugins/table.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/editor/css/plugins/video.css" />">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
 
     <script type="text/javascript">
         function checkNullOrEmpty(value) {
@@ -63,10 +71,36 @@
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.tagsinput.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/material-dashboard.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/demo.js" />"></script>
-<script type="text/javascript">
 
-</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/froala_editor.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/align.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/code_beautifier.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/code_view.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/draggable.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/image.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/image_manager.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/link.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/lists.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/paragraph_format.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/paragraph_style.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/table.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/video.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/url.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/entities.min.js" />"></script>
+
 <script type="text/javascript">
+    $(function(){
+        $('#edit').on('froalaEditor.initialized', function (e, editor) {
+                /*$('#edit').parents('form').on('submit', function () {
+                    /!*console.log($('#edit').val());*!/
+                    return true;
+                })*/
+            })
+            .froalaEditor({enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+    });
+
     $('#btnSearch').click(function () {
         $('#clickSearch').val('true');
         $('.formSearch').submit();
@@ -76,9 +110,9 @@
         var checkAction = '${msg}';
         var style = '${style}';
         if (checkAction.length > 0) {
-            if(style == 'info'){
+            if (style == 'info') {
                 showMsgInfo('top', 'center', checkAction);
-            }else{
+            } else {
                 showMsgError('top', 'center', checkAction);
             }
         }
@@ -117,7 +151,7 @@
         });
     });
 
-    function showMsgInfo( froms, align, a) {
+    function showMsgInfo(froms, align, a) {
         type = ['info'];
         color = Math.floor((Math.random() * 6) + 1);
         $.notify({
@@ -132,7 +166,8 @@
             }
         });
     }
-    function showMsgError( froms, align, a) {
+
+    function showMsgError(froms, align, a) {
         type = ['danger'];
         $.notify({
             icon: "notifications",
@@ -146,6 +181,7 @@
             }
         });
     }
+
     /*function readURL(input) {
 
         if (input.files && input.files[0]) {

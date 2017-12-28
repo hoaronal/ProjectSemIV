@@ -1,19 +1,27 @@
 package com.bkap.vn.common.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.Validator;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
-
+@PropertySource("classpath:system.properties")
 public class BaseController {
+
+    @Autowired
+    protected Environment env;
+
+
 
     public static void trimAllFieldOfObject(Object item) {
         if (item == null) {

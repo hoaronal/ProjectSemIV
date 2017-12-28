@@ -1,12 +1,9 @@
 package com.bkap.vn.manager.category.controller;
 
 import com.bkap.vn.common.entity.Category;
-import com.bkap.vn.common.entity.Product;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
-import com.bkap.vn.common.util.PatternUtil;
 import com.bkap.vn.manager.category.service.CategoryService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +37,7 @@ public class CategoryController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = categoryService.generateQuerySearchCategory(keySearch);
         int totalRecord = categoryService.countAll(filter);
-        paggingResult = categoryService.findRange(currentPage, 10, filter);
+        paggingResult = categoryService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();

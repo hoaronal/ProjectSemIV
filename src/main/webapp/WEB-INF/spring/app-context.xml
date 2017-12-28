@@ -29,15 +29,12 @@
         <property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=shop_online" />
         <property name="username" value="sa" />
         <property name="password" value="quanghoa1993" />
-
     </bean>
-
     <bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean" scope="singleton">
         <property name="properties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
-                <prop key="hibernate.query.substitutions">true 'T', false 'F'</prop>
                 <prop key="hibernate.show_sql">false</prop>
                 <prop key="hibernate.jdbc.batch_size">50</prop>
                 <prop key="hibernate.connection.useUnicode">true</prop>
@@ -45,8 +42,7 @@
                 <prop key="hibernate.connection.autocommit">true</prop>
                 <prop key="hibernate.connection.characterEncoding">utf8</prop>
                 <!--after_transaction or on_close-->
-                <!--<prop key="hibernate.connection.release_mode">on_close</prop>
-                &lt;!&ndash;<prop key="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</prop>&ndash;&gt;
+                <prop key="hibernate.connection.release_mode">on_close</prop>
                 <prop key="hibernate.c3p0.acquire_increment">1</prop>
                 <prop key="hibernate.c3p0.idle_test_period">1800</prop>
                 <prop key="hibernate.c3p0.max_size">100</prop>
@@ -58,7 +54,7 @@
                 <prop key="hibernate.cache.use_query_cache">false</prop>
                 <prop key="hibernate.current_session_context_class">thread</prop>
                 <prop key="cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
-                <prop key="cache.use_minimal_puts">false</prop>-->
+                <prop key="cache.use_minimal_puts">false</prop>
             </props>
         </property>
     </bean>

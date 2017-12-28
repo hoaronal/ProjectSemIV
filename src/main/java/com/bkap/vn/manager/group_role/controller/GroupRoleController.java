@@ -2,7 +2,6 @@ package com.bkap.vn.manager.group_role.controller;
 
 
 import com.bkap.vn.common.entity.GroupRole;
-import com.bkap.vn.common.entity.Role;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
 import com.bkap.vn.manager.group_role.service.GroupRoleService;
@@ -38,7 +37,7 @@ public class GroupRoleController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = groupRoleService.generateQuerySearchRole(keySearch);
         int totalRecord = groupRoleService.countAll(filter);
-        paggingResult = groupRoleService.findRange(currentPage, 10, filter);
+        paggingResult = groupRoleService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();

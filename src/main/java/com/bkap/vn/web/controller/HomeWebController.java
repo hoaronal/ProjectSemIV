@@ -40,12 +40,21 @@ public class HomeWebController {
 
     @RequestMapping(value = {"", "/trang-chu"}, method = RequestMethod.GET)
     public String home(Model model, HttpServletRequest request) {
-        model.addAttribute("category","trang-chu");
         List<Product> newProductList = productService.getNewProduct();
-        List<Product> saleProductList = productService.getSaleProduct(" where discount != '' ORDER BY id OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY ");
+        List<Product> saleProductList = productService.getProductByFilter(" where discount != '' ORDER BY id OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY ");
+        List<Product> newProductList1 = productService.getProductByFilter(" ORDER BY id DESC OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY ");
+        List<Product> viewMostProductList = productService.getProductByFilter(" ORDER BY count_view DESC OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY ");
         model.addAttribute("newProductList", newProductList);
+        model.addAttribute("newProductList1", newProductList1);
         model.addAttribute("saleProductList", saleProductList);
-        model.addAttribute("newProductList", newProductList);
+        model.addAttribute("viewMostProductList", viewMostProductList);
+        model.addAttribute("category", "trang-chu");
+        Integer numProductInCart = (Integer) request.getSession().getAttribute("NUM_IN_CART");
+        if(numProductInCart != null){
+            request.getSession().setAttribute("NUM_IN_CART", numProductInCart);
+        }else{
+            request.getSession().setAttribute("NUM_IN_CART", 0);
+        }
         return "home-web";
     }
 
@@ -62,12 +71,12 @@ public class HomeWebController {
     public String listPhone(@PathVariable("page") int page, Model model, HttpServletRequest request, HttpServletResponse response) {
         String[] arrUrl = request.getRequestURI().split("/");
         int totalRecord = productService.countAllByCategory(Constant.CATEGORY.TYPE_PHONE);
-        PaggingResult paggingResult = productService.findRange(page, 10, " WHERE category_id = " + Constant.CATEGORY.TYPE_PHONE);
+        PaggingResult paggingResult = productService.findRange(page, 10, " WHERE category_id = " + Constant.CATEGORY.TYPE_PHONE + " ORDER BY id DESC ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(page);
         paggingResult.paging();
-        model.addAttribute("productList",paggingResult);
-        model.addAttribute("category",arrUrl[2]);
+        model.addAttribute("productList", paggingResult);
+        model.addAttribute("category", arrUrl[2]);
         return "product-web-list";
     }
 
@@ -75,12 +84,12 @@ public class HomeWebController {
     public String listPC(@PathVariable("page") int page, Model model, HttpServletRequest request, HttpServletResponse response) {
         String[] arrUrl = request.getRequestURI().split("/");
         int totalRecord = productService.countAllByCategory(Constant.CATEGORY.TYPE_PC);
-        PaggingResult paggingResult = productService.findRange(page, 10, " WHERE category_id = " + Constant.CATEGORY.TYPE_PC);
+        PaggingResult paggingResult = productService.findRange(page, 10, " WHERE category_id = " + Constant.CATEGORY.TYPE_PC + " ORDER BY id DESC ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(page);
         paggingResult.paging();
-        model.addAttribute("productList",paggingResult);
-        model.addAttribute("category",arrUrl[2]);
+        model.addAttribute("productList", paggingResult);
+        model.addAttribute("category", arrUrl[2]);
         return "product-web-list";
     }
 
@@ -88,12 +97,12 @@ public class HomeWebController {
     public String listAccessories(@PathVariable("page") int page, Model model, HttpServletRequest request, HttpServletResponse response) {
         String[] arrUrl = request.getRequestURI().split("/");
         int totalRecord = productService.countAllByCategory(Constant.CATEGORY.TYPE_ACCESSORIES);
-        PaggingResult paggingResult = productService.findRange(page, 10, " WHERE category_id = " + Constant.CATEGORY.TYPE_ACCESSORIES);
+        PaggingResult paggingResult = productService.findRange(page, 10, " WHERE category_id = " + Constant.CATEGORY.TYPE_ACCESSORIES + " ORDER BY id DESC ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(page);
         paggingResult.paging();
-        model.addAttribute("productList",paggingResult);
-        model.addAttribute("category",arrUrl[2]);
+        model.addAttribute("productList", paggingResult);
+        model.addAttribute("category", arrUrl[2]);
         return "product-web-list";
     }
 
@@ -101,22 +110,68 @@ public class HomeWebController {
     public String listLaptop(@PathVariable("page") int page, Model model, HttpServletRequest request, HttpServletResponse response) {
         String[] arrUrl = request.getRequestURI().split("/");
         int totalRecord = productService.countAllByCategory(Constant.CATEGORY.TYPE_LAPTOP);
-        PaggingResult paggingResult = productService.findRange(page, 10, " WHERE category_id = " + Constant.CATEGORY.TYPE_LAPTOP);
+        PaggingResult paggingResult = productService.findRange(page, 10, " WHERE category_id = " + Constant.CATEGORY.TYPE_LAPTOP + " ORDER BY id DESC ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(page);
         paggingResult.paging();
-        model.addAttribute("productList",paggingResult);
-        model.addAttribute("category",arrUrl[2]);
+        model.addAttribute("productList", paggingResult);
+        model.addAttribute("category", arrUrl[2]);
+        return "product-web-list";
+    }
+
+    @RequestMapping(value = {"/san-pham/giam-gia/{page}"}, method = RequestMethod.GET)
+    public String listSale(@PathVariable("page") int page, Model model, HttpServletRequest request, HttpServletResponse response) {
+        String[] arrUrl = request.getRequestURI().split("/");
+        int totalRecord = productService.countAllByCategory(Constant.CATEGORY.TYPE_LAPTOP);
+        PaggingResult paggingResult = productService.findRange(page, 10, " WHERE discount != '' ORDER BY id DESC ");
+        paggingResult.setTotalRecord(totalRecord);
+        paggingResult.setCurrentPage(page);
+        paggingResult.paging();
+        model.addAttribute("productList", paggingResult);
+        model.addAttribute("category", arrUrl[2]);
+        return "product-web-list";
+    }
+
+    @RequestMapping(value = {"/san-pham/xem-nhieu/{page}"}, method = RequestMethod.GET)
+    public String viewMore(@PathVariable("page") int page, Model model, HttpServletRequest request, HttpServletResponse response) {
+        String[] arrUrl = request.getRequestURI().split("/");
+        String filter = productService.generateQuerySearchProduct("");
+        int totalRecord = productService.countAll(filter);
+        PaggingResult paggingResult = productService.findRange(page, 10, filter + " ORDER BY count_view DESC ");
+        paggingResult.setTotalRecord(totalRecord);
+        paggingResult.setCurrentPage(page);
+        paggingResult.paging();
+        model.addAttribute("productList", paggingResult);
+        model.addAttribute("category", arrUrl[2]);
+        return "product-web-list";
+    }
+
+    @RequestMapping(value = {"/san-pham/hang-moi/{page}"}, method = RequestMethod.GET)
+    public String newProduct(@PathVariable("page") int page, Model model, HttpServletRequest request, HttpServletResponse response) {
+        String[] arrUrl = request.getRequestURI().split("/");
+        String filter = productService.generateQuerySearchProduct("");
+        int totalRecord = productService.countAll(filter);
+        PaggingResult paggingResult = productService.findRange(page, 10, filter + " ORDER BY id DESC ");
+        paggingResult.setTotalRecord(totalRecord);
+        paggingResult.setCurrentPage(page);
+        paggingResult.paging();
+        model.addAttribute("productList", paggingResult);
+        model.addAttribute("category", arrUrl[2]);
         return "product-web-list";
     }
 
     @RequestMapping(value = "/san-pham/chi-tiet/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable("id") int id, Model model) {
         Product product = productService.getById(id);
-        if (!StringUtils.isBlank(product.getImageList())) {
-            String[] listImg = product.getImageList().split(",");
-            model.addAttribute("listImg", listImg);
+        PaggingResult paggingResult = productService.findRange(1, 10, " WHERE category_id = " + product.getCategory().getId() + " ORDER BY id DESC ");
+
+        if (product != null) {
+            if (!StringUtils.isBlank(product.getImageList())) {
+                String[] listImg = product.getImageList().split(",");
+                model.addAttribute("listImg", listImg);
+            }
         }
+        model.addAttribute("productList", paggingResult);
         model.addAttribute("product", product);
         return "product-web-detail";
     }

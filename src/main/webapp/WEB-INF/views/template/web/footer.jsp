@@ -18,26 +18,25 @@
 
             <div class="col-md-3 col-sm-6">
                 <div class="footer-menu">
-                    <h2 class="footer-wid-title">User Navigation </h2>
+                    <h2 class="footer-wid-title">Điều hướng</h2>
                     <ul>
-                        <li><a href="#">My account</a></li>
-                        <li><a href="#">Order history</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Vendor contact</a></li>
-                        <li><a href="#">Front page</a></li>
+                        <li><a href="#">Tài khoản</a></li>
+                        <li><a href="#">Lịch sử đặt hàng</a></li>
+                        <li><a href="#">Giỏ hàng</a></li>
+                        <li><a href="#">Liên hệ nhà cung cấp</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="col-md-3 col-sm-6">
                 <div class="footer-menu">
-                    <h2 class="footer-wid-title">Categories</h2>
+                    <h2 class="footer-wid-title">Danh mục</h2>
                     <ul>
-                        <li><a href="#">Mobile Phone</a></li>
-                        <li><a href="#">Home accesseries</a></li>
-                        <li><a href="#">LED TV</a></li>
-                        <li><a href="#">Computer</a></li>
-                        <li><a href="#">Gadets</a></li>
+                        <li class="phone"><a href="<%=request.getContextPath()%>/san-pham/dien-thoai/1">Điện thoại</a></li>
+                        <li class="pc"><a href="<%=request.getContextPath()%>/san-pham/may-tinh/1">Máy tính</a></li>
+                        <li class="laptop"><a href="<%=request.getContextPath()%>/san-pham/lap-top/1">Laptop</a></li>
+                        <li class="accessories"><a href="<%=request.getContextPath()%>/san-pham/phu-kien/1">Phụ kiện</a></li>
+                        <li class="other"><a href="<%=request.getContextPath()%>/san-pham/danh-sach/1">Sản phẩm khác</a></li>
                     </ul>
                 </div>
             </div>

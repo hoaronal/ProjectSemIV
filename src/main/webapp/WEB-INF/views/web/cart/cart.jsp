@@ -19,15 +19,15 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="single-sidebar">
-                    <h2 class="sidebar-title">Search Products</h2>
+                    <h2 class="sidebar-title">Tìm kiếm</h2>
                     <form action="#">
-                        <input type="text" placeholder="Search products...">
-                        <input type="submit" value="Search">
+                        <input type="text" placeholder="Tìm kiếm...">
+                        <input type="submit" value="Tìm">
                     </form>
                 </div>
 
                 <div class="single-sidebar">
-                    <h2 class="sidebar-title">Products</h2>
+                    <h2 class="sidebar-title">Sản phẩm khác</h2>
                     <div class="thubmnail-recent">
                         <img src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" class="recent-thumb" alt="">
                         <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
@@ -75,35 +75,36 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach items="${map.entrySet()}" var="entry">
                                 <tr class="cart_item">
                                     <td class="product-remove">
                                         <a title="Remove this item" class="remove" href="#">×</a>
                                     </td>
 
                                     <td class="product-thumbnail">
-                                        <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<%=request.getContextPath()%>/resources/web/img/product-thumb-2.jpg"></a>
+                                        <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<%=request.getContextPath()%>/resources/img/${entry.getValue().get(0).imageLink}"></a>
                                     </td>
 
                                     <td class="product-name">
-                                        <a href="single-product.html">Ship Your Idea</a>
+                                        <a href="single-product.html">${entry.getValue().get(0).productName}</a>
                                     </td>
 
                                     <td class="product-price">
-                                        <span class="amount">£15.00</span>
+                                        <span class="amount">${entry.getValue().get(0).price}</span>
                                     </td>
 
                                     <td class="product-quantity">
                                         <div class="quantity buttons_added">
                                             <input type="button" class="minus" value="-">
-                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">
+                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="${entry.getValue().size()}" min="0" step="1">
                                             <input type="button" class="plus" value="+">
                                         </div>
                                     </td>
-
                                     <td class="product-subtotal">
                                         <span class="amount">£15.00</span>
                                     </td>
                                 </tr>
+                                </c:forEach>
                                 <tr>
                                     <td class="actions" colspan="6">
                                         <div class="coupon">

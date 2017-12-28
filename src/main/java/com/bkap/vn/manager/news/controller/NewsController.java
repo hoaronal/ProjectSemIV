@@ -41,7 +41,7 @@ public class NewsController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = newsService.generateQuerySearchNews(keySearch);
         int totalRecord = newsService.countAll(filter);
-        paggingResult = newsService.findRange(currentPage, 10, filter);
+        paggingResult = newsService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         List<News> newsList = (List<News>) paggingResult.getItem();

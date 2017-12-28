@@ -26,6 +26,7 @@ public class AccessoriesController extends BaseController {
     @Autowired
     private AccessoriesService accessoriesService;
 
+
     @RequestMapping(value = {"/phu-kien/{page}", "/phu-kien/danh-sach-phu-kien/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("accessories") Accessories accessories,
                              @RequestParam(value = "keySearch", defaultValue = "") String keySearch,

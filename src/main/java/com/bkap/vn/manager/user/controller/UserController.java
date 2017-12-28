@@ -39,7 +39,7 @@ public class UserController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = userService.generateQuerySearchUser(keySearch);
         int totalRecord = userService.countAll(filter);
-        paggingResult = userService.findRange(currentPage, 10, filter);
+        paggingResult = userService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();

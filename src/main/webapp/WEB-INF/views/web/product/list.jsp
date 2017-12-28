@@ -15,23 +15,30 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <c:forEach items="${productList.item}" var="item">
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="<%=request.getContextPath()%>/resources/img/${item.imageLink}" alt="">
-                        </div>
-                        <h2><a href="">${item.productName}</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>${item.price}</ins> <del>${item.discount}</del>
-                        </div>
+            <div class="col-md-12" style="margin-left: 30px">
+                <c:forEach items="${productList.item}" var="item" varStatus="status">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-shop-product">
+                            <div class="product-upper">
+                                <img src="<%=request.getContextPath()%>/resources/img/${item.imageLink}" alt="">
+                            </div>
+                            <h2><a href="">${item.productName}</a></h2>
+                            <div class="product-carousel-price">
+                                <ins>${item.price}</ins>
+                                <del>${item.discount}</del>
+                            </div>
 
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                            <div class="product-option-shop">
+                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70"
+                                   rel="nofollow" href="<%=request.getContextPath()%>/them-vao-gio-hang/${item.id}">Thêm vào giỏ</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
+                    <c:if test="${((status.index + 1) % 4) == 0}">
+                        <hr style="width: 100%;border-top: 1px solid #e5e5e5;"/>
+                    </c:if>
+                </c:forEach>
+            </div>
         </div>
 
         <div class="row">

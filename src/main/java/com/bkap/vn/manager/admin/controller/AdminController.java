@@ -38,7 +38,7 @@ public class AdminController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = adminService.generateQuerySearchAdmin(keySearch);
         int totalRecord = adminService.countAll(filter);
-        paggingResult = adminService.findRange(currentPage, 10, filter);
+        paggingResult = adminService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();

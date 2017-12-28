@@ -1,28 +1,22 @@
 package com.bkap.vn.manager.role.controller;
 
 
-import com.bkap.vn.common.entity.Category;
 import com.bkap.vn.common.entity.Role;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
-import com.bkap.vn.manager.category.service.CategoryService;
 import com.bkap.vn.manager.role.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.File;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -43,7 +37,7 @@ public class RoleController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = roleService.generateQuerySearchRole(keySearch);
         int totalRecord = roleService.countAll(filter);
-        paggingResult = roleService.findRange(currentPage, 10, filter);
+        paggingResult = roleService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();

@@ -76,7 +76,11 @@
                                 <span> Danh sách quà tặng </span>
                             </a>
                         </li>
-
+                        <li id="listAccessoriesClass">
+                            <a href="<%=request.getContextPath()%>/quan-tri/phu-kien/1">
+                                <span> Danh sách phụ kiện </span>
+                            </a>
+                        </li>
                         <li id="listProvinceClass">
                             <a href="<%=request.getContextPath()%>/quan-tri/tinh-thanh/1">
                                 <span> Danh sách tỉnh thành</span>

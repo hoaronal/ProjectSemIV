@@ -16,24 +16,38 @@ public class ProductDAOImpl extends AbtractDAOImpl implements ProductDAO {
 
     @Override
     public List<Product> getNewProduct() {
-        startOperation();
-        List<Product> productList = session.createNativeQuery(
-                "SELECT * FROM product WHERE create_date BETWEEN '2017-12-01 00:00:00' and '2017-12-14 00:00:00'",Product.class ).getResultList();
-        if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
-            tx.commit();
+        try {
+            startOperation();
+            List<Product> productList = session.createNativeQuery(
+                    "SELECT * FROM product ORDER BY id OFFSET 0 ROWS FETCH NEXT 20 ROWS ONLY ", Product.class).getResultList();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
+            return productList;
+        } catch (HibernateException e) {
+            handleException(e);
+        } finally {
+            HibernateFactory.close(session);
         }
-        return productList;
+        return null;
     }
 
     @Override
     public List<Product> getByCategory(int idCategory) {
-        startOperation();
-        List<Product> productList = session.createNativeQuery(
-                "SELECT * FROM product WHERE category_id = " + idCategory,Product.class ).getResultList();
-        if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
-            tx.commit();
+        try {
+            startOperation();
+            List<Product> productList = session.createNativeQuery(
+                    "SELECT * FROM product WHERE category_id = " + idCategory, Product.class).getResultList();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
+            return productList;
+        } catch (HibernateException e) {
+            handleException(e);
+        } finally {
+            HibernateFactory.close(session);
         }
-        return productList;
+        return null;
     }
 
     @Override
@@ -59,12 +73,19 @@ public class ProductDAOImpl extends AbtractDAOImpl implements ProductDAO {
 
     @Override
     public List<Product> getProductByFilter(String filter) {
-        startOperation();
-        List<Product> productList = session.createNativeQuery(
-                "SELECT * FROM product " + filter, Product.class ).getResultList();
-        if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
-            tx.commit();
+        try {
+            startOperation();
+            List<Product> productList = session.createNativeQuery(
+                    "SELECT * FROM product " + filter, Product.class).getResultList();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
+            return productList;
+        } catch (HibernateException e) {
+            handleException(e);
+        } finally {
+            HibernateFactory.close(session);
         }
-        return productList;
+        return null;
     }
 }

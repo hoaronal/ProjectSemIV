@@ -75,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getSaleProduct(String filter) {
+    public List<Product> getProductByFilter(String filter) {
         return productDAO.getProductByFilter(filter);
     }
 

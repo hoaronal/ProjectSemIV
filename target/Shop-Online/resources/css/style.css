@@ -366,7 +366,6 @@ z-index: 999;}
 .promo3 { background:#fa8072;}
 .promo4 { background:#4abebd;}
 .section-title {
-  font-family: "Raleway",sans-serif;
   font-size: 50px;
   font-weight: 100;
   margin-bottom: 50px;
@@ -491,7 +490,7 @@ z-index: 999;}
 .maincontent-area {padding-bottom: 50px; padding-top:20px;}
 
 .product-wid-title {
-  font-family: raleway;
+  font-family: inherit;
   font-size: 30px;
   font-weight: 100;
   margin-bottom: 40px;
@@ -556,7 +555,7 @@ padding: 35px 0 180px;}
   color: #9c27b0;
 }
 .footer-wid-title {
-  font-family: raleway;
+  font-family: inherit;
   font-size: 30px;
   font-weight: 100;color: #fff
 }
@@ -681,7 +680,7 @@ width: 10px;
 .product-big-title-area {background: url(img/crossword.png) repeat scroll 0 0 #9c27b0}
 
 .product-bit-title h2 {
-  font-family: raleway;
+  font-family: inherit;
   font-size: 50px;
   font-weight: 200;
   margin: 0;

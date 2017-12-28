@@ -1,6 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />">
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Giỏ hàng</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Page title area -->
+
+
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
@@ -9,52 +21,41 @@
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Tìm kiếm</h2>
                     <form action="#">
-                        <input type="text" placeholder="Tên...">
-                        <input type="submit" value="Search">
+                        <input type="text" placeholder="Tìm kiếm...">
+                        <input type="submit" value="Tìm">
                     </form>
                 </div>
 
                 <div class="single-sidebar">
-                    <h2 class="sidebar-title">Sản phẩm bán chạy</h2>
+                    <h2 class="sidebar-title">Sản phẩm khác</h2>
                     <div class="thubmnail-recent">
-                        <img src="<%=request.getContextPath()%>/resources/img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" class="recent-thumb" alt="">
                         <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                         <div class="product-sidebar-price">
                             <ins>$700.00</ins> <del>$800.00</del>
                         </div>
                     </div>
                     <div class="thubmnail-recent">
-                        <img src="<%=request.getContextPath()%>/resources/img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" class="recent-thumb" alt="">
                         <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                         <div class="product-sidebar-price">
                             <ins>$700.00</ins> <del>$800.00</del>
                         </div>
                     </div>
                     <div class="thubmnail-recent">
-                        <img src="<%=request.getContextPath()%>/resources/img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" class="recent-thumb" alt="">
                         <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                         <div class="product-sidebar-price">
                             <ins>$700.00</ins> <del>$800.00</del>
                         </div>
                     </div>
                     <div class="thubmnail-recent">
-                        <img src="<%=request.getContextPath()%>/resources/img/product-thumb-1.jpg" class="recent-thumb" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" class="recent-thumb" alt="">
                         <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                         <div class="product-sidebar-price">
                             <ins>$700.00</ins> <del>$800.00</del>
                         </div>
                     </div>
-                </div>
-
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Sản phẩm mới</h2>
-                    <ul>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                    </ul>
                 </div>
             </div>
 
@@ -67,42 +68,43 @@
                                 <tr>
                                     <th class="product-remove">&nbsp;</th>
                                     <th class="product-thumbnail">&nbsp;</th>
-                                    <th class="product-name">Tên hàng</th>
-                                    <th class="product-price">Giá</th>
-                                    <th class="product-quantity">Số lượng</th>
-                                    <th class="product-subtotal">Thành tiền</th>
+                                    <th class="product-name">Product</th>
+                                    <th class="product-price">Price</th>
+                                    <th class="product-quantity">Quantity</th>
+                                    <th class="product-subtotal">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach items="${map.entrySet()}" var="entry">
                                 <tr class="cart_item">
                                     <td class="product-remove">
                                         <a title="Remove this item" class="remove" href="#">×</a>
                                     </td>
 
                                     <td class="product-thumbnail">
-                                        <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<%=request.getContextPath()%>/resources/img/product-thumb-2.jpg"></a>
+                                        <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<%=request.getContextPath()%>/resources/img/${entry.getValue().get(0).imageLink}"></a>
                                     </td>
 
                                     <td class="product-name">
-                                        <a href="single-product.html">Ship Your Idea</a>
+                                        <a href="single-product.html">${entry.getValue().get(0).productName}</a>
                                     </td>
 
                                     <td class="product-price">
-                                        <span class="amount">£15.00</span>
+                                        <span class="amount">${entry.getValue().get(0).price}</span>
                                     </td>
 
                                     <td class="product-quantity">
                                         <div class="quantity buttons_added">
-                                            <input type="button" class="minus" id="minus" value="-" onclick="">
-                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">
-                                            <input type="button" class="plus" id="plus" value="+" onclick="">
+                                            <input type="button" class="minus" value="-">
+                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="${entry.getValue().size()}" min="0" step="1">
+                                            <input type="button" class="plus" value="+">
                                         </div>
                                     </td>
-
                                     <td class="product-subtotal">
                                         <span class="amount">£15.00</span>
                                     </td>
                                 </tr>
+                                </c:forEach>
                                 <tr>
                                     <td class="actions" colspan="6">
                                         <div class="coupon">
@@ -122,48 +124,48 @@
 
 
                             <div class="cross-sells">
-                                <h2>Có thể bạn quan tâm...</h2>
+                                <h2>You may be interested in...</h2>
                                 <ul class="products">
                                     <li class="product">
                                         <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="<%=request.getContextPath()%>/resources/img/product-2.jpg">
+                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="<%=request.getContextPath()%>/resources/web/img/product-2.jpg">
                                             <h3>Ship Your Idea</h3>
                                             <span class="price"><span class="amount">£20.00</span></span>
                                         </a>
 
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Xem chi tiết</a>
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
                                     </li>
 
                                     <li class="product">
                                         <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="<%=request.getContextPath()%>/resources/img/product-4.jpg">
+                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="<%=request.getContextPath()%>/resources/web/img/product-4.jpg">
                                             <h3>Ship Your Idea</h3>
                                             <span class="price"><span class="amount">£20.00</span></span>
                                         </a>
 
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Xem chi tiết</a>
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
                                     </li>
                                 </ul>
                             </div>
 
 
                             <div class="cart_totals ">
-                                <h2>Tổng hàng</h2>
+                                <h2>Cart Totals</h2>
 
                                 <table cellspacing="0">
                                     <tbody>
                                     <tr class="cart-subtotal">
-                                        <th>Tổng tiền đơn hàng</th>
+                                        <th>Cart Subtotal</th>
                                         <td><span class="amount">£15.00</span></td>
                                     </tr>
 
                                     <tr class="shipping">
-                                        <th>Phí vận chuyển</th>
-                                        <td>Miễn phí vận chuyển</td>
+                                        <th>Shipping and Handling</th>
+                                        <td>Free Shipping</td>
                                     </tr>
 
                                     <tr class="order-total">
-                                        <th>Tổng tiền</th>
+                                        <th>Order Total</th>
                                         <td><strong><span class="amount">£15.00</span></strong> </td>
                                     </tr>
                                     </tbody>
@@ -172,8 +174,10 @@
 
 
                             <form method="post" action="#" class="shipping_calculator">
-                                <h2><a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Tính toán vận chuyển</a></h2>
+                                <h2><a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Calculate Shipping</a></h2>
+
                                 <section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
+
                                     <p class="form-row form-row-wide">
                                         <select rel="calc_shipping_state" class="country_to_state" id="calc_shipping_country" name="calc_shipping_country">
                                             <option value="">Select a country…</option>

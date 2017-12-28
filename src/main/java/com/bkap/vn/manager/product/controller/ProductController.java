@@ -61,7 +61,7 @@ public class ProductController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = productService.generateQuerySearchProduct(keySearch);
         int totalRecord = productService.countAll(filter);
-        paggingResult = productService.findRange(currentPage, 10, filter);
+        paggingResult = productService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();
@@ -96,14 +96,29 @@ public class ProductController extends BaseController {
     public ModelAndView edit(@RequestParam("categoryId") String categoryId,
                              @RequestParam("productImg") String productImg,
                              @ModelAttribute("product") @Valid Product product,
-                             BindingResult result, RedirectAttributes attributes) {
+                             BindingResult result, @RequestParam(value = "upload", required = false) MultipartFile file, RedirectAttributes attributes, HttpServletRequest request,
+                             HttpServletResponse response) {
         Product productUpdate = productService.getById(product.getId());
-        Category category = categoryService.getById(Integer.parseInt(categoryId));
         try {
             if (productUpdate != null) {
                 if (result.hasErrors() && !validateUpdate(product)) {
                     return view("product-edit", product, "product", "Cập nhật sản phẩm thất bại!", "danger");
                 } else {
+                    Category category = categoryService.getById(Integer.parseInt(categoryId));
+                    if (file != null && !file.isEmpty()) {
+                        String fileName = new Date().getTime() + ".png";
+                        String phyPath = request.getSession().getServletContext().getRealPath("/");
+                        String filepath = phyPath + "resources/img/" + fileName;
+                        File files = new File(filepath);
+                        if (!files.exists()) {
+                            files.createNewFile();
+                        }
+                        file.transferTo(files);
+                        product.setImageLink(fileName);
+
+                    } else {
+                        product.setImageLink(productUpdate.getImageLink());
+                    }
                     product.setUpdateDate(new Date());
                     product.setCreateDate(productUpdate.getCreateDate());
                     product.setCategory(category);
@@ -119,6 +134,8 @@ public class ProductController extends BaseController {
                     }
                 }
             } else {
+                attributes.addFlashAttribute("style", "danger");
+                attributes.addFlashAttribute("msg", "Cập nhật sản phẩm thất bại, sản phẩm không tồn tại!");
                 return view("redirect:/quan-tri/san-pham/danh-sach-san-pham/1");
             }
         } catch (Exception e) {
@@ -142,7 +159,7 @@ public class ProductController extends BaseController {
                             @RequestParam(value = "giftId", required = false) String giftId,
                             @RequestParam(value = "image", required = false) String image,
                             @ModelAttribute(value = "product") @Valid Product product,
-                            @RequestParam(value = "multipartFile", required = false) MultipartFile file,
+                            @RequestParam(value = "upload", required = false) MultipartFile file,
                             BindingResult result, HttpServletRequest request,
                             HttpServletResponse response, RedirectAttributes attributes) {
         if (file != null && !file.isEmpty()) {

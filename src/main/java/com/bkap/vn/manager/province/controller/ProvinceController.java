@@ -37,7 +37,7 @@ public class ProvinceController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = ProvinceService.generateQuerySearchProvince(keySearch);
         int totalRecord = ProvinceService.countAll(filter);
-        paggingResult = ProvinceService.findRange(currentPage, 10, filter);
+        paggingResult = ProvinceService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();

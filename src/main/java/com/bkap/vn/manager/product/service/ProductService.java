@@ -18,7 +18,7 @@ public interface ProductService {
 
     public List<Product> getNewProduct();
 
-    public List<Product> getSaleProduct(String filter);
+    public List<Product> getProductByFilter(String filter);
 
     public List<Product> getByCategory(int idCategory);
 

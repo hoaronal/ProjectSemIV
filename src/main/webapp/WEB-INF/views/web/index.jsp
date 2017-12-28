@@ -44,9 +44,9 @@
                         <c:forEach items="${newProductList}" var="item">
                             <div class="single-product">
                                 <div class="product-f-image">
-                                    <img src="<%=request.getContextPath()%>/resources/web/img/${item.imageLink}" alt="">
+                                    <img src="<%=request.getContextPath()%>/resources/img/${item.imageLink}" alt="">
                                     <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm
+                                        <a href="<%=request.getContextPath()%>/them-vao-gio-hang/${item.id}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm
                                             vào giỏ</a>
                                         <a href="single-product.html" class="view-details-link"><i
                                                 class="fa fa-link"></i> Xem chi tiết</a>
@@ -99,172 +99,77 @@
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Hàng giảm giá</h2>
-                    <a href="" class="wid-view-more">View All</a>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img
-                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                    <a href="<%=request.getContextPath()%>/san-pham/giam-gia/1" class="wid-view-more">View All</a>
+                    <c:forEach items="${saleProductList}" var="item">
+                        <div class="single-wid-product">
+                            <a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">
+                                <img src="<%=request.getContextPath()%>/resources/img/${item.imageLink}" alt=""
+                                    class="product-thumb"></a>
+                            <h2><a href="single-product.html">${item.productName}</a></h2>
+                            <div class="product-wid-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-wid-price">
+                                <ins>${item.price}</ins>
+                                <del>${item.discount}</del>
+                            </div>
                         </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins>
-                            <del>$425.00</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img
-                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-2.jpg" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">Apple new mac book 2015</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins>
-                            <del>$425.00</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img
-                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-3.jpg" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">Apple new i phone 6</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins>
-                            <del>$425.00</del>
-                        </div>
-                    </div>
+                    </c:forEach>
+
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Xem nhiều nhất</h2>
-                    <a href="#" class="wid-view-more">View All</a>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img
-                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-4.jpg" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                    <a href="<%=request.getContextPath()%>/san-pham/xem-nhieu/1" class="wid-view-more">View All</a>
+                    <c:forEach items="${viewMostProductList}" var="item">
+                        <div class="single-wid-product">
+                            <a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">
+                                <img src="<%=request.getContextPath()%>/resources/img/${item.imageLink}" alt=""
+                                     class="product-thumb"></a>
+                            <h2><a href="single-product.html">${item.productName}</a></h2>
+                            <div class="product-wid-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-wid-price">
+                                <ins>${item.price}</ins>
+                                <del>${item.discount}</del>
+                            </div>
                         </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins>
-                            <del>$425.00</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img
-                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">Sony Smart Air Condtion</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins>
-                            <del>$425.00</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img
-                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-2.jpg" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins>
-                            <del>$425.00</del>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Sản phẩm mới</h2>
-                    <a href="#" class="wid-view-more">View All</a>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img
-                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-3.jpg" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">Apple new i phone 6</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                    <a href="<%=request.getContextPath()%>/san-pham/hang-moi/1" class="wid-view-more">View All</a>
+                    <c:forEach items="${newProductList1}" var="item">
+                        <div class="single-wid-product">
+                            <a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">
+                                <img src="<%=request.getContextPath()%>/resources/img/${item.imageLink}" alt=""
+                                     class="product-thumb"></a>
+                            <h2><a href="single-product.html">${item.productName}</a></h2>
+                            <div class="product-wid-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-wid-price">
+                                <ins>${item.price}</ins>
+                                <del>${item.discount}</del>
+                            </div>
                         </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins>
-                            <del>$425.00</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img
-                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-4.jpg" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins>
-                            <del>$425.00</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img
-                                src="<%=request.getContextPath()%>/resources/web/img/product-thumb-1.jpg" alt=""
-                                class="product-thumb"></a>
-                        <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>$400.00</ins>
-                            <del>$425.00</del>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
