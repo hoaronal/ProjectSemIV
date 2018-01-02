@@ -14,6 +14,10 @@ public interface UserService {
 
     public Users getById(int id);
 
+    public Users getByUsername(String username);
+
+    public Users getByEmail(String username);
+
     public int countAll(String filter);
 
     public int countAllByKeySearch(String filter);

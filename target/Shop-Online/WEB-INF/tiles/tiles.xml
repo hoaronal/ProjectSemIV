@@ -17,7 +17,9 @@
         <put-attribute name="content" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/template/manager/footer.jsp"/>
     </definition>
-
+    <definition name="loginTemplate" template="/WEB-INF/views/template/manager/templateLogin.jsp">
+        <put-attribute name="content" value=""/>
+    </definition>
     <definition name="home-administrator" extends="adminTemplate">
         <put-attribute name="title" value="Trang quản trị"/>
         <put-attribute name="content" value="/WEB-INF/views/manager/index.jsp"/>
@@ -90,7 +92,15 @@
         <put-attribute name="content" value="/WEB-INF/views/manager/category/edit.jsp"/>
     </definition>
 
+    <definition name="accessDenied" extends="adminTemplate">
+        <put-attribute name="title" value="Lỗi"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/error/accessDenied.jsp"/>
+    </definition>
 
+    <definition name="login" extends="loginTemplate">
+        <put-attribute name="title" value="Đăng nhập"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/login.jsp"/>
+    </definition>
     <!--role-->
     <definition name="role-list" extends="adminTemplate">
         <put-attribute name="title" value="Danh sách quyền"/>
@@ -105,22 +115,6 @@
     <definition name="role-edit" extends="adminTemplate">
         <put-attribute name="title" value="Cập nhật quyền"/>
         <put-attribute name="content" value="/WEB-INF/views/manager/role/edit.jsp"/>
-    </definition>
-
-    <!--group role-->
-    <definition name="grouprole-list" extends="adminTemplate">
-        <put-attribute name="title" value="Danh sách nhóm quyền"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/group_role/list.jsp"/>
-    </definition>
-
-    <definition name="grouprole-add" extends="adminTemplate">
-        <put-attribute name="title" value="Thêm mới nhóm quyền"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/group_role/add.jsp"/>
-    </definition>
-
-    <definition name="grouprole-edit" extends="adminTemplate">
-        <put-attribute name="title" value="Cập nhật nhóm quyền"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/group_role/edit.jsp"/>
     </definition>
 
     <!--gift-->
@@ -139,20 +133,21 @@
         <put-attribute name="content" value="/WEB-INF/views/manager/gift/edit.jsp"/>
     </definition>
 
-    <!--gift-->
+    <!--order-->
     <definition name="order-list" extends="adminTemplate">
         <put-attribute name="title" value="Danh sách đơn hàng"/>
         <put-attribute name="content" value="/WEB-INF/views/manager/order/list.jsp"/>
     </definition>
 
-    <definition name="order-add" extends="adminTemplate">
-        <put-attribute name="title" value="Thêm mới đơn hàng"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/order/add.jsp"/>
-    </definition>
-
     <definition name="order-edit" extends="adminTemplate">
         <put-attribute name="title" value="Cập nhật đơn hàng"/>
         <put-attribute name="content" value="/WEB-INF/views/manager/order/edit.jsp"/>
+    </definition>
+
+    <!--Transaction-->
+    <definition name="transaction-list" extends="adminTemplate">
+        <put-attribute name="title" value="Danh sách đơn hàng"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/transaction/list.jsp"/>
     </definition>
 
     <!--Province-->
@@ -224,14 +219,57 @@
         <put-attribute name="slider" value=""/>
         <put-attribute name="content" value="/WEB-INF/views/web/cart/cart.jsp"/>
     </definition>
+
+    <definition name="checkout" extends="webTemplate">
+        <put-attribute name="title" value="Đặt hàng"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/web/checkout/checkout.jsp"/>
+    </definition>
+
+    <definition name="checkoutResult" extends="webTemplate">
+        <put-attribute name="title" value="Đặt hàng"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/web/checkout/checkoutResult.jsp"/>
+    </definition>
+
+    <definition name="orderHistory" extends="webTemplate">
+        <put-attribute name="title" value="Lịch sử đặt hàng"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/web/order/historyOrder.jsp"/>
+    </definition>
+
     <definition name="product-web-list" extends="webTemplate">
         <put-attribute name="title" value="Danh sách sản phẩm"/>
         <put-attribute name="slider" value=""/>
         <put-attribute name="content" value="/WEB-INF/views/web/product/list.jsp"/>
     </definition>
+
+    <definition name="search-list" extends="webTemplate">
+        <put-attribute name="title" value="Kết quả tìm kiếm"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/web/product/search.jsp"/>
+    </definition>
+
     <definition name="product-web-detail" extends="webTemplate">
         <put-attribute name="title" value="Chi tiết sản phẩm"/>
         <put-attribute name="slider" value=""/>
         <put-attribute name="content" value="/WEB-INF/views/web/product/detail.jsp"/>
+    </definition>
+
+    <definition name="quen-mat-khau" extends="webTemplate">
+        <put-attribute name="title" value="Quên mật khẩu"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/web/forgotPass.jsp"/>
+    </definition>
+
+    <definition name="dang-ki" extends="webTemplate">
+        <put-attribute name="title" value="Đăng kí"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/web/signup.jsp"/>
+    </definition>
+    <definition name="chat" extends="loginTemplate">
+        <put-attribute name="title" value="Chat"/>
+        <put-attribute name="slider" value=""/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/chat.jsp"/>
     </definition>
 </tiles-definitions>

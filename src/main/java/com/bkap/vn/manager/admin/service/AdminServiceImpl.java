@@ -5,6 +5,7 @@ import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.manager.admin.dao.AdminDAO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,14 +19,24 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     @Transactional
-    public boolean delete(Admin user) {
-        return adminDAO.delete(user);
+    public boolean delete(Admin admin) {
+        return adminDAO.delete(admin);
     }
 
     @Override
     @Transactional
-    public boolean update(Admin user) {
-        return adminDAO.update(user);
+    public boolean update(Admin admin) {
+        return adminDAO.update(admin);
+    }
+
+    @Override
+    public Admin getByAcount(String account) {
+        List<Admin> admins = adminDAO.findByProperty(Admin.class, "account", account);
+        if (admins != null && admins.size() > 0) {
+            return admins.get(0);
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -37,7 +48,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public int countAll(String filter) {
-        return adminDAO.countAll(Admin.class,filter);
+        return adminDAO.countAll(Admin.class, filter);
     }
 
     @Override
@@ -48,8 +59,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     @Transactional
-    public int add(Admin user) {
-        return adminDAO.save(user);
+    public int add(Admin admin) {
+        return adminDAO.save(admin);
     }
 
     @Override

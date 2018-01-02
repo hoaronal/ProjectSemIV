@@ -20,10 +20,11 @@ import java.util.Map;
 
 
 @Controller
+@RequestMapping("quan-tri/bao-cao")
 public class ReportController  {
 
 
-    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String report_doanh_so(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> beans = new HashMap<String, Object>();
 

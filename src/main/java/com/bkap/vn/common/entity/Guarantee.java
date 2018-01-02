@@ -13,7 +13,6 @@ import java.util.Objects;
         ,catalog="shop_online"
 )
 public class Guarantee {
-
     private int id;
     private String serial;
     private Date guaranteeFrom;

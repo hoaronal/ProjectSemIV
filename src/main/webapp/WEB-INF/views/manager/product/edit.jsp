@@ -22,8 +22,7 @@
                                     <div class="form-group label-floating is-empty">
                                         <label class="control-label"></label>
                                         <form:input path="productName" cssClass="form-control"/>
-                                        <span class="material-input" style="color: red"> <form:errors path="productName"
-                                                                                                      cssClass="error"/></span>
+                                        <span class="material-input" style="color: red"> </span>
                                     </div>
                                 </div>
                             </div>
@@ -34,8 +33,7 @@
                                     <div class="form-group label-floating is-empty">
                                         <label class="control-label"></label>
                                         <form:input path="code" cssClass="form-control"/>
-                                        <span class="material-input" style="color: red"> <form:errors path="code"
-                                                                                                      cssClass="error"/></span>
+                                        <span class="material-input" style="color: red"></span>
                                     </div>
                                 </div>
                             </div>
@@ -61,8 +59,7 @@
                                     <div class="form-group label-floating is-empty">
                                         <label class="control-label"></label>
                                         <form:input path="price" cssClass="form-control"/>
-                                        <span class="material-input" style="color: red"><form:errors path="price"
-                                                                                                     cssClass="error"/></span>
+                                        <span class="material-input" style="color: red"></span>
                                     </div>
                                 </div>
                                 <label class="col-sm-2 label-on-left"><spring:message code="label.discount"/></label>
@@ -79,8 +76,7 @@
                                     <div class="form-group label-floating is-empty">
                                         <label class="control-label"></label>
                                         <form:textarea path="detail" cssClass="form-control"/>
-                                        <span class="material-input" style="color: red"> <form:errors path="detail"
-                                                                                                      cssClass="error"/></span>
+                                        <span class="material-input" style="color: red"> </span>
                                     </div>
                                 </div>
                             </div>

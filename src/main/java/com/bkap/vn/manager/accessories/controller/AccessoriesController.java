@@ -20,14 +20,14 @@ import java.util.Date;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("quan-tri")
+@RequestMapping("quan-tri/phu-kien")
 public class AccessoriesController extends BaseController {
 
     @Autowired
     private AccessoriesService accessoriesService;
 
 
-    @RequestMapping(value = {"/phu-kien/{page}", "/phu-kien/danh-sach-phu-kien/{page}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/{page}", "/danh-sach-phu-kien/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("accessories") Accessories accessories,
                              @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
                              @PathVariable(value = "page") int currentPage,
@@ -38,7 +38,7 @@ public class AccessoriesController extends BaseController {
         ModelAndView view = new ModelAndView();
         String filter = accessoriesService.generateQuerySearchAccessories(keySearch);
         int totalRecord = accessoriesService.countAll(filter);
-        paggingResult = accessoriesService.findRange(currentPage, 10, filter);
+        paggingResult = accessoriesService.findRange(currentPage, 10, filter + " ORDER BY id ");
         paggingResult.setTotalRecord(totalRecord);
         paggingResult.setCurrentPage(currentPage);
         paggingResult.paging();
@@ -49,7 +49,7 @@ public class AccessoriesController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/phu-kien/cap-nhat/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/cap-nhat/{id}", method = RequestMethod.GET)
     public String editView(@PathVariable("id") int id, @ModelAttribute("accessories") Accessories accessories, Model model, RedirectAttributes attributes, Locale locale) {
         accessories = accessoriesService.getById(id);
         if (accessories != null) {
@@ -67,27 +67,22 @@ public class AccessoriesController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/phu-kien/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView edit(@ModelAttribute("accessories") @Valid Accessories accessories,
-                             BindingResult result, RedirectAttributes attributes) {
+    @RequestMapping(value = "/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView edit(@ModelAttribute("accessories") @Valid Accessories accessories, RedirectAttributes attributes) {
         Accessories AccessoriesUpdate = accessoriesService.getById(accessories.getId());
         try {
             if (AccessoriesUpdate != null) {
-                if (result.hasErrors()) {
-                    return view("accessories-edit", accessories, "accessories", "Cập nhật Phụ kiện thất bại!", "danger");
-                } else {
-                    accessories.setUpdateDate(new Date());
-                    accessories.setCreateDate(AccessoriesUpdate.getCreateDate());
+                accessories.setUpdateDate(new Date());
+                accessories.setCreateDate(AccessoriesUpdate.getCreateDate());
                 /*Accessories.setAdminByAdminUpdate(new Admin());
                 Accessories.setAdminByAdminCreate(userUpdate.getAdminByAdminCreate());*/
-                    boolean check = accessoriesService.update(accessories);
-                    if (check) {
-                        attributes.addFlashAttribute("style", "info");
-                        attributes.addFlashAttribute("msg", "Cập nhật Phụ kiện thành công");
-                    } else {
-                        attributes.addFlashAttribute("style", "danger");
-                        attributes.addFlashAttribute("msg", "Cập nhật Phụ kiện thất bại!");
-                    }
+                boolean check = accessoriesService.update(accessories);
+                if (check) {
+                    attributes.addFlashAttribute("style", "info");
+                    attributes.addFlashAttribute("msg", "Cập nhật Phụ kiện thành công");
+                } else {
+                    attributes.addFlashAttribute("style", "danger");
+                    attributes.addFlashAttribute("msg", "Cập nhật Phụ kiện thất bại!");
                 }
             } else {
                 return view("redirect:/quan-tri/phu-kien/danh-sach-phu-kien/1");
@@ -104,35 +99,31 @@ public class AccessoriesController extends BaseController {
         return "accessories-add";
     }
 
-    @RequestMapping(value = "/phu-kien/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView add(@ModelAttribute(value = "accessories") @Valid Accessories accessories,
-                            BindingResult result, HttpServletRequest request,
+                            HttpServletRequest request,
                             HttpServletResponse response, RedirectAttributes attributes) {
         if (accessories != null) {
-            if (result.hasErrors()) {
-                return view("accessories-add", accessories, "accessories", "Thêm mới Phụ kiện thất bại!", "danger");
-            } else {
-                accessories.setUpdateDate(new Date());
-                accessories.setCreateDate(new Date());
+            accessories.setUpdateDate(new Date());
+            accessories.setCreateDate(new Date());
                 /*user.setAdminByAdminUpdate(new Admin());
                 user.setAdminByAdminCreate(new Admin());*/
-                int check = accessoriesService.add(accessories);
-                if (check > 0) {
-                    attributes.addFlashAttribute("style", "info");
-                    attributes.addFlashAttribute("msg", "Thêm mới Phụ kiện thành công");
-                    return view("redirect:/quan-tri/phu-kien/1");
-                } else {
-                    attributes.addFlashAttribute("style", "danger");
-                    attributes.addFlashAttribute("msg", "Thêm mới Phụ kiện thất bại");
-                    return view("redirect:/quan-tri/phu-kien/1");
-                }
+            int check = accessoriesService.add(accessories);
+            if (check > 0) {
+                attributes.addFlashAttribute("style", "info");
+                attributes.addFlashAttribute("msg", "Thêm mới Phụ kiện thành công");
+                return view("redirect:/quan-tri/phu-kien/1");
+            } else {
+                attributes.addFlashAttribute("style", "danger");
+                attributes.addFlashAttribute("msg", "Thêm mới Phụ kiện thất bại");
+                return view("redirect:/quan-tri/phu-kien/1");
             }
         } else {
             return view("redirect:/quan-tri/phu-kien/1");
         }
     }
 
-    @RequestMapping(value = "/phu-kien/xoa/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/xoa/{id}", method = RequestMethod.GET)
     public ModelAndView remove(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         if (id > 0) {

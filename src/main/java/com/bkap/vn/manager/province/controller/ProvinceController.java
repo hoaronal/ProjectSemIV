@@ -20,13 +20,13 @@ import java.util.Date;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("quan-tri")
+@RequestMapping("quan-tri/tinh-thanh")
 public class ProvinceController extends BaseController {
 
     @Autowired
     private ProvinceService ProvinceService;
 
-    @RequestMapping(value = {"/tinh-thanh/{page}", "/tinh-thanh/danh-sach-tinh-thanh/{page}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/{page}", "/danh-sach-tinh-thanh/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("Province") Province Province,
                              @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
                              @PathVariable(value = "page") int currentPage,
@@ -48,7 +48,7 @@ public class ProvinceController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/tinh-thanh/cap-nhat/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/cap-nhat/{id}", method = RequestMethod.GET)
     public String editView(@PathVariable("id") int id, @ModelAttribute("province") Province province, Model model, RedirectAttributes attributes, Locale locale) {
         province = ProvinceService.getById(id);
         if (province != null) {
@@ -66,27 +66,22 @@ public class ProvinceController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/tinh-thanh/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView edit(@ModelAttribute("province") @Valid Province province,
-                             BindingResult result, RedirectAttributes attributes) {
+    @RequestMapping(value = "/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView edit(@ModelAttribute("province") @Valid Province province, RedirectAttributes attributes) {
         Province ProvinceUpdate = ProvinceService.getById(province.getId());
         try {
             if (ProvinceUpdate != null) {
-                if (result.hasErrors()) {
-                    return view("province-edit", province, "province", "Cập nhật Tỉnh thành thất bại!", "danger");
-                } else {
-                    province.setUpdateDate(new Date());
-                    province.setCreateDate(ProvinceUpdate.getCreateDate());
+                province.setUpdateDate(new Date());
+                province.setCreateDate(ProvinceUpdate.getCreateDate());
                 /*Province.setAdminByAdminUpdate(new Admin());
                 Province.setAdminByAdminCreate(userUpdate.getAdminByAdminCreate());*/
-                    boolean check = ProvinceService.update(province);
-                    if (check) {
-                        attributes.addFlashAttribute("style", "info");
-                        attributes.addFlashAttribute("msg", "Cập nhật Tỉnh thành thành công");
-                    } else {
-                        attributes.addFlashAttribute("style", "danger");
-                        attributes.addFlashAttribute("msg", "Cập nhật Tỉnh thành thất bại!");
-                    }
+                boolean check = ProvinceService.update(province);
+                if (check) {
+                    attributes.addFlashAttribute("style", "info");
+                    attributes.addFlashAttribute("msg", "Cập nhật Tỉnh thành thành công");
+                } else {
+                    attributes.addFlashAttribute("style", "danger");
+                    attributes.addFlashAttribute("msg", "Cập nhật Tỉnh thành thất bại!");
                 }
             } else {
                 return view("redirect:/quan-tri/tinh-thanh/danh-sach-tinh-thanh/1");
@@ -97,41 +92,35 @@ public class ProvinceController extends BaseController {
         return view("redirect:/quan-tri/tinh-thanh/danh-sach-tinh-thanh/1");
     }
 
-    @RequestMapping(value = "/tinh-thanh/them-moi", method = RequestMethod.GET)
+    @RequestMapping(value = "/them-moi", method = RequestMethod.GET)
     public String addView(Model model) {
         model.addAttribute("province", new Province());
         return "province-add";
     }
 
-    @RequestMapping(value = "/tinh-thanh/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@ModelAttribute(value = "province") @Valid Province province,
-                            BindingResult result, HttpServletRequest request,
-                            HttpServletResponse response, RedirectAttributes attributes) {
+    @RequestMapping(value = "/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView add(@ModelAttribute(value = "province") @Valid Province province, RedirectAttributes attributes) {
         if (province != null) {
-            if (result.hasErrors()) {
-                return view("province-add", province, "province", "Thêm mới Tỉnh thành thất bại!", "danger");
-            } else {
-                province.setUpdateDate(new Date());
-                province.setCreateDate(new Date());
+            province.setUpdateDate(new Date());
+            province.setCreateDate(new Date());
                 /*user.setAdminByAdminUpdate(new Admin());
                 user.setAdminByAdminCreate(new Admin());*/
-                int check = ProvinceService.add(province);
-                if (check > 0) {
-                    attributes.addFlashAttribute("style", "info");
-                    attributes.addFlashAttribute("msg", "Thêm mới Tỉnh thành thành công");
-                    return view("redirect:/quan-tri/tinh-thanh/1");
-                } else {
-                    attributes.addFlashAttribute("style", "danger");
-                    attributes.addFlashAttribute("msg", "Thêm mới Tỉnh thành thất bại");
-                    return view("redirect:/quan-tri/tinh-thanh/1");
-                }
+            int check = ProvinceService.add(province);
+            if (check > 0) {
+                attributes.addFlashAttribute("style", "info");
+                attributes.addFlashAttribute("msg", "Thêm mới Tỉnh thành thành công");
+                return view("redirect:/quan-tri/tinh-thanh/1");
+            } else {
+                attributes.addFlashAttribute("style", "danger");
+                attributes.addFlashAttribute("msg", "Thêm mới Tỉnh thành thất bại");
+                return view("redirect:/quan-tri/tinh-thanh/1");
             }
         } else {
             return view("redirect:/quan-tri/tinh-thanh/1");
         }
     }
 
-    @RequestMapping(value = "/tinh-thanh/xoa/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/xoa/{id}", method = RequestMethod.GET)
     public ModelAndView remove(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         if (id > 0) {

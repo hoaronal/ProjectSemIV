@@ -19,8 +19,6 @@ public class Accessories  implements java.io.Serializable {
 
 
     private int id;
-    @NotNull(message = "Tên phụ kiện không được để trống!")
-    @NotBlank(message = "Tên phụ kiện không được để trống!")
     private String name;
     private String detail;
     private Integer adminCreate;

@@ -1,5 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,7 +17,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
+            <a>
+            Xin chào ${loggedinuser}
+        </a>
         </div>
 
         <div class="collapse navbar-collapse">
@@ -37,7 +38,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="<%=request.getContextPath()%>/quan-tri/chat">
                         <i class="material-icons">notifications</i>
                         <span class="notification">5</span>
                         <p class="hidden-lg hidden-md">
@@ -45,23 +46,6 @@
                             <b class="caret"></b>
                         </p>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="">Mike John responded to your email</a>
-                        </li>
-                        <li>
-                            <a href="">You have 5 new tasks</a>
-                        </li>
-                        <li>
-                            <a href="">You're now friend with Andrew</a>
-                        </li>
-                        <li>
-                            <a href="">Another Notification</a>
-                        </li>
-                        <li>
-                            <a href="">Another One</a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -69,7 +53,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="">Log out</a>
+                            <a href="<%=request.getContextPath()%>/quan-tri/logout">Log out</a>
                         </li>
                         <li>
                             <a href="">Test</a>

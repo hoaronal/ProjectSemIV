@@ -22,20 +22,17 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="roleName" cssClass="form-control"/>
-                                    <span class="material-input" style="color: red"> <form:errors path="roleName"
-                                                                                                  cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-
-                            <label class="col-sm-2 label-on-left"><spring:message code="label.description"/></label>
+                            <label class="col-sm-2 label-on-left">Loại quyền</label>
                             <div class="col-sm-4">
-                                <div class="form-group label-floating is-empty ${not empty msgPassword?'errors':''}">
+                                <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <form:input path="description" cssClass="form-control"/>
-                                    <span class="material-input" style="color: red"> <form:errors path="description"
-                                                                                                  cssClass="error"/></span>
+                                    <form:input path="type" cssClass="form-control"/>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>

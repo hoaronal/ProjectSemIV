@@ -11,7 +11,7 @@
                 <form:form id="myform" action="${editNewsAction}" method="post" modelAttribute="news"
                            cssClass="form-horizontal">
                     <div class="card-header card-header-text" data-background-color="rose">
-                        <h4 class="card-title"><spring:message code="label.addProvince"/></h4>
+                        <h4 class="card-title"><spring:message code="label.editNews"/></h4>
                     </div>
                     <form:hidden path="id"/>
                     <div class="card-content">
@@ -19,15 +19,13 @@
                             <label class="col-sm-2 label-on-left"><spring:message code="label.title"/><span
                                     style="color: red">*</span></label>
                             <div class="col-sm-10">
-                                <c:set var="msgprovinceName"><form:errors path="title"/></c:set>
                                 <div class="form-group label-floating is-empty ">
                                     <label class="control-label"></label>
                                     <div class="test" id="roleNameBorder">
-                                        <form:input path="title" id="roleName"
-                                                    cssClass="form-control ${not empty msgprovinceName?'errors':''}"/>
+                                        <form:input path="title" id="title"
+                                                    cssClass="form-control"/>
                                     </div>
-                                    <span class="material-input" style="color: red"> <form:errors path="title"
-                                                                                                  cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +37,6 @@
                                     <label class="control-label"></label>
                                     <form:textarea path="description" id="edit" cssClass="form-control"/>
                                     <span class="material-input" style="color: red">
-                                        <form:errors path="description" cssClass="error"/>
                                     </span>
                                 </div>
                             </div>
@@ -50,7 +47,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary btn-block">
-                                        <spring:message code="label.addbtn"/>
+                                        <spring:message code="label.updatebtn"/>
                                     </button>
                                 </div>
                                 <div class="col-md-3">

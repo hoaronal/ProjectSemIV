@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -22,9 +21,7 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="username" cssClass="form-control"/>
-                                        <%--<span class="help-block">A block of help text that breaks onto a new line.</span>--%>
-                                    <span class="material-input" style="color: red"> <form:errors path="username"
-                                                                                                  cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
@@ -37,8 +34,7 @@
                                     <label class="control-label"></label>
                                     <form:password path="password"
                                                    cssClass="form-control ${not empty msgPassword?'errors':''}"/>
-                                    <span class="material-input" style="color: red"><form:errors path="password"
-                                                                                                 cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                             <label class="col-sm-2 label-on-left"><spring:message code="label.repassword"/></label>
@@ -56,8 +52,7 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="email" cssClass="form-control"/>
-                                    <span class="material-input" style="color: red"><form:errors path="email"
-                                                                                                 cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
@@ -67,8 +62,7 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="address" cssClass="form-control"/>
-                                    <span class="material-input" style="color: red"><form:errors path="address"
-                                                                                                 cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
@@ -79,8 +73,7 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="birthday" cssClass="form-control datepicker"/>
-                                    <span class="material-input" style="color: red"><form:errors path="birthday"
-                                                                                                 cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                             <label class="col-sm-2 label-on-left"><spring:message code="label.phone"/></label>
@@ -88,8 +81,7 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="phone" cssClass="form-control"/>
-                                    <span class="material-input" style="color: red"><form:errors path="phone"
-                                                                                                 cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>

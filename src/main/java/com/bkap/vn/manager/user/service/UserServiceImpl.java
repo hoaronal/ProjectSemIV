@@ -40,6 +40,16 @@ public class UserServiceImpl implements UserService {
         return userDAO.countAll(Users.class,filter);
     }
 
+
+    @Override
+    public Users getByEmail(String email) {
+        List<Users> users = userDAO.findByProperty(Users.class,"email",email);
+        if(users != null && users.size() > 0)
+            return users.get(0);
+        else
+            return null;
+    }
+
     @Override
     @Transactional
     public int countAllByKeySearch(String filter) {
@@ -56,6 +66,15 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<Users> listUser() {
         return userDAO.findAll(Users.class);
+    }
+
+    @Override
+    public Users getByUsername(String username) {
+        List<Users> users = userDAO.findByProperty(Users.class,"username",username);
+        if(users != null && users.size() > 0)
+            return users.get(0);
+        else
+            return null;
     }
 
     @Override

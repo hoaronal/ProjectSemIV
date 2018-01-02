@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("quan-tri")
+@RequestMapping("quan-tri/lich-su-he-thong")
 public class HistoryActionController extends BaseController {
 
     @Autowired
     private HistoryActionService historyActionService;
 
-    @RequestMapping(value = {"/lich-su-he-thong/{page}", "/lich-su-he-thong/danh-sach-lich-su-he-thong/{page}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/{page}", "/danh-sach-lich-su-he-thong/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("historyAction") HistoryAction historyAction,
                              @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
                              @PathVariable(value = "page") int currentPage,
@@ -42,7 +42,7 @@ public class HistoryActionController extends BaseController {
         return view;
     }
 
-    @RequestMapping(value = "/lich-su-he-thong/xoa/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/xoa/{id}", method = RequestMethod.GET)
     public ModelAndView remove(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         if (id > 0) {

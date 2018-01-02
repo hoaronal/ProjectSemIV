@@ -26,7 +26,7 @@
             </div>
         </div>
         <ul class="nav">
-            <li class="active">
+            <li id="homePage">
                 <a href="<%=request.getContextPath()%>/quan-tri">
                     <i class="material-icons">dashboard</i>
                     <p>Trang chủ</p>
@@ -62,18 +62,8 @@
                             </a>
                         </li>
                         <li id="listRoleClass">
-                            <a href="<%=request.getContextPath()%>/quan-tri/quyen/1">
+                            <a href="<%=request.getContextPath()%>/quan-tri/danh-sach-quyen/1">
                                 <span> Danh sách quyền </span>
-                            </a>
-                        </li>
-                        <li id="listGroupRoleClass">
-                            <a href="<%=request.getContextPath()%>/quan-tri/nhom-quyen/1">
-                                <span> Danh sách nhóm quyền </span>
-                            </a>
-                        </li>
-                        <li id="listGiftClass">
-                            <a href="<%=request.getContextPath()%>/quan-tri/qua-tang/1">
-                                <span> Danh sách quà tặng </span>
                             </a>
                         </li>
                         <li id="listAccessoriesClass">
@@ -89,6 +79,16 @@
                         <li id="listNewsClass">
                             <a href="<%=request.getContextPath()%>/quan-tri/tin-tuc/1">
                                 <span> Danh sách tin tức</span>
+                            </a>
+                        </li>
+                        <li id="listOrderClass">
+                            <a href="<%=request.getContextPath()%>/quan-tri/don-hang/1">
+                                <span> Danh sách đơn hàng</span>
+                            </a>
+                        </li>
+                        <li id="listTransactionClass">
+                            <a href="<%=request.getContextPath()%>/quan-tri/giao-dich/1">
+                                <span> Danh sách giao dịch</span>
                             </a>
                         </li>
                     </ul>
@@ -112,7 +112,7 @@
                     </ul>
                 </div>
             </li>
-            <li>
+            <li id="listhistoryClass">
                 <a href="<%=request.getContextPath()%>/quan-tri/lich-su-he-thong/1">
                     <i class="material-icons">history</i>
                     <p>Lịch sử hệ thống</p>

@@ -163,7 +163,6 @@
 </div>
 <script type="text/javascript">
     window.onload = function() {
-        document.getElementById("componentsExamples").classList.add('in');
-        document.getElementById("listProvinceClass").classList.add('active');
+        document.getElementById("listhistoryClass").classList.add('active');
     };
 </script>

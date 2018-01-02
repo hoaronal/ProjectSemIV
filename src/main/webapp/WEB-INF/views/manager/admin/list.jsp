@@ -79,13 +79,12 @@
                                         <tbody>
                                         <c:forEach var="item" items="${listItem.item}">
                                             <tr role="row" class="odd" id="rowRecord">
-                                                <td tabindex="0" class="sorting_1"><c:out value="${item.id}"/></td>
-                                                <td class="account" id="account<c:out value="${item.id}"/>"><c:out
-                                                        value="${item.account}"/></td>
-                                                <td><c:out value="${item.email}"/></td>
-                                                <td><c:out value="${item.phone}"/></td>
-                                                <td><c:out value="${item.birthday}"/></td>
-                                                <td><c:out value="${item.address}"/></td>
+                                                <td tabindex="0" class="sorting_1">${item.id}</td>
+                                                <td class="account" id="account${item.id}">${item.account}</td>
+                                                <td>${item.email}</td>
+                                                <td>${item.phone}</td>
+                                                <td>${item.birthday}</td>
+                                                <td>${item.address}</td>
                                                 <td class="text-right">
                                                     <a href="" class="btn btn-simple btn-info btn-icon like"><i
                                                             class="material-icons">favorite</i></a>
@@ -150,7 +149,7 @@
                                             </li>
                                             <c:forEach var="page" items="${listItem.pages}">
                                                 <li class="paginate_button ${listItem.currentPage == page?"active":""}">
-                                                    <a href="<%=request.getContextPath()%>/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/<c:out value="${page}"/>?keySearch<c:out value="${keySearch}"/>"
+                                                    <a href="<%=request.getContextPath()%>/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/${page}?keySearch=${keySearch}"
                                                        data-dt-idx="2" tabindex="0">${page}</a>
                                                 </li>
                                             </c:forEach>

@@ -21,7 +21,7 @@ public class Order implements java.io.Serializable {
     private int qty;
     private double amount;
     private String data;
-    private byte status;
+    private int status;
     private Transaction transaction;
     private Product product;
     private Date createDate;
@@ -32,14 +32,14 @@ public class Order implements java.io.Serializable {
     }
 
 
-    public Order(int id, int qty, double amount, byte status) {
+    public Order(int id, int qty, double amount, int status) {
         this.id = id;
         this.qty = qty;
         this.amount = amount;
         this.status = status;
     }
 
-    public Order(int id, Admin adminByAdminUpdate, Admin adminByAdminCreate, int transactionId, int qty, double amount, String data, byte status, Date createDate, Date updateDate) {
+    public Order(int id, Admin adminByAdminUpdate, Admin adminByAdminCreate, int transactionId, int qty, double amount, String data, int status, Date createDate, Date updateDate) {
         this.id = id;
         this.adminByAdminUpdate = adminByAdminUpdate;
         this.adminByAdminCreate = adminByAdminCreate;
@@ -131,11 +131,11 @@ public class Order implements java.io.Serializable {
 
 
     @Column(name = "status", nullable = false)
-    public byte getStatus() {
+    public int getStatus() {
         return this.status;
     }
 
-    public void setStatus(byte status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

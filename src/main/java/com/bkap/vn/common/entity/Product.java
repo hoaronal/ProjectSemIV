@@ -35,7 +35,6 @@ public class Product implements java.io.Serializable {
     private byte status;
     private Admin adminByAdminCreate;
     private Admin adminByAdminUpdate;
-    /*private Set<ProductGift> productGifts = new HashSet<ProductGift>(0);*/
 
     public Product() {
     }
@@ -216,17 +215,6 @@ public class Product implements java.io.Serializable {
     public void setCode(String code) {
         this.code = code;
     }
-
-    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-    public Set<ProductGift> getProductGifts() {
-        return this.productGifts;
-    }
-
-    public void setProductGifts(Set<ProductGift> productGifts) {
-        this.productGifts = productGifts;
-    }
-*/
-
 }
 
 

@@ -1,15 +1,19 @@
 package com.bkap.vn.manager.admin.controller;
 
 import com.bkap.vn.common.entity.Admin;
+import com.bkap.vn.common.entity.AdminRole;
+import com.bkap.vn.common.entity.Role;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
 import com.bkap.vn.common.util.PatternUtil;
 import com.bkap.vn.manager.admin.service.AdminService;
+import com.bkap.vn.manager.adminRole.service.AdminRoleService;
+import com.bkap.vn.manager.role.service.RoleService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,21 +21,31 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("quan-tri")
+@RequestMapping("quan-tri/quan-tri-vien")
 public class AdminController extends BaseController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private RoleService roleService;
 
-    @RequestMapping(value = {"/quan-tri-vien/{page}", "/quan-tri-vien/danh-sach-quan-tri-vien/{page}"}, method = RequestMethod.GET)
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AdminRoleService adminRoleService;
+
+    @RequestMapping(value = {"/{page}", "/danh-sach-quan-tri-vien/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("admin") Admin admin,
                              @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
                              @PathVariable(value = "page") int currentPage,
-                             PaggingResult paggingResult, HttpServletRequest request, HttpServletResponse response) {
+                             PaggingResult paggingResult) {
         if (currentPage <= 1) {
             currentPage = 1;
         }
@@ -48,7 +62,7 @@ public class AdminController extends BaseController {
         return view;
     }
 
-    @RequestMapping(value = "/quan-tri-vien/cap-nhat/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/cap-nhat/{id}", method = RequestMethod.GET)
     public String editView(@PathVariable(value = "id", required = false) int id, @ModelAttribute("admin") Admin admin, Model model, RedirectAttributes attributes, Locale locale) {
         admin = adminService.getById(id);
         if (admin != null) {
@@ -66,33 +80,29 @@ public class AdminController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/quan-tri-vien/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView edit(@RequestParam(value = "re_password",required = false) String rePassword,
-                             @ModelAttribute("admin") @Valid Admin admin,
-                             BindingResult result, RedirectAttributes attributes) {
+    @RequestMapping(value = "/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView edit(@RequestParam(value = "re_password", required = false) String rePassword,
+                             @ModelAttribute("admin") @Valid Admin admin, RedirectAttributes attributes) {
         Admin adminUpdate = adminService.getById(admin.getId());
+        Admin adminLogin = adminService.getByAcount(getPrincipal());
         try {
             if (adminUpdate != null) {
-                if (result.hasErrors() && !validateUpdate(admin)) {
-                    return view("admin-edit", admin, "admin","Cập nhật quản trị viên thất bại!","danger");
+
+                if (StringUtils.isBlank(admin.getPassword())) {
+                    admin.setPassword(adminUpdate.getPassword());
                 } else {
-                    if (StringUtils.isBlank(admin.getPassword())) {
-                        admin.setPassword(adminUpdate.getPassword());
-                    } else {
-                        admin.setPassword(admin.getPassword());
-                    }
-                    admin.setUpdateDate(new Date());
-                    admin.setCreateDate(adminUpdate.getCreateDate());
-                /*admin.setAdminByAdminUpdate(new Admin());
-                admin.setAdminByAdminCreate(adminUpdate.getAdminByAdminCreate());*/
-                    boolean check = adminService.update(admin);
-                    if (check) {
-                        attributes.addFlashAttribute("style", "info");
-                        attributes.addFlashAttribute("msg", "Cập nhật quản trị viên thành công");
-                    } else {
-                        attributes.addFlashAttribute("style", "danger");
-                        attributes.addFlashAttribute("msg", "Cập nhật quản trị viên thất bại!");
-                    }
+                    admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+                }
+                admin.setUpdateDate(new Date());
+                admin.setCreateDate(adminUpdate.getCreateDate());
+                admin.setAdminUpdate(adminLogin.getId());
+                boolean check = adminService.update(admin);
+                if (check) {
+                    attributes.addFlashAttribute("style", "info");
+                    attributes.addFlashAttribute("msg", "Cập nhật quản trị viên thành công");
+                } else {
+                    attributes.addFlashAttribute("style", "danger");
+                    attributes.addFlashAttribute("msg", "Cập nhật quản trị viên thất bại!");
                 }
             } else {
                 return view("redirect:/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/1");
@@ -103,13 +113,13 @@ public class AdminController extends BaseController {
         return view("redirect:/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/1");
     }
 
-    @RequestMapping(value = "/quan-tri-vien/them-moi", method = RequestMethod.GET)
+    @RequestMapping(value = "/them-moi", method = RequestMethod.GET)
     public String addView(Model model) {
         model.addAttribute("admin", new Admin());
         return "admin-add";
     }
 
-    @RequestMapping(value = "/quan-tri-vien/thong-tin", method = RequestMethod.GET)
+    @RequestMapping(value = "/thong-tin", method = RequestMethod.GET)
     public String info(Model model, HttpServletRequest request, @ModelAttribute("admin") Admin admin, HttpServletResponse response, RedirectAttributes attributes, Locale locale) {
         admin = adminService.getById(1);
         if (admin != null) {
@@ -127,51 +137,87 @@ public class AdminController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/quan-tri-vien/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@ModelAttribute("admin") @Valid Admin admin, BindingResult result, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
-        if (admin != null) {
-            if (result.hasErrors() || !validateUpdate(admin)) {
-                return view("admin-add", admin, "admin","Thêm mới quản trị viên thất bại!","danger");
-            } else {
-                if (!StringUtils.isBlank(admin.getPassword())) {
-                    admin.setPassword(admin.getPassword());
-                }
-                admin.setUpdateDate(new Date());
-                admin.setCreateDate(new Date());
-                /*admin.setAdminByAdminUpdate(new Admin());
-                admin.setAdminByAdminCreate(new Admin());*/
-                admin.setActiveStatus((byte) 1);
-                admin.setStatus((byte) 1);
-                int check = adminService.add(admin);
-                if (check > 0) {
-                    attributes.addFlashAttribute("style", "info");
-                    attributes.addFlashAttribute("msg", "Thêm mới quản trị viên thành công");
-                    return view("redirect:/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/1");
+    @RequestMapping(value = "/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView add(@ModelAttribute("admin") @Valid Admin admin, @RequestParam(required = false, defaultValue = "2") String roleadmin, HttpServletRequest request, RedirectAttributes attributes) {
+        try {
+            request.setCharacterEncoding("utf-8");
+
+            Admin checkExits = adminService.getByAcount(admin.getAccount());
+            Admin adminLogin = adminService.getByAcount(getPrincipal());
+            if (admin != null) {
+                if (checkExits == null && validateAdd(admin)) {
+                    admin.setUpdateDate(new Date());
+                    admin.setCreateDate(new Date());
+                    admin.setAdminCreate(adminLogin.getId());
+                    admin.setAdminUpdate(adminLogin.getId());
+                    admin.setActiveStatus((byte) 1);
+                    admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+                    int check = adminService.add(admin);
+                    if (check > 0) {
+                        admin.setId(check);
+                        AdminRole adminRole = new AdminRole();
+                        adminRole.setAdmin(admin);
+                        String[] roleId = roleadmin.split(",");
+                        if (roleId.length > 0) {
+                            for (String idRole : roleId) {
+                                Role role = roleService.getById(Integer.parseInt(idRole));
+                                adminRole.setRole(role);
+                                adminRoleService.add(adminRole);
+                            }
+                        }
+                        attributes.addFlashAttribute("style", "info");
+                        attributes.addFlashAttribute("msg", "Thêm mới quản trị viên thành công");
+                        return view("redirect:/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/1");
+                    } else {
+                        attributes.addFlashAttribute("style", "danger");
+                        attributes.addFlashAttribute("msg", "Thêm mới quản trị viên thất bại");
+                        return view("redirect:/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/1");
+                    }
                 } else {
                     attributes.addFlashAttribute("style", "danger");
                     attributes.addFlashAttribute("msg", "Thêm mới quản trị viên thất bại");
                     return view("redirect:/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/1");
                 }
+            } else {
+                attributes.addFlashAttribute("style", "danger");
+                attributes.addFlashAttribute("msg", "Thêm mới quản trị viên thất bại!");
             }
-        } else {
-            return view("redirect:/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/1");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
+        return view("redirect:/quan-tri/quan-tri-vien/danh-sach-quan-tri-vien/1");
     }
 
-    @RequestMapping(value = "/quan-tri-vien/xoa/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/xoa/{id}", method = RequestMethod.GET)
     public ModelAndView remove(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         if (id > 0) {
-            Admin admin = adminService.getById(id);
-            if (admin != null) {
-                boolean check = adminService.delete(admin);
-                if (check) {
-                    redirectAttributes.addFlashAttribute("style", "info");
-                    redirectAttributes.addFlashAttribute("msg", "Xóa quản trị viên thành công.");
+            try {
+                Admin admin = adminService.getById(id);
+                Admin adminLogin = adminService.getByAcount(getPrincipal());
+                if (admin != null && adminLogin.getId() != admin.getId()) {
+                    List<AdminRole> adminRoleList = adminRoleService.getByAdminId(admin);
+                    for (AdminRole adminRole : adminRoleList) {
+                        adminRoleService.delete(adminRole);
+                    }
+                    boolean check = adminService.delete(admin);
+                    if (check) {
+                        redirectAttributes.addFlashAttribute("style", "info");
+                        redirectAttributes.addFlashAttribute("msg", "Xóa quản trị viên thành công.");
+                    }
+                } else {
+                    if (adminLogin.getId() == admin.getId()) {
+                        redirectAttributes.addFlashAttribute("style", "danger");
+                        redirectAttributes.addFlashAttribute("msg", "Xóa thất bại! không thể xóa tài khoản của chính mình!");
+                    } else {
+                        redirectAttributes.addFlashAttribute("style", "danger");
+                        redirectAttributes.addFlashAttribute("msg", "Xóa quản trị viên thất bại, quản trị viên không tồn tại!");
+                    }
                 }
-            } else {
+            } catch (Exception e) {
                 redirectAttributes.addFlashAttribute("style", "danger");
-                redirectAttributes.addFlashAttribute("msg", "Xóa quản trị viên thất bại, quản trị viên không tồn tại!");
+                redirectAttributes.addFlashAttribute("msg", "Xóa quản trị viên thất bại!");
+                e.printStackTrace();
             }
         } else {
             redirectAttributes.addFlashAttribute("style", "danger");
@@ -211,10 +257,10 @@ public class AdminController extends BaseController {
                 if (admin.getEmail().trim().length() > 200) {
                     check = false;
                 }
-                if(!BaseController.checkPattern(PatternUtil.EMAIL,admin.getEmail())){
+                if (!BaseController.checkPattern(PatternUtil.EMAIL, admin.getEmail())) {
                     check = false;
                 }
-            }else{
+            } else {
                 check = false;
             }
             if (!StringUtils.isBlank(admin.getAddress())) {
@@ -256,10 +302,10 @@ public class AdminController extends BaseController {
                 if (admin.getEmail().trim().length() > 200) {
                     check = false;
                 }
-                if(!BaseController.checkPattern(PatternUtil.EMAIL,admin.getEmail())){
+                if (!BaseController.checkPattern(PatternUtil.EMAIL, admin.getEmail())) {
                     check = false;
                 }
-            }else{
+            } else {
                 check = false;
             }
             if (!StringUtils.isBlank(admin.getAddress())) {

@@ -12,13 +12,14 @@ public interface RoleService {
 
     public int add(Role role);
 
+
     public Role getById(int id);
 
     public int countAll(String filter);
 
     public int countAllByKeySearch(String filter);
 
-    public List<Role> listRole();
+    public List<Role> getAll();
 
     public PaggingResult findRange(int firstRow, int lastRow, String filter);
 

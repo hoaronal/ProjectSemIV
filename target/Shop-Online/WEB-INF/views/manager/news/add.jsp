@@ -11,7 +11,7 @@
                 <form:form id="myform" action="${addNewsAction}" method="post" modelAttribute="news"
                            cssClass="form-horizontal">
                     <div class="card-header card-header-text" data-background-color="rose">
-                        <h4 class="card-title"><spring:message code="label.addProvince"/></h4>
+                        <h4 class="card-title"><spring:message code="label.addNews"/></h4>
                     </div>
                     <div class="card-content">
                         <div class="row">
@@ -25,8 +25,7 @@
                                         <form:input path="title" id="roleName"
                                                     cssClass="form-control ${not empty msgprovinceName?'errors':''}"/>
                                     </div>
-                                    <span class="material-input" style="color: red"> <form:errors path="title"
-                                                                                                  cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
@@ -37,9 +36,7 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:textarea path="description" id="edit" cssClass="form-control"/>
-                                    <span class="material-input" style="color: red">
-                                        <form:errors path="description" cssClass="error"/>
-                                    </span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>

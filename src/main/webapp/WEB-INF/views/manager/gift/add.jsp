@@ -19,14 +19,12 @@
                             <label class="col-sm-2 label-on-left"><spring:message code="label.Giftname"/><span
                                     style="color: red">*</span></label>
                             <div class="col-sm-10">
-                                <c:set var="msgname"><form:errors path="name"/></c:set>
                                 <div class="form-group label-floating is-empty ">
                                     <label class="control-label"></label>
                                     <div class="test" id="roleNameBorder">
-                                        <form:input path="name" id="name" cssClass="form-control ${not empty msgname?'errors':''}"/>
+                                        <form:input path="name" id="name" cssClass="form-control "/>
                                     </div>
-                                    <span class="material-input" style="color: red"> <form:errors path="name"
-                                                                                                  cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
@@ -34,11 +32,10 @@
 
                             <label class="col-sm-2 label-on-left"><spring:message code="label.description"/></label>
                             <div class="col-sm-4">
-                                <div class="form-group label-floating is-empty ${not empty msgPassword?'errors':''}">
+                                <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="description" cssClass="form-control"/>
-                                    <span class="material-input" style="color: red"> <form:errors path="description"
-                                                                                                  cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>

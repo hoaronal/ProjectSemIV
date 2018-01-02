@@ -22,10 +22,9 @@
                                 <div class="form-group label-floating is-empty ">
                                     <label class="control-label"></label>
                                     <div class="test" id="roleNameBorder">
-                                        <form:input path="provinceName" id="roleName" cssClass="form-control ${not empty msgprovinceName?'errors':''}"/>
+                                        <form:input path="provinceName" id="roleName" cssClass="form-control"/>
                                     </div>
-                                    <span class="material-input" style="color: red"> <form:errors path="provinceName"
-                                                                                                  cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
@@ -36,8 +35,7 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="code" cssClass="form-control"/>
-                                    <span class="material-input" style="color: red"> <form:errors path="code"
-                                                                                                  cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"> </span>
                                 </div>
                             </div>
                         </div>
@@ -48,8 +46,7 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="description" cssClass="form-control"/>
-                                    <span class="material-input" style="color: red"> <form:errors path="description"
-                                                                                                  cssClass="error"/></span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>

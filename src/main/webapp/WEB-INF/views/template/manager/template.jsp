@@ -1,6 +1,7 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" class="perfect-scrollbar-on">
@@ -17,8 +18,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/font-awesome/css/font-awesome.min.css" />"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css" />" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/web/css/bootstrap-datetimepicker.min.css" />"
-          rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="/resources/editor/css/froala_editor.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/editor/css/froala_style.css" />">
@@ -29,6 +29,18 @@
     <link rel="stylesheet" href="<c:url value="/resources/editor/css/plugins/video.css" />">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
 
+    <script>
+        $( function() {
+            $( "#dialog-message" ).dialog({
+                modal: true,
+                buttons: {
+                    Ok: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        } );
+    </script>
     <script type="text/javascript">
         function checkNullOrEmpty(value) {
             return (!value || value == undefined || value == "" || value.length == 0);
@@ -181,22 +193,6 @@
             }
         });
     }
-
-    /*function readURL(input) {
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#imgInp").change(function() {
-        readURL(this);
-    });*/
 </script>
 </body>
 </html>

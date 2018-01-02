@@ -14,6 +14,8 @@ public interface AdminService {
 
     public Admin getById(int id);
 
+    public Admin getByAcount(String account);
+
     public int countAll(String filter);
 
     public int countAllByKeySearch(String filter);

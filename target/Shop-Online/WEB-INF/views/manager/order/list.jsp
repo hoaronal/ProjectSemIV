@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:url value="/quan-tri/don-hang/xoa" var="deleteOrderAction"/>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <spring:url value="/quan-tri/don-hang/cap-nhat" var="editOrderAction"/>
 <div class="container-fluid">
     <div class="row">
@@ -54,12 +55,15 @@
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
                                                 colspan="1" aria-sort="ascending"
-                                                aria-label="Name: activate to sort column descending"><spring:message
-                                                    code="label.account"/>
+                                                aria-label="Name: activate to sort column descending">Số lượng sản phẩm
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending">
-                                                <spring:message code="label.email"/>
+                                                Số tiền
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending">
+                                                Trạng thái giao hàng
                                             </th>
                                             <th class="disabled-sorting text-right sorting" tabindex="0"
                                                 aria-controls="datatables" rowspan="1" colspan="1"
@@ -74,18 +78,25 @@
                                                 <td tabindex="0" class="sorting_1"><c:out value="${item.id}"/></td>
                                                 <td class="Ordername" id="Ordername<c:out value="${item.id}"/>"><c:out
                                                         value="${item.qty}"/></td>
-                                                <td><c:out value="${item.amount}"/></td>
-                                                <td><c:out value="${item.data}"/></td>
+                                                <td><fmt:formatNumber value = "${item.amount}" type = "currency"/></td>
+                                                <td>
+                                                    <c:if test="${item.status == 1}">
+                                                        Đã giao hàng
+                                                    </c:if>
+                                                    <c:if test="${item.status == 0}">
+                                                       Chưa giao hàng
+                                                    </c:if>
+                                                </td>
 
                                                 <td class="text-right">
                                                     <a href="" class="btn btn-simple btn-info btn-icon like"><i
                                                             class="material-icons">favorite</i></a>
-                                                    <a href="${editOrderAction}/${item.id}"
+                                                    <%--<a href="${editOrderAction}/${item.id}"
                                                        class="btn btn-simple btn-warning btn-icon edit"><i
                                                             class="material-icons">edit</i></a>
                                                     <a class="btn btn-simple btn-danger btn-icon remove"
                                                        data-toggle="modal" data-target="#smallAlertModal${item.id}"><i
-                                                            class="material-icons">close</i></a>
+                                                            class="material-icons">close</i></a>--%>
                                                 </td>
                                             </tr>
                                             <div class="modal fade" style="margin-top: 50px"
@@ -100,11 +111,11 @@
                                                                     aria-hidden="true">&times;</span></button>
                                                             <h4 class="modal-title" id="myModalLabel" s><i
                                                                     class="material-icons"
-                                                                    style="color: orange">warning</i> Xóa người dùng!
+                                                                    style="color: orange">warning</i> Xóa đơn hàng!
                                                             </h4>
                                                         </div>
                                                         <div class="modal-body text-center">
-                                                            <h5>Bạn có muốn xóa người dùng có mã là ${item.id}? </h5>
+                                                            <h5>Bạn có muốn xóa đơn hàng có mã là ${item.id}? </h5>
                                                         </div>
                                                         <div class="modal-footer text-center">
                                                             <a class="btn btn-default" data-dismiss="modal"

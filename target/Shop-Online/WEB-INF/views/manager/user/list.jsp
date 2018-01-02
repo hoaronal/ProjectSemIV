@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <spring:url value="/quan-tri/nguoi-dung/xoa" var="deleteUserAction"/>
 <spring:url value="/quan-tri/nguoi-dung/cap-nhat" var="editUserAction"/>
 <div class="container-fluid">
@@ -13,15 +14,10 @@
                 </div>
                 <div class="card-content">
                     <h4 class="card-title"><spring:message code="label.listUser"/></h4>
-                    <a style="float: right" href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/them-moi"
-                       class="btn btn-primary"><spring:message code="label.addbtn"/></a>
-                    <div class="toolbar">
-                        <%--<c:if test="${msg != null}">
-                            <div class="alert alert-${style}" id="success-${style}" style="text-align: center">
-                                <b>${msg}</b>
-                            </div>
-                        </c:if>--%>
-                    </div>
+                    <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
+                        <a style="float: right" href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/them-moi"
+                           class="btn btn-primary"><spring:message code="label.addbtn"/></a>
+                    </sec:authorize>
                     <div class="material-datatables">
                         <div id="datatables_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                             <div class="row">
@@ -78,8 +74,9 @@
                                             </th>
                                             <th class="disabled-sorting text-right sorting" tabindex="0"
                                                 aria-controls="datatables" rowspan="1" colspan="1"
-                                                aria-label="Actions: activate to sort column ascending"><spring:message
-                                                    code="label.action"/>
+                                                aria-label="Actions: activate to sort column ascending">
+                                                <spring:message
+                                                        code="label.action"/>
                                             </th>
                                         </tr>
                                         </thead>
@@ -94,14 +91,16 @@
                                                 <td><c:out value="${item.birthday}"/></td>
                                                 <td><c:out value="${item.address}"/></td>
                                                 <td class="text-right">
-                                                    <a href="" class="btn btn-simple btn-info btn-icon like"><i
-                                                            class="material-icons">favorite</i></a>
-                                                    <a href="${editUserAction}/${item.id}"
-                                                       class="btn btn-simple btn-warning btn-icon edit"><i
-                                                            class="material-icons">edit</i></a>
-                                                    <a class="btn btn-simple btn-danger btn-icon remove"
-                                                       data-toggle="modal" data-target="#smallAlertModal${item.id}"><i
-                                                            class="material-icons">close</i></a>
+                                                    <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
+                                                        <a href="${editUserAction}/${item.id}"
+                                                           class="btn btn-simple btn-warning btn-icon edit"><i
+                                                                class="material-icons">edit</i></a>
+                                                    </sec:authorize>
+                                                    <sec:authorize access="hasRole('MANAGER')">
+                                                        <a class="btn btn-simple btn-danger btn-icon remove"
+                                                           data-toggle="modal" data-target="#smallAlertModal${item.id}"><i
+                                                                class="material-icons">close</i></a>
+                                                    </sec:authorize>
                                                 </td>
                                             </tr>
                                             <div class="modal fade" style="margin-top: 50px"
@@ -140,7 +139,8 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="dataTables_info" id="datatables_info" role="status" aria-live="polite">
-                                        Hiển thị <span style="color: red">${(listItem.currentPage-1)*10}</span> đến <span style="color: red">${(listItem.currentPage-1)*10 + listItem.numRecordInPage}</span>
+                                        Hiển thị <span style="color: red">${(listItem.currentPage-1)*10}</span> đến
+                                        <span style="color: red">${(listItem.currentPage-1)*10 + listItem.numRecordInPage}</span>
                                         của <span style="color: red">${listItem.totalRecord}</span> bản ghi
                                     </div>
                                 </div>
@@ -152,7 +152,8 @@
                                                     đầu</a>
                                             </li>
                                             <li class="paginate_button previous" id="datatables_previous">
-                                                <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/danh-sach-nguoi-dung/<c:out value="${page - 1}"/>?keySearch=<c:out value="${keySearch}"/>">Quay lại</a>
+                                                <a href="<%=request.getContextPath()%>/quan-tri/nguoi-dung/danh-sach-nguoi-dung/<c:out value="${page - 1}"/>?keySearch=<c:out value="${keySearch}"/>">Quay
+                                                    lại</a>
                                             </li>
                                             <c:forEach var="page" items="${listItem.pages}">
                                                 <li class="paginate_button ${listItem.currentPage == page?"active":""}">
@@ -186,7 +187,7 @@
     <!-- end row -->
 </div>
 <script type="text/javascript">
-    window.onload = function() {
+    window.onload = function () {
         document.getElementById("componentsExamples").classList.add('in');
         document.getElementById("listUserClass").classList.add('active');
     };

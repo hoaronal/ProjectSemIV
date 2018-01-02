@@ -24,18 +24,8 @@ public class Role implements java.io.Serializable {
 
 
     private int id;
-    private Admin adminByAdminCreate;
-    private Admin adminByAdminUpdate;
-    @NotNull(message = "Tên quyền không được để trống!")
-    @NotBlank(message = "Tên quyền không được để trống!")
-    @Size(max = 100, message = "Tên quyền không được dài quá 100 kí tự!")
     private String roleName;
-    @Size(max = 500, message = "Nội dung không được dài quá 500 kí tự!")
-    private String description;
-    private Date createDate;
-    private Date updateDate;
-    private Set<RoleByGroupRole> roleByGroupRoles = new HashSet<RoleByGroupRole>(0);
-
+    private String type;
     public Role() {
     }
 
@@ -45,15 +35,10 @@ public class Role implements java.io.Serializable {
         this.roleName = roleName;
     }
 
-    public Role(int id, Admin adminByAdminCreate, Admin adminByAdminUpdate, String roleName, String description, Date createDate, Date updateDate, Set<RoleByGroupRole> roleByGroupRoles) {
+    public Role(int id, String roleName,String type) {
         this.id = id;
-        this.adminByAdminCreate = adminByAdminCreate;
-        this.adminByAdminUpdate = adminByAdminUpdate;
         this.roleName = roleName;
-        this.description = description;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
-        this.roleByGroupRoles = roleByGroupRoles;
+        this.type = type;
     }
 
     @Id
@@ -67,27 +52,6 @@ public class Role implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "admin_create")
-    public Admin getAdminByAdminCreate() {
-        return this.adminByAdminCreate;
-    }
-
-    public void setAdminByAdminCreate(Admin adminByAdminCreate) {
-        this.adminByAdminCreate = adminByAdminCreate;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "admin_update")
-    public Admin getAdminByAdminUpdate() {
-        return this.adminByAdminUpdate;
-    }
-
-    public void setAdminByAdminUpdate(Admin adminByAdminUpdate) {
-        this.adminByAdminUpdate = adminByAdminUpdate;
-    }
-
-
     @Column(name = "role_name", nullable = false)
     public String getRoleName() {
         return this.roleName;
@@ -97,46 +61,14 @@ public class Role implements java.io.Serializable {
         this.roleName = roleName;
     }
 
-
-    @Column(name = "description")
-    public String getDescription() {
-        return this.description;
+    @Column(name = "type", length = 23)
+    public String getType() {
+        return type;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setType(String type) {
+        this.type = type;
     }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "create_date", length = 23)
-    public Date getCreateDate() {
-        return this.createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "update_date", length = 23)
-    public Date getUpdateDate() {
-        return this.updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-    public Set<RoleByGroupRole> getRoleByGroupRoles() {
-        return this.roleByGroupRoles;
-    }
-
-    public void setRoleByGroupRoles(Set<RoleByGroupRole> roleByGroupRoles) {
-        this.roleByGroupRoles = roleByGroupRoles;
-    }
-
-
 }
 
 

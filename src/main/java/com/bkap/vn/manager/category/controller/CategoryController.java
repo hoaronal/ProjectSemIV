@@ -1,8 +1,10 @@
 package com.bkap.vn.manager.category.controller;
 
+import com.bkap.vn.common.entity.Admin;
 import com.bkap.vn.common.entity.Category;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
+import com.bkap.vn.manager.admin.service.AdminService;
 import com.bkap.vn.manager.category.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,17 +22,17 @@ import java.util.List;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("quan-tri")
+@RequestMapping("quan-tri/danh-muc")
 public class CategoryController extends BaseController {
 
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping(value = {"/danh-muc/{page}", "/danh-muc/danh-sach-danh-muc/{page}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/{page}", "/danh-sach-danh-muc/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("category") Category category,
                              @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
                              @PathVariable(value = "page") int currentPage,
-                             PaggingResult paggingResult, HttpServletRequest request, HttpServletResponse response) {
+                             PaggingResult paggingResult) {
         if (currentPage <= 1) {
             currentPage = 1;
         }
@@ -47,7 +49,7 @@ public class CategoryController extends BaseController {
         return view;
     }
 
-    @RequestMapping(value = "/danh-muc/cap-nhat/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/cap-nhat/{id}", method = RequestMethod.GET)
     public String editView(@PathVariable(value = "id", required = false) int id, @ModelAttribute("category") Category category, Model model, RedirectAttributes attributes, Locale locale) {
         category = categoryService.getById(id);
         if (category != null) {
@@ -67,20 +69,16 @@ public class CategoryController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/danh-muc/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView edit(@RequestParam(value = "re_password",required = false) String rePassword,
                              @ModelAttribute("category") @Valid Category category,
-                             BindingResult result, RedirectAttributes attributes) {
+                            RedirectAttributes attributes) {
         Category categoryUpdate = categoryService.getById(category.getId());
         try {
             if (categoryUpdate != null) {
-                if (result.hasErrors() && !validateUpdate(category)) {
-                    return view("category-edit", category, "category","Cập nhật danh mục thất bại!","danger");
-                } else {
+
                     category.setUpdateDate(new Date());
                     category.setCreateDate(categoryUpdate.getCreateDate());
-                /*Category.setCategoryByCategoryUpdate(new Category());
-                Category.setCategoryByCategoryCreate(CategoryUpdate.getCategoryByCategoryCreate());*/
                     boolean check = categoryService.update(category);
                     if (check) {
                         attributes.addFlashAttribute("style", "info");
@@ -89,7 +87,6 @@ public class CategoryController extends BaseController {
                         attributes.addFlashAttribute("style", "danger");
                         attributes.addFlashAttribute("msg", "Cập nhật danh mục thất bại!");
                     }
-                }
             } else {
                 return view("redirect:/quan-tri/danh-muc/danh-sach-danh-muc/1");
             }
@@ -99,7 +96,7 @@ public class CategoryController extends BaseController {
         return view("redirect:/quan-tri/danh-muc/danh-sach-danh-muc/1");
     }
 
-    @RequestMapping(value = "/danh-muc/them-moi", method = RequestMethod.GET)
+    @RequestMapping(value = "/them-moi", method = RequestMethod.GET)
     public String addView(Model model) {
         List<Category> listCategory = categoryService.listCategory();
         model.addAttribute("category", new Category());
@@ -107,16 +104,11 @@ public class CategoryController extends BaseController {
         return "category-add";
     }
 
-    @RequestMapping(value = "/danh-muc/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@ModelAttribute("category") @Valid Category category, BindingResult result, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
+    @RequestMapping(value = "/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView add(@ModelAttribute("category") @Valid Category category, RedirectAttributes attributes) {
         if (category != null) {
-            if (result.hasErrors() || !validateUpdate(category)) {
-                return view("category-add", category, "category","Thêm mới danh mục thất bại!","danger");
-            } else {
                 category.setUpdateDate(new Date());
                 category.setCreateDate(new Date());
-                /*Category.setCategoryByCategoryUpdate(new Category());
-                Category.setCategoryByCategoryCreate(new Category());*/
                 int check = categoryService.add(category);
                 if (check > 0) {
                     attributes.addFlashAttribute("style", "info");
@@ -127,13 +119,12 @@ public class CategoryController extends BaseController {
                     attributes.addFlashAttribute("msg", "Thêm mới danh mục thất bại");
                     return view("redirect:/quan-tri/danh-muc/danh-sach-danh-muc/1");
                 }
-            }
         } else {
             return view("redirect:/quan-tri/danh-muc/danh-sach-danh-muc/1");
         }
     }
 
-    @RequestMapping(value = "/danh-muc/xoa/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/xoa/{id}", method = RequestMethod.GET)
     public ModelAndView remove(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         if (id > 0) {
@@ -159,44 +150,7 @@ public class CategoryController extends BaseController {
     public boolean validateAdd(Category category) {
         boolean check = true;
         if (category != null) {
-            /*if (StringUtils.isBlank(Category.getAccount())) {
-                check = false;
-            } else if (Category.getAccount().trim().length() <= 5) {
-                check = false;
-            } else if (Category.getAccount().trim().length() >= 20) {
-                check = false;
-            }
-            if (!StringUtils.isBlank(Category.getPassword())) {
-                if (Category.getPassword().trim().length() < 8) {
-                    check = false;
-                } else if (Category.getPassword().trim().length() > 20) {
-                    check = false;
-                }
-            } else {
-                check = false;
-            }
-            if (!StringUtils.isBlank(Category.getPhone())) {
-                if (Category.getPhone().trim().length() < 10) {
-                    check = false;
-                } else if (Category.getPassword().trim().length() > 20) {
-                    check = false;
-                }
-            }
-            if (!StringUtils.isBlank(Category.getEmail())) {
-                if (Category.getEmail().trim().length() > 200) {
-                    check = false;
-                }
-                if(!BaseController.checkPattern(PatternUtil.EMAIL,Category.getEmail())){
-                    check = false;
-                }
-            }else{
-                check = false;
-            }
-            if (!StringUtils.isBlank(Category.getAddress())) {
-                if (Category.getAddress().trim().length() > 500) {
-                    check = false;
-                }
-            }*/
+
         } else {
             check = false;
         }
@@ -206,42 +160,7 @@ public class CategoryController extends BaseController {
     public boolean validateUpdate(Category category) {
         boolean check = true;
         if (category != null) {
-            /*if (StringUtils.isBlank(Category.getAccount())) {
-                check = false;
-            } else if (Category.getAccount().trim().length() < 5) {
-                check = false;
-            } else if (Category.getAccount().trim().length() >= 20) {
-                check = false;
-            }
-            if (!StringUtils.isBlank(Category.getPassword())) {
-                if (Category.getPassword().trim().length() < 8) {
-                    check = false;
-                } else if (Category.getPassword().trim().length() > 20) {
-                    check = false;
-                }
-            }
-            if (!StringUtils.isBlank(Category.getPhone())) {
-                if (Category.getPhone().trim().length() < 10) {
-                    check = false;
-                } else if (Category.getPassword().trim().length() > 20) {
-                    check = false;
-                }
-            }
-            if (!StringUtils.isBlank(Category.getEmail())) {
-                if (Category.getEmail().trim().length() > 200) {
-                    check = false;
-                }
-                if(!BaseController.checkPattern(PatternUtil.EMAIL,Category.getEmail())){
-                    check = false;
-                }
-            }else{
-                check = false;
-            }
-            if (!StringUtils.isBlank(Category.getAddress())) {
-                if (Category.getAddress().trim().length() > 500) {
-                    check = false;
-                }
-            }*/
+
         } else {
             check = false;
         }

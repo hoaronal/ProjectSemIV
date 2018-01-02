@@ -22,8 +22,7 @@
                                     <div class="form-group label-floating is-empty">
                                         <label class="control-label"></label>
                                         <form:input path="name_category" cssClass="form-control"/>
-                                        <span class="material-input" style="color: red"> <form:errors path="name_category"
-                                                                                                      cssClass="error"/></span>
+                                        <span class="material-input" style="color: red"> </span>
                                     </div>
                                 </div>
                             </div>
@@ -49,8 +48,7 @@
                                     <div class="form-group label-floating is-empty">
                                         <label class="control-label"></label>
                                         <form:textarea path="description" cssClass="form-control"/>
-                                        <span class="material-input" style="color: red"><form:errors path="description"
-                                                                                                     cssClass="error"/></span>
+                                        <span class="material-input" style="color: red"></span>
                                     </div>
                                 </div>
                             </div>

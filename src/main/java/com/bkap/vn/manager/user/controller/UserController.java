@@ -22,17 +22,17 @@ import java.util.Date;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("quan-tri")
+@RequestMapping("quan-tri/nguoi-dung")
 public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = {"/nguoi-dung/{page}", "/nguoi-dung/danh-sach-nguoi-dung/{page}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/{page}", "/danh-sach-nguoi-dung/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("user") Users user,
                              @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
                              @PathVariable(value = "page") int currentPage,
-                             PaggingResult paggingResult, HttpServletRequest request, HttpServletResponse response) {
+                             PaggingResult paggingResult) {
         if (currentPage <= 1) {
             currentPage = 1;
         }
@@ -49,8 +49,8 @@ public class UserController extends BaseController {
         return view;
     }
 
-    @RequestMapping(value = "/nguoi-dung/cap-nhat/{id}", method = RequestMethod.GET)
-    public String editView(@PathVariable(value = "id",required = false) int id, @ModelAttribute("user") Users user, Model model, RedirectAttributes attributes, Locale locale) {
+    @RequestMapping(value = "/cap-nhat/{id}", method = RequestMethod.GET)
+    public String editView(@PathVariable(value = "id", required = false) int id, @ModelAttribute("user") Users user, Model model, RedirectAttributes attributes, Locale locale) {
         user = userService.getById(id);
         if (user != null) {
             model.addAttribute("user", user);
@@ -67,32 +67,20 @@ public class UserController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/nguoi-dung/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView edit(@ModelAttribute("user") @Valid Users user, BindingResult result, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
+    @RequestMapping(value = "/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView edit(@ModelAttribute("user") @Valid Users user, RedirectAttributes attributes) {
         Users userUpdate = userService.getById(user.getId());
         try {
-            if (userUpdate != null) {
-                if (result.hasErrors() && !validateUpdate(user)) {
-                    return view("user-edit", user, "user","Cập nhật người dùng thất bại!","danger");
+            if (userUpdate != null && validateUpdate(user)) {
+                user.setUpdateDate(new Date());
+                user.setCreateDate(userUpdate.getCreateDate());
+                boolean check = userService.update(user);
+                if (check) {
+                    attributes.addFlashAttribute("style", "info");
+                    attributes.addFlashAttribute("msg", "Cập nhật người dùng thành công");
                 } else {
-                    if (StringUtils.isBlank(user.getPassword())) {
-                        user.setPassword(userUpdate.getPassword());
-                    } else {
-                        user.setPassword(user.getPassword());
-                    }
-
-                    user.setUpdateDate(new Date());
-                    user.setCreateDate(userUpdate.getCreateDate());
-                /*user.setAdminByAdminUpdate(new Admin());
-                user.setAdminByAdminCreate(userUpdate.getAdminByAdminCreate());*/
-                    boolean check = userService.update(user);
-                    if (check) {
-                        attributes.addFlashAttribute("style", "info");
-                        attributes.addFlashAttribute("msg", "Cập nhật người dùng thành công");
-                    } else {
-                        attributes.addFlashAttribute("style", "danger");
-                        attributes.addFlashAttribute("msg", "Cập nhật người dùng thất bại!");
-                    }
+                    attributes.addFlashAttribute("style", "danger");
+                    attributes.addFlashAttribute("msg", "Cập nhật người dùng thất bại!");
                 }
             } else {
                 return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
@@ -103,25 +91,20 @@ public class UserController extends BaseController {
         return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
     }
 
-    @RequestMapping(value = "/nguoi-dung/them-moi", method = RequestMethod.GET)
+    @RequestMapping(value = "/them-moi", method = RequestMethod.GET)
     public String addView(Model model) {
         model.addAttribute("user", new Users());
         return "user-add";
     }
 
-    @RequestMapping(value = "/nguoi-dung/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@ModelAttribute("user") @Valid Users user, BindingResult result, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
-        if (user != null) {
-            if (result.hasErrors() || !validateAdd(user)) {
-                return view("user-add", user, "user","Thêm mới người dùng thất bại!","danger");
-            } else {
+    @RequestMapping(value = "/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView add(@ModelAttribute("user") @Valid Users user, RedirectAttributes attributes) {
+        if (user != null && validateAdd(user)) {
                 if (!StringUtils.isBlank(user.getPassword())) {
                     user.setPassword(user.getPassword());
                 }
                 user.setUpdateDate(new Date());
                 user.setCreateDate(new Date());
-                /*user.setAdminByAdminUpdate(new Admin());
-                user.setAdminByAdminCreate(new Admin());*/
                 user.setActiveStatus((byte) 1);
                 user.setStatus((byte) 1);
                 int check = userService.add(user);
@@ -134,13 +117,12 @@ public class UserController extends BaseController {
                     attributes.addFlashAttribute("msg", "Thêm mới người dùng thất bại");
                     return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
                 }
-            }
         } else {
             return view("redirect:/quan-tri/nguoi-dung/danh-sach-nguoi-dung/1");
         }
     }
 
-    @RequestMapping(value = "/nguoi-dung/xoa/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/xoa/{id}", method = RequestMethod.GET)
     public ModelAndView remove(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         if (id > 0) {
@@ -193,10 +175,10 @@ public class UserController extends BaseController {
                 if (user.getEmail().trim().length() > 200) {
                     check = false;
                 }
-                if(!BaseController.checkPattern(PatternUtil.EMAIL,user.getEmail())){
+                if (!BaseController.checkPattern(PatternUtil.EMAIL, user.getEmail())) {
                     check = false;
                 }
-            }else{
+            } else {
                 check = false;
             }
             if (!StringUtils.isBlank(user.getAddress())) {
@@ -238,10 +220,10 @@ public class UserController extends BaseController {
                 if (user.getEmail().trim().length() > 200) {
                     check = false;
                 }
-                if(!BaseController.checkPattern(PatternUtil.EMAIL,user.getEmail())){
+                if (!BaseController.checkPattern(PatternUtil.EMAIL, user.getEmail())) {
                     check = false;
                 }
-            }else{
+            } else {
                 check = false;
             }
             if (!StringUtils.isBlank(user.getAddress())) {

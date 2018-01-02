@@ -26,11 +26,11 @@ public class RoleController extends BaseController {
     @Autowired
     private RoleService roleService;
 
-    @RequestMapping(value = {"/quyen/{page}", "/quyen/danh-sach-quyen/{page}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/quyen/{page}", "/danh-sach-quyen/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("role") Role role,
                              @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
                              @PathVariable(value = "page") int currentPage,
-                             PaggingResult paggingResult, HttpServletRequest request, HttpServletResponse response) {
+                             PaggingResult paggingResult) {
         if (currentPage <= 1) {
             currentPage = 1;
         }
@@ -67,26 +67,17 @@ public class RoleController extends BaseController {
     }
 
     @RequestMapping(value = "/quyen/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView edit(@ModelAttribute("Role") @Valid Role role,
-                             BindingResult result, RedirectAttributes attributes) {
+    public ModelAndView edit(@ModelAttribute("Role") @Valid Role role, RedirectAttributes attributes) {
         Role RoleUpdate = roleService.getById(role.getId());
         try {
             if (RoleUpdate != null) {
-                if (result.hasErrors()) {
-                    return view("role-edit", role, "role", "Cập nhật quyền thất bại!", "danger");
+                boolean check = roleService.update(role);
+                if (check) {
+                    attributes.addFlashAttribute("style", "info");
+                    attributes.addFlashAttribute("msg", "Cập nhật quyền thành công");
                 } else {
-                    role.setUpdateDate(new Date());
-                    role.setCreateDate(RoleUpdate.getCreateDate());
-                /*role.setAdminByAdminUpdate(new Admin());
-                role.setAdminByAdminCreate(userUpdate.getAdminByAdminCreate());*/
-                    boolean check = roleService.update(role);
-                    if (check) {
-                        attributes.addFlashAttribute("style", "info");
-                        attributes.addFlashAttribute("msg", "Cập nhật quyền thành công");
-                    } else {
-                        attributes.addFlashAttribute("style", "danger");
-                        attributes.addFlashAttribute("msg", "Cập nhật quyền thất bại!");
-                    }
+                    attributes.addFlashAttribute("style", "danger");
+                    attributes.addFlashAttribute("msg", "Cập nhật quyền thất bại!");
                 }
             } else {
                 return view("redirect:/quan-tri/quyen/danh-sach-quyen/1");
@@ -104,27 +95,17 @@ public class RoleController extends BaseController {
     }
 
     @RequestMapping(value = "/quyen/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@ModelAttribute(value = "role") @Valid Role role,
-                            BindingResult result, HttpServletRequest request,
-                            HttpServletResponse response, RedirectAttributes attributes) {
+    public ModelAndView add(@ModelAttribute(value = "role") @Valid Role role, RedirectAttributes attributes) {
         if (role != null) {
-            if (result.hasErrors()) {
-                return view("role-add", role, "Role", "Thêm mới quyền thất bại!", "danger");
+            int check = roleService.add(role);
+            if (check > 0) {
+                attributes.addFlashAttribute("style", "info");
+                attributes.addFlashAttribute("msg", "Thêm mới quyền thành công");
+                return view("redirect:/quan-tri/quyen/1");
             } else {
-                role.setUpdateDate(new Date());
-                role.setCreateDate(new Date());
-                /*user.setAdminByAdminUpdate(new Admin());
-                user.setAdminByAdminCreate(new Admin());*/
-                int check = roleService.add(role);
-                if (check > 0) {
-                    attributes.addFlashAttribute("style", "info");
-                    attributes.addFlashAttribute("msg", "Thêm mới quyền thành công");
-                    return view("redirect:/quan-tri/quyen/1");
-                } else {
-                    attributes.addFlashAttribute("style", "danger");
-                    attributes.addFlashAttribute("msg", "Thêm mới quyền thất bại");
-                    return view("redirect:/quan-tri/quyen/1");
-                }
+                attributes.addFlashAttribute("style", "danger");
+                attributes.addFlashAttribute("msg", "Thêm mới quyền thất bại");
+                return view("redirect:/quan-tri/quyen/1");
             }
         } else {
             return view("redirect:/quan-tri/quyen/1");
@@ -153,6 +134,4 @@ public class RoleController extends BaseController {
         view.setViewName("redirect:/quan-tri/quyen/1");
         return view;
     }
-
-
 }

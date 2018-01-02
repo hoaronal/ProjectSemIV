@@ -10,10 +10,8 @@
         <mapping class="com.bkap.vn.common.entity.News"/>
         <mapping class="com.bkap.vn.common.entity.Admin"/>
         <mapping class="com.bkap.vn.common.entity.Guarantee"/>
-        <mapping class="com.bkap.vn.common.entity.GroupRole"/>
         <mapping class="com.bkap.vn.common.entity.Role"/>
         <mapping class="com.bkap.vn.common.entity.Province"/>
-        <mapping class="com.bkap.vn.common.entity.RoleByGroupRole"/>
         <mapping class="com.bkap.vn.common.entity.Users"/>
         <mapping class="com.bkap.vn.common.entity.ProductGift"/>
         <mapping class="com.bkap.vn.common.entity.Gift"/>

@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -106,35 +109,27 @@ public class BaseController {
         }
         return map;
     }
-
-    /*@PostMapping(value = "/update")
-    public @ResponseBody
-    ResponseEntity<CustomResponse> update(@Valid @RequestBody PPackage pPackage, BindingResult result, Model model) {
-        trimAllFieldOfObject(pPackage);
-        Set<CustomError> errors = pPackageService.validate(pPackage);
-        CustomResponse customResponse = new CustomResponse();
-        if (result.hasErrors()) {
-            Map<String, String> listMessage = generateMessageMap(result);
-            customResponse.setListMsg(listMessage);
-            customResponse.setResultCode(Constants.ResultCode.FAIL);
-            customResponse.setErrors(errors);
-            return new ResponseEntity<>(customResponse, HttpStatus.OK);
-        }
-        if (errors.isEmpty()) {
-            try {
-                PPackage ppackage1 = pPackageService.saveAndFlush(pPackage);
-                customResponse.setId(ppackage1.getId());
-            } catch (Exception e) {
-                e.printStackTrace();
-                errors.add(new CustomError(1));
-                customResponse.setErrors(errors);
+    public static String getClientIp(HttpServletRequest request) {
+        String remoteAddr = "";
+        if (request != null) {
+            remoteAddr = request.getHeader("X-FORWARDED-FOR");
+            if (remoteAddr == null || "".equals(remoteAddr)) {
+                remoteAddr = request.getRemoteAddr();
             }
-        } else {
-            customResponse.setResultCode(Constants.ResultCode.FAIL);
-            customResponse.setErrors(errors);
         }
-        return new ResponseEntity<>(customResponse, HttpStatus.OK);
-    }*/
+        return remoteAddr;
+    }
 
+    public static String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
 
 }

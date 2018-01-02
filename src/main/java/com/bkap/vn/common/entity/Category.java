@@ -25,8 +25,6 @@ public class Category implements java.io.Serializable {
     private int id;
 
     private Category category;
-    @NotBlank(message = "Tên không được để trống!")
-    @NotNull(message = "Tên không được để trống!")
     private String name_category;
     private String description;
     private Date createDate;

@@ -85,7 +85,6 @@ public class AbtractDAOImpl implements AbtractDAO {
             if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
                 tx.commit();
             }
-            //tx.commit();
         } catch (HibernateException e) {
             logger.error("update : " + e.toString());
             check = false;
@@ -125,7 +124,9 @@ public class AbtractDAOImpl implements AbtractDAO {
         try {
             startOperation();
             session.saveOrUpdate(obj);
-            //tx.commit();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
         } catch (HibernateException e) {
             logger.error("saveOrUpdate : " + e.toString());
             check = false;
@@ -143,7 +144,9 @@ public class AbtractDAOImpl implements AbtractDAO {
         try {
             startOperation();
             result = session.merge(obj);
-            //tx.commit();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
         } catch (HibernateException e) {
             logger.error("merge : " + e.toString());
             handleException(e);
@@ -160,7 +163,9 @@ public class AbtractDAOImpl implements AbtractDAO {
         try {
             startOperation();
             obj = session.load(clazz, id);
-            //tx.commit();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
         } catch (HibernateException e) {
             logger.error("loadById : " + e.toString());
             handleException(e);
@@ -177,7 +182,9 @@ public class AbtractDAOImpl implements AbtractDAO {
         try {
             startOperation();
             obj = session.get(clazz, id);
-            //tx.commit();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
         } catch (HibernateException e) {
             logger.error("getById : " + e.toString());
             handleException(e);
@@ -197,7 +204,9 @@ public class AbtractDAOImpl implements AbtractDAO {
                     .createQuery("from " + clazz.getName() + " as model where model." + propertyName + "= ?");
             query.setParameter(0, value);
             objects = query.list();
-            //tx.commit();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
         } catch (HibernateException e) {
             logger.error("findByProperty : " + e.toString());
             //handleException(e);
@@ -218,6 +227,9 @@ public class AbtractDAOImpl implements AbtractDAO {
             query.setParameter("keySearch", "%" + value + "%");
             objects = query.list();
             //tx.commit();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
         } catch (HibernateException e) {
             logger.error("findByProperty : " + e.toString());
             handleException(e);
@@ -241,8 +253,6 @@ public class AbtractDAOImpl implements AbtractDAO {
             if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
                 tx.commit();
             }
-            //tx.commit();
-            session.close();
         } catch (HibernateException e) {
             logger.error("findRange : " + e.toString());
             handleException(e);
@@ -269,7 +279,6 @@ public class AbtractDAOImpl implements AbtractDAO {
             if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
                 tx.commit();
             }
-            session.close();
         } catch (HibernateException e) {
             logger.error("getRange : " + e.toString());
             handleException(e);
@@ -292,7 +301,6 @@ public class AbtractDAOImpl implements AbtractDAO {
             if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
                 tx.commit();
             }
-            session.close();
         } catch (HibernateException e) {
             logger.error("getAllByKeySearch : " + e.toString());
             handleException(e);
@@ -310,8 +318,9 @@ public class AbtractDAOImpl implements AbtractDAO {
             startOperation();
             Query query = session.createQuery("from " + clazz.getName());
             objects = query.list();
-            //tx.commit();
-            session.close();
+            if (tx.getStatus().equals(TransactionStatus.ACTIVE)) {
+                tx.commit();
+            }
         } catch (HibernateException e) {
             logger.error("findAll : " + e.toString());
             handleException(e);

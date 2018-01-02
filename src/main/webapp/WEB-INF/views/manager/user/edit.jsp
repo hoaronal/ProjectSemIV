@@ -29,9 +29,7 @@
                                     <label class="control-label"></label>
                                     <form:input path="username" cssClass="form-control" placeholder="${account}"/>
                                     <span class="help-block">A block of help text that breaks onto a new line.</span>
-                                    <span class="material-input" style="color: red">
-                                        <form:errors path="username" cssClass="error"/>
-                                    </span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
@@ -41,9 +39,7 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:password path="password" cssClass="form-control" placeholder="${password}"/>
-                                    <span class="material-input" style="color: red">
-                                        <form:errors path="password" cssClass="error"/>
-                                    </span>
+                                    <span class="material-input" style="color: red"></span>
                                 </div>
                             </div>
                             <label class="col-sm-2 label-on-left">${repassword}</label>
@@ -51,9 +47,8 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <input class="form-control" placeholder="${repassword}"/>
-                                    <span class="material-input" style="color: red">
-                                        <form:errors path="password" cssClass="error"/>
-                                    </span></div>
+                                    <span class="material-input" style="color: red"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -62,9 +57,8 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="email" cssClass="form-control" placeholder="${email}"/>
-                                    <span class="material-input" style="color: red">
-                                        <form:errors path="email" cssClass="error"/>
-                                    </span></div>
+                                    <span class="material-input" style="color: red"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -73,9 +67,8 @@
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="address" cssClass="form-control" placeholder="${address}"/>
-                                    <span class="material-input" style="color: red">
-                                        <form:errors path="address" cssClass="error"/>
-                                    </span></div>
+                                    <span class="material-input" style="color: red"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -83,19 +76,18 @@
                             <div class="col-sm-4">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <form:input path="birthday" cssClass="form-control datepicker" placeholder="${birthday}"/>
-                                    <span class="material-input" style="color: red">
-                                        <form:errors path="birthday" cssClass="error"/>
-                                    </span></div>
+                                    <form:input path="birthday" cssClass="form-control datepicker"
+                                                placeholder="${birthday}"/>
+                                    <span class="material-input" style="color: red"> </span>
+                                </div>
                             </div>
                             <label class="col-sm-2 label-on-left">${phone}</label>
                             <div class="col-sm-4">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
                                     <form:input path="phone" cssClass="form-control" placeholder="${phone}"/>
-                                    <span class="material-input" style="color: red">
-                                        <form:errors path="phone" cssClass="error"/>
-                                    </span></div>
+                                    <span class="material-input" style="color: red"> </span>
+                                </div>
                             </div>
                         </div>
                         <div class="row">

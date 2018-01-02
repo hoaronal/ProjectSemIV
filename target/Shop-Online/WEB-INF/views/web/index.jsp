@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="promo-area">
+
+<div class="promo-area hidden-xs">
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
@@ -48,12 +49,12 @@
                                     <div class="product-hover">
                                         <a href="<%=request.getContextPath()%>/them-vao-gio-hang/${item.id}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm
                                             vào giỏ</a>
-                                        <a href="single-product.html" class="view-details-link"><i
+                                        <a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}" class="view-details-link"><i
                                                 class="fa fa-link"></i> Xem chi tiết</a>
                                     </div>
                                 </div>
 
-                                <h2><a href="single-product.html">${item.productName}</a></h2>
+                                <h2><a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">${item.productName}</a></h2>
 
                                 <div class="product-carousel-price">
                                     <ins>${item.price}</ins>

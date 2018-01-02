@@ -20,17 +20,17 @@ import java.util.Date;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("quan-tri")
+@RequestMapping("quan-tri/don-hang")
 public class OrderController extends BaseController {
 
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = {"/don-hang/{page}", "/don-hang/danh-sach-don-hang/{page}"}, method = RequestMethod.GET)
-    public ModelAndView list(@ModelAttribute("Order") Order Order,
+    @RequestMapping(value = {"/{page}", "/danh-sach-don-hang/{page}"}, method = RequestMethod.GET)
+    public ModelAndView list(@ModelAttribute("order") @Valid Order order,
                              @RequestParam(value = "keySearch", defaultValue = "") String keySearch,
                              @PathVariable(value = "page") int currentPage,
-                             PaggingResult paggingResult, HttpServletRequest request, HttpServletResponse response) {
+                             PaggingResult paggingResult) {
         if (currentPage <= 1) {
             currentPage = 1;
         }
@@ -48,7 +48,7 @@ public class OrderController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/don-hang/cap-nhat/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/cap-nhat/{id}", method = RequestMethod.GET)
     public String editView(@PathVariable("id") int id, @ModelAttribute("order") Order order, Model model, RedirectAttributes attributes, Locale locale) {
         order = orderService.getById(id);
         if (order != null) {
@@ -66,27 +66,21 @@ public class OrderController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/don-hang/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/cap-nhat/luu", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView edit(@ModelAttribute("order") @Valid Order order,
-                             BindingResult result, RedirectAttributes attributes) {
+                             RedirectAttributes attributes) {
         Order OrderUpdate = orderService.getById(order.getId());
         try {
             if (OrderUpdate != null) {
-                if (result.hasErrors()) {
-                    return view("order-edit", order, "order", "Cập nhật đơn hàng thất bại!", "danger");
+                order.setUpdateDate(new Date());
+                order.setCreateDate(OrderUpdate.getCreateDate());
+                boolean check = orderService.update(order);
+                if (check) {
+                    attributes.addFlashAttribute("style", "info");
+                    attributes.addFlashAttribute("msg", "Cập nhật đơn hàng thành công");
                 } else {
-                    order.setUpdateDate(new Date());
-                    order.setCreateDate(OrderUpdate.getCreateDate());
-                /*Order.setAdminByAdminUpdate(new Admin());
-                Order.setAdminByAdminCreate(userUpdate.getAdminByAdminCreate());*/
-                    boolean check = orderService.update(order);
-                    if (check) {
-                        attributes.addFlashAttribute("style", "info");
-                        attributes.addFlashAttribute("msg", "Cập nhật đơn hàng thành công");
-                    } else {
-                        attributes.addFlashAttribute("style", "danger");
-                        attributes.addFlashAttribute("msg", "Cập nhật đơn hàng thất bại!");
-                    }
+                    attributes.addFlashAttribute("style", "danger");
+                    attributes.addFlashAttribute("msg", "Cập nhật đơn hàng thất bại!");
                 }
             } else {
                 return view("redirect:/quan-tri/don-hang/danh-sach-don-hang/1");
@@ -97,41 +91,33 @@ public class OrderController extends BaseController {
         return view("redirect:/quan-tri/don-hang/danh-sach-don-hang/1");
     }
 
-    @RequestMapping(value = "/don-hang/them-moi", method = RequestMethod.GET)
+    @RequestMapping(value = "/them-moi", method = RequestMethod.GET)
     public String addView(Model model) {
         model.addAttribute("order", new Order());
         return "order-add";
     }
 
     @RequestMapping(value = "/don-hang/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@ModelAttribute(value = "order") @Valid Order order,
-                            BindingResult result, HttpServletRequest request,
-                            HttpServletResponse response, RedirectAttributes attributes) {
+    public ModelAndView add(@ModelAttribute(value = "order") @Valid Order order, RedirectAttributes attributes) {
         if (order != null) {
-            if (result.hasErrors()) {
-                return view("order-add", order, "order", "Thêm mới đơn hàng thất bại!", "danger");
+            order.setUpdateDate(new Date());
+            order.setCreateDate(new Date());
+            int check = orderService.add(order);
+            if (check > 0) {
+                attributes.addFlashAttribute("style", "info");
+                attributes.addFlashAttribute("msg", "Thêm mới đơn hàng thành công");
+                return view("redirect:/quan-tri/don-hang/1");
             } else {
-                order.setUpdateDate(new Date());
-                order.setCreateDate(new Date());
-                /*user.setAdminByAdminUpdate(new Admin());
-                user.setAdminByAdminCreate(new Admin());*/
-                int check = orderService.add(order);
-                if (check > 0) {
-                    attributes.addFlashAttribute("style", "info");
-                    attributes.addFlashAttribute("msg", "Thêm mới đơn hàng thành công");
-                    return view("redirect:/quan-tri/don-hang/1");
-                } else {
-                    attributes.addFlashAttribute("style", "danger");
-                    attributes.addFlashAttribute("msg", "Thêm mới đơn hàng thất bại");
-                    return view("redirect:/quan-tri/don-hang/1");
-                }
+                attributes.addFlashAttribute("style", "danger");
+                attributes.addFlashAttribute("msg", "Thêm mới đơn hàng thất bại");
+                return view("redirect:/quan-tri/don-hang/1");
             }
         } else {
             return view("redirect:/quan-tri/don-hang/1");
         }
     }
 
-    @RequestMapping(value = "/don-hang/xoa/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/xoa/{id}", method = RequestMethod.GET)
     public ModelAndView remove(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         if (id > 0) {
@@ -153,6 +139,4 @@ public class OrderController extends BaseController {
         view.setViewName("redirect:/quan-tri/don-hang/1");
         return view;
     }
-
-
 }

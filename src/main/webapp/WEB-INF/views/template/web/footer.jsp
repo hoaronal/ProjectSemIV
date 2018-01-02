@@ -1,18 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="footer-top-area">
+
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <div class="footer-about-us">
-                    <h2>u<span>Stora</span></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
-                    <div class="footer-social">
-                        <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                    </div>
+                    <div class="fb-page" data-href="https://www.facebook.com/Shop-online-139809593375175/" data-tabs="timeline" data-width="250" data-height="250" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Shop-online-139809593375175/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Shop-online-139809593375175/">Shop online</a></blockquote></div>
                 </div>
             </div>
 
@@ -21,8 +15,8 @@
                     <h2 class="footer-wid-title">Điều hướng</h2>
                     <ul>
                         <li><a href="#">Tài khoản</a></li>
-                        <li><a href="#">Lịch sử đặt hàng</a></li>
-                        <li><a href="#">Giỏ hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/dat-hang/lich-su-dat-hang">Lịch sử đặt hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/gio-hang">Giỏ hàng</a></li>
                         <li><a href="#">Liên hệ nhà cung cấp</a></li>
                     </ul>
                 </div>

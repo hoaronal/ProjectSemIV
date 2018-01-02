@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -15,13 +14,6 @@
                     <h4 class="card-title"><spring:message code="label.listRole"/></h4>
                     <a style="float: right" href="<%=request.getContextPath()%>/quan-tri/quyen/them-moi"
                        class="btn btn-primary"><spring:message code="label.addbtn"/></a>
-                    <div class="toolbar">
-                        <%--<c:if test="${msg != null}">
-                            <div class="alert alert-${style}" id="success-${style}" style="text-align: center">
-                                <b>${msg}</b>
-                            </div>
-                        </c:if>--%>
-                    </div>
                     <div class="material-datatables">
                         <div id="datatables_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                             <div class="row">
@@ -58,8 +50,9 @@
                                                     code="label.Rolename"/>
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="datatables" rowspan="1"
-                                                colspan="1" aria-label="Position: activate to sort column ascending">
-                                                <spring:message code="label.description"/>
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending">
+                                                Loại quyền
                                             </th>
                                             <th class="disabled-sorting text-right sorting" tabindex="0"
                                                 aria-controls="datatables" rowspan="1" colspan="1"
@@ -74,10 +67,8 @@
                                                 <td tabindex="0" class="sorting_1"><c:out value="${item.id}"/></td>
                                                 <td class="rolename" id="rolename<c:out value="${item.id}"/>"><c:out
                                                         value="${item.roleName}"/></td>
-                                                <td><c:out value="${item.description}"/></td>
+                                                <td><c:out value="${item.type}"/></td>
                                                 <td class="text-right">
-                                                    <a href="" class="btn btn-simple btn-info btn-icon like"><i
-                                                            class="material-icons">favorite</i></a>
                                                     <a href="${editRoleAction}/${item.id}"
                                                        class="btn btn-simple btn-warning btn-icon edit"><i
                                                             class="material-icons">edit</i></a>
