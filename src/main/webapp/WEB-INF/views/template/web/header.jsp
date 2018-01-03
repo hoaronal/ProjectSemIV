@@ -42,71 +42,27 @@
                  aria-hidden="true">
                 <div class="modal-dialog modal-notice">
                     <div class="modal-content">
-                        <%--<form:form action="${login}" method="post" cssClass="form-horizontal">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
-                                        class="material-icons">x</i></button>
-                                <h5 class="modal-title" id="myModalLabel">How Do You Become an Affiliate?</h5>
-                            </div>
-                            <div class="modal-body">
-                            <div id="customer_details" class="col2-set">
-                                <div class="form-group">
-                                    <label style="margin-left: 50px" for="username" class="col-sm-2 control-label">Tài khoản</label>
-                                    <div class="col-sm-8 ">
-                                            <input type="text" value="" placeholder="Tài khoản" id="username"
-                                                   name="username" class="input-text">
-                                            <span class="material-input" style="color: red"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label style="margin-left: 50px" for="username" class="col-sm-2 control-label">Mật khẩu</label>
-                                    <div class="col-sm-8">
-                                            <input type="text" value="" placeholder="Mật khẩu" id="password"
-                                                   name="password" class="input-text">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <div class="col-sm-6" style="text-align: left">
-                                            <a style="margin-left: 50px" href="<%=request.getContextPath()%>/dang-ki">Đăng kí</a>
-                                        </div>
-                                        <div class="col-sm-6" style="text-align: right">
-                                            <a style="margin-right: 50px" href="<%=request.getContextPath()%>/quen-mat-khau">Quên mật khẩu?</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="modal-footer text-center">
-                                <a href='#' onclick="checkLoginState();">Facebook Login</a>
-                                <fb:login-button scope="public_profile,email"  onlogin="checkLoginState();" >Đăng nhập với facebook</fb:login-button>
-                                <div id="status">
-                                </div>
-                                <input type="submit" style="margin-right: 50px" value="Đăng nhập" name="login" class="button">
-                            </div>
-                        </form:form>--%>
-                            <form action="index.html" class="panel-body wrapper-lg">
+                            <form:form action="${login}" class="panel-body wrapper-lg">
                                 <div class="form-group">
                                     <label class="control-label">Email</label>
-                                    <input type="email" placeholder="test@example.com" class="form-control input-lg">
+                                    <input type="text" placeholder="Tài khoản" name="username" id="username" class="form-control input-lg">
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Password</label>
-                                    <input type="password" id="inputPassword" placeholder="Password" class="form-control input-lg">
+                                    <input type="password" id="password" name="password" placeholder="Password" class="form-control input-lg">
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Keep me logged in
-                                    </label>
-                                </div>
-                                <a href="#" class="pull-right m-t-xs"><small>Forgot password?</small></a>
-                                <button type="submit" class="btn btn-primary">Sign in</button>
+                                <a href="<%=request.getContextPath()%>/quen-mat-khau" class="pull-right m-t-xs"><small>Quên mật khẩu?</small></a>
+                                <button type="submit" class="btn btn-primary">Đăng nhập</button>
                                 <div class="line line-dashed"></div>
-                                <a onclick="checkLoginState();" class="btn btn-facebook btn-block m-b-sm"><i class="fa fa-facebook pull-left"></i>Sign in with Facebook</a>
-                                <a href="#" class="btn btn-twitter btn-block"><i class="fa fa-twitter pull-left"></i>Sign in with Twitter</a>
+                                <a onclick="checkLoginState();" class="btn btn-facebook btn-block m-b-sm"><i class="fa fa-facebook pull-left"></i>Đăng nhập với Facebook</a>
+                                <a href="#" class="btn btn-twitter btn-block"><i class="fa fa-twitter pull-left"></i>Đăng nhập với Twitter</a>
                                 <div class="line line-dashed"></div>
-                                <a class="text-muted text-center" style="text-align: center"><small>Do not have an account?</small></a>
-                            </form>
+                                <a href="<%=request.getContextPath()%>/dang-ki" class="text-muted text-center" style="text-align: center"><small>Chưa có tài khoản?</small></a>
+                                <%--<fb:login-button scope="public_profile,email" onClick="checkLoginState();">
+                                </fb:login-button>--%>
+                                <%--<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>--%>
+
+                            </form:form>
                     </div>
                 </div>
             </div>
@@ -136,6 +92,7 @@
             <div class="col-sm-4 col-xs-12">
                 <div class="logo col-xs-10">
                     <h1><a href="<%=request.getContextPath()%>/">Dream-Shop</a></h1>
+                    <img src="https://graph.facebook.com/762694757258295/picture?type=square" alt="dsdsd">
                 </div>
                 <div class="shopping-item col-xs-2 hidden-lg hidden-md hidden-sm">
                     <a href="<%=request.getContextPath()%>/gio-hang"><i class="fa fa-shopping-cart"></i> <span

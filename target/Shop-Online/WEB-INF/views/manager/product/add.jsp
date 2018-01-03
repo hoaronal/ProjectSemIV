@@ -3,9 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:url value="/quan-tri/san-pham/them-moi/luu" var="addProductAction"/>
-<script src="<c:url value="/resources/js/jquery.js" />"></script>
-<script src="<c:url value="/resources/js/croppie.js" />"></script>
-<link rel="stylesheet" href="<c:url value="/resources/css/croppie.css" />">
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -127,50 +124,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $uploadCrop = $('#upload-demo').croppie({
-        enableExif: true,
-        viewport: {
-            width: 200,
-            height: 200
-        },
-        boundary: {
-            width: 300,
-            height: 300
-        }
-    });
-
-    $('#upload').on('change', function () {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $uploadCrop.croppie('bind', {
-                url: e.target.result
-            }).then(function () {
-                console.log('jQuery bind complete');
-            });
-
-        }
-        reader.readAsDataURL(this.files[0]);
-    });
-
-    $('.upload-result').on('click', function (ev) {
-        $uploadCrop.croppie('result', {
-            type: 'canvas',
-            size: 'viewport'
-        }).then(function (resp) {
-            $('#imageUpload').val(resp);
-            $('#myform').submit();
-            /*$.ajax({
-                url: "san-pham/them-moi/luu",
-                type: "POST",
-                data: {"image":resp},
-                success: function (data) {
-                    alert();
-                    html = '<img src="' + resp + '" />';
-                    $("#upload-demo-i").html(html);
-                }
-            });*/
-        });
-    });
-
-</script>

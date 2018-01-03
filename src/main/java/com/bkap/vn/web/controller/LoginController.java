@@ -69,11 +69,15 @@ public class LoginController {
         String accessToken = request.getParameter("accessToken");
         FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Version.VERSION_2_11);
         User user = facebookClient.fetchObject("me", User.class);
-
         Users users = new Users();
         users.setUsername(user.getName());
         users.setFacebookId(user.getId());
         users.setFacebooklink("https://facebook.com/"+user.getId());
+        Users checkExits = userService.getByProperty("facebookId",user.getId());
+        if(checkExits == null){
+            userService.add(users);
+        }
+        attributes.addFlashAttribute("imageLink","https://graph.facebook.com/762694757258295/picture?type=square");
         session.setAttribute(session.getId(), users);
         return "redirect:/trang-chu";
     }
@@ -180,9 +184,11 @@ public class LoginController {
             //user.setPassword(passwordEncoder.encode(generatedString));
             user.setPassword(generatedString);
             userService.update(user);
+            model.addAttribute("style", "info");
             model.addAttribute("msg", "Mật khẩu mới đã được gửi đến email của bạn!");
             return "quen-mat-khau";
         } else {
+            model.addAttribute("style", "error");
             model.addAttribute("msg", "Email không thuộc bất cứ tài khoản nào!");
             return "quen-mat-khau";
         }

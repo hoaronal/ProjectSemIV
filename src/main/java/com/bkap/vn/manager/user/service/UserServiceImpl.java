@@ -23,6 +23,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Users getByProperty(String property, String value) {
+        List<Users> users = userDAO.findByProperty(Users.class,property,value);
+        if(users != null && users.size() > 0)
+            return users.get(0);
+        else
+            return null;
+    }
+
+    @Override
     @Transactional
     public boolean update(Users user) {
         return userDAO.update(user);

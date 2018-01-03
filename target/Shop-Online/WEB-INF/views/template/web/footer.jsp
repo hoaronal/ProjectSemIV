@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <div class="footer-about-us">
-                    <div class="fb-page" data-href="https://www.facebook.com/Shop-online-139809593375175/" data-tabs="timeline" data-width="250" data-height="250" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Shop-online-139809593375175/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Shop-online-139809593375175/">Shop online</a></blockquote></div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.658525935219!2d105.78126931418022!3d21.0463449925554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab3b4220c2bd%3A0x1c9e359e2a4f618c!2sB%C3%A1ch+Khoa+Aptech!5e0!3m2!1svi!2s!4v1514883151171" width="250" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
 

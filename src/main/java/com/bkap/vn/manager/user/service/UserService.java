@@ -14,6 +14,8 @@ public interface UserService {
 
     public Users getById(int id);
 
+    public Users getByProperty(String property, String value);
+
     public Users getByUsername(String username);
 
     public Users getByEmail(String username);

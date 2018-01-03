@@ -135,14 +135,13 @@ public class ProductController extends BaseController {
         List<Category> listCategory = categoryService.listCategory();
         model.addAttribute("product", new Product());
         model.addAttribute("listCategory", listCategory);
-        return "product-add";
+        return "product-edit";
     }
 
-    @RequestMapping(value = "/them-moi/luu", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView add(@RequestParam(value = "categoryId", required = true, defaultValue = "1") String categoryId,
-                            @RequestParam(value = "giftId", required = false) String giftId,
+    @RequestMapping(value = "/them-moi/luu", method = RequestMethod.POST)
+    public ModelAndView add(@RequestParam(value = "categoryId", required = false) String categoryId,
                             @RequestParam(value = "image", required = false) String image,
-                            @ModelAttribute(value = "product") @Valid Product product,
+                            @ModelAttribute(value = "product") Product product,
                             @RequestParam(value = "upload", required = false) MultipartFile file,HttpServletRequest request, RedirectAttributes attributes) {
         if (file != null && !file.isEmpty()) {
             try {

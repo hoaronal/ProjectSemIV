@@ -74,6 +74,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/quan-tri/login?logout")
                 .and().exceptionHandling()
                 .accessDeniedPage("/quan-tri/access_denied");
+        /*http.csrf().disable();*/
+
+
     }
 
     @Bean
