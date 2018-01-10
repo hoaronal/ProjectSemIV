@@ -7,86 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26a3882f-c67f-421c-90a3-0eea2b539be0" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_6_2_2_jre7.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/backup/controller/BackUpController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/report/dao/ReportDAO.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/report/dao/ReportDAOImpl.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/backup/index.jsp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/report/index.jsp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/cropbox.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/jquery.cropit.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/jquery.validate.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/yui-min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/bkap/vn/rest/test/db2sql.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Shop-Online.iml" afterPath="$PROJECT_DIR$/Shop-Online.iml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/common/util/BaseController.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/common/util/BaseController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/common/util/FBConnection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/common/util/SqlServer2014Dialect.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/configuration/AppConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/configuration/AppConfig.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/converter/RoleConverter.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/converter/RoleConverter.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/admin/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/admin/controller/AdminController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/home/controller/HomeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/home/controller/HomeController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/order/dao/OrderDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/order/dao/OrderDAO.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/order/dao/OrderDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/order/dao/OrderDAOImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/order/service/OrderService.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/order/service/OrderService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/order/service/OrderServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/order/service/OrderServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/product/controller/ProductController.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/product/controller/ProductController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/report/controller/ReportController.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/report/controller/ReportController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/security/CustomAdminDetailsService.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/security/CustomAdminDetailsService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bkap/vn/web/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/com/bkap/vn/web/controller/LoginController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/system.properties" afterPath="$PROJECT_DIR$/src/main/resources/system.properties" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/report/BaoCaoTT04.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/report/bao_cao_doan_so.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tiles/tiles.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tiles/tiles.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/admin/add.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/admin/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/admin/edit.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/admin/edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/category/add.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/category/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/category/edit.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/category/edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/chat.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/chat.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/history_action/list.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/history_action/list.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/index.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/login.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/news/add.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/news/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/news/edit.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/news/edit.jsp" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/add.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/edit.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/list.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/list.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/province/add.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/province/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/province/edit.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/province/edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/manager/nav.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/manager/nav.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/manager/sidebar.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/manager/sidebar.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/manager/template.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/manager/template.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/web/header.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/web/header.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/web/template.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template/web/template.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/css.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/css.css" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/classes/system.properties" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/classes/system.properties" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/report/BaoCaoTT04.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/report/bao_cao_doan_so.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/tiles/tiles.xml" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/tiles/tiles.xml" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/admin/add.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/admin/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/admin/edit.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/admin/edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/category/add.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/category/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/category/edit.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/category/edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/chat.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/chat.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/history_action/list.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/history_action/list.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/index.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/index.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/login.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/login.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/news/add.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/news/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/news/edit.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/news/edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/product/add.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/product/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/product/edit.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/product/edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/product/list.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/product/list.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/province/add.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/province/add.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/province/edit.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/manager/province/edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/manager/nav.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/manager/nav.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/manager/sidebar.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/manager/sidebar.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/manager/template.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/manager/template.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/web/header.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/web/header.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/web/template.jsp" afterPath="$PROJECT_DIR$/target/Shop-Online/WEB-INF/views/template/web/template.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/Shop-Online/resources/css/css.css" afterPath="$PROJECT_DIR$/target/Shop-Online/resources/css/css.css" />
-      <change beforePath="$PROJECT_DIR$/target/classes/system.properties" afterPath="$PROJECT_DIR$/target/classes/system.properties" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/img/camera.png" afterPath="$PROJECT_DIR$/src/main/webapp/resources/img/camera.png" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -112,7 +34,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/home/controller/HomeController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="60" column="53" lean-forward="true" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
+              <caret line="60" column="53" lean-forward="false" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
               <folding>
                 <element signature="e#3817#3818#0" expanded="true" />
                 <element signature="e#3846#3847#0" expanded="true" />
@@ -121,24 +43,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="add.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/add.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            <state relative-caret-position="327">
+              <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
               <folding>
+                <element signature="n#style#0;n#img#0;n#label#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#2;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#3;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProductController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/product/controller/ProductController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="168" column="37" lean-forward="true" selection-start-line="168" selection-start-column="37" selection-end-line="168" selection-end-column="37" />
+            <state relative-caret-position="191">
+              <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -158,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bkap/vn/configuration/AppConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
-              <caret line="60" column="82" lean-forward="true" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="82" />
+              <caret line="60" column="82" lean-forward="false" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -190,7 +116,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bkap/vn/configuration/HibernateConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="24" selection-end-column="36" />
+              <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="24" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -308,11 +234,11 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/tiles/tiles.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/cropbox.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/add.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/bkap/vn/configuration/HibernateConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/resources/system.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/bkap/vn/configuration/AppConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/product/controller/ProductController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/add.jsp" />
       </list>
     </option>
   </component>
@@ -872,12 +798,12 @@
       <workItem from="1515373486006" duration="4221000" />
       <workItem from="1515398876911" duration="11444000" />
       <workItem from="1515460220343" duration="24959000" />
-      <workItem from="1515572780489" duration="5774000" />
+      <workItem from="1515572780489" duration="6488000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92301000" />
+    <option name="totallyTimeSpent" value="93015000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1238,7 +1164,7 @@
         <state relative-caret-position="68">
           <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="98" />
           <folding>
-            <marker date="1515569828947" expanded="true" signature="8613:8632" ph="..." />
+            <marker date="1515578825788" expanded="true" signature="8613:8632" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1275,17 +1201,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/add.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.12.RELEASE/spring-web-4.3.12.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -1305,7 +1220,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bkap/vn/configuration/HibernateConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="24" selection-end-column="36" />
+          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="24" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1323,7 +1238,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/home/controller/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="60" column="53" lean-forward="true" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
+          <caret line="60" column="53" lean-forward="false" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
           <folding>
             <element signature="e#3817#3818#0" expanded="true" />
             <element signature="e#3846#3847#0" expanded="true" />
@@ -1344,7 +1259,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bkap/vn/configuration/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="60" column="82" lean-forward="true" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="82" />
+          <caret line="60" column="82" lean-forward="false" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="82" />
           <folding />
         </state>
       </provider>
@@ -1359,9 +1274,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bkap/vn/manager/product/controller/ProductController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="168" column="37" lean-forward="true" selection-start-line="168" selection-start-column="37" selection-end-line="168" selection-end-column="37" />
+        <state relative-caret-position="191">
+          <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manager/product/add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#label#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#2;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#3;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -144,9 +144,11 @@
                         <div class="col-md-4">
                                 <div class="container">
                                     <div class="action">
-                                        <label for="file">Chọn ảnh</label>
+                                        <label for="file">
+                                            <img src="<%=request.getContextPath()%>/resources/img/camera.png" style="width: 30px;height: 30px; cursor: pointer"/>
+                                        </label>
                                         <input type="file" name="file"  id="file" style="float:left; width: 200px;display: none">
-                                        <input type="button" id="btnCrop" value="Crop" style="float: right">
+                                        <input type="button" id="btnCrop" value="Cắt ảnh" style="float: right">
                                         <input type="button" id="btnZoomIn" value="+" style="float: right">
                                         <input type="button" id="btnZoomOut" value="-" style="float: right">
                                     </div>
