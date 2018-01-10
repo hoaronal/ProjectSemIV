@@ -18,7 +18,7 @@
                         <div class="row">
                             <label class="col-sm-2 label-on-left"><spring:message code="label.Provincename"/><span
                                     style="color: red">*</span></label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <c:set var="msgprovinceName"><form:errors path="provinceName"/></c:set>
                                 <div class="form-group label-floating is-empty ">
                                     <label class="control-label"></label>
@@ -56,7 +56,7 @@
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary btn-block" >
+                                    <button onclick="editProvince()" class="btn btn-primary btn-block" >
                                         <spring:message code="label.updatebtn"/>
                                     </button>
                                 </div>
@@ -75,3 +75,34 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function editProvince() {
+        $("#myform").validate({
+            rules: {
+                provinceName: {
+                    required: true
+                },
+                code: {
+                    required: true
+                }
+            },
+            messages: {
+                provinceName: {
+                    required: "Tên tỉnh không được để trống!",
+                },
+                code: {
+                    required: "Mã tỉnh không được để trống!"
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    }
+    window.onload = function() {
+        var roleNameMsg='${msgroleName}';
+        if(!checkNullOrEmpty(roleNameMsg)){
+            document.getElementById('roleNameBorder').classList.add('errors');
+        }
+    };
+</script>

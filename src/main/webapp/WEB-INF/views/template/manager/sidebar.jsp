@@ -61,11 +61,11 @@
                                 <span> Danh sách danh mục </span>
                             </a>
                         </li>
-                        <li id="listRoleClass">
+                        <%--<li id="listRoleClass">
                             <a href="<%=request.getContextPath()%>/quan-tri/danh-sach-quyen/1">
                                 <span> Danh sách quyền </span>
                             </a>
-                        </li>
+                        </li>--%>
                         <li id="listAccessoriesClass">
                             <a href="<%=request.getContextPath()%>/quan-tri/phu-kien/1">
                                 <span> Danh sách phụ kiện </span>
@@ -94,21 +94,31 @@
                     </ul>
                 </div>
             </li>
-            <li>
-                <a data-toggle="collapse" href="#formsExamples">
+            <li id="reportClass">
+                <a data-toggle="collapse" href="#reportExamples">
                     <i class="material-icons">widgets</i>
                     <p>Báo cáo thống kê
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="formsExamples">
+                <div class="collapse" id="reportExamples">
                     <ul class="nav">
                         <li>
-                            <a href="">Thống kê doanh số</a>
+                            <a href="<%=request.getContextPath()%>/quan-tri/thong-ke-doanh-so">Thống kê doanh số</a>
                         </li>
-                        <li>
-                            <a href="">Thống kê sản phẩm</a>
-                        </li>
+                        <%--<li>
+                            <a  data-toggle="collapse" href="#reportExam">
+                                <p>Thống kê sản phẩm
+                                    <b class="caret"></b>
+                                </p></a>
+                            <div class="collapse" id="reportExam">
+                                <ul class="nav">
+                                    <li>
+                                        <a href="">Thống kê theo danh mục</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>--%>
                     </ul>
                 </div>
             </li>
@@ -119,7 +129,7 @@
                 </a>
             </li>
             <li>
-                <a href="#formsExamples">
+                <a href="<%=request.getContextPath()%>/quan-tri/sao-luu-du-lieu">
                     <i class="material-icons">backup</i>
                     <p>Sao lưu dữ liệu</p>
                 </a>

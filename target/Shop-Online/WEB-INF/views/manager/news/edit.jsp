@@ -3,7 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:url value="/quan-tri/tin-tuc/cap-nhat/luu" var="editNewsAction"/>
-
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-3.2.1.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.validate.js" />"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -25,7 +27,7 @@
                                         <form:input path="title" id="title"
                                                     cssClass="form-control"/>
                                     </div>
-                                    <span class="material-input" style="color: red"></span>
+                                    <span class="material-input title" style="color: red"></span>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +48,7 @@
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button onclick="editNew()" class="btn btn-primary btn-block">
                                         <spring:message code="label.updatebtn"/>
                                     </button>
                                 </div>
@@ -67,7 +69,25 @@
 </div>
 
 <script type="text/javascript">
-
+    function editNew() {
+        $("#myform").validate({
+            rules: {
+                title: {
+                    required: true,
+                    minlength: 100
+                }
+            },
+            messages: {
+                title: {
+                    required: "Tiêu đề không được để trống!",
+                    minlength: "Tiêu đề phải dài ít nhất 5 kí tự!"
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    }
     window.onload = function () {
         var roleNameMsg = '${msgroleName}';
         if (!checkNullOrEmpty(roleNameMsg)) {

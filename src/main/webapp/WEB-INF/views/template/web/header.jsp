@@ -55,7 +55,7 @@
                                 <button type="submit" class="btn btn-primary">Đăng nhập</button>
                                 <div class="line line-dashed"></div>
                                 <a onclick="checkLoginState();" class="btn btn-facebook btn-block m-b-sm"><i class="fa fa-facebook pull-left"></i>Đăng nhập với Facebook</a>
-                                <a href="#" class="btn btn-twitter btn-block"><i class="fa fa-twitter pull-left"></i>Đăng nhập với Twitter</a>
+                                <%--<a href="#" class="btn btn-twitter btn-block"><i class="fa fa-twitter pull-left"></i>Đăng nhập với Twitter</a>--%>
                                 <div class="line line-dashed"></div>
                                 <a href="<%=request.getContextPath()%>/dang-ki" class="text-muted text-center" style="text-align: center"><small>Chưa có tài khoản?</small></a>
                                 <%--<fb:login-button scope="public_profile,email" onClick="checkLoginState();">
@@ -92,7 +92,7 @@
             <div class="col-sm-4 col-xs-12">
                 <div class="logo col-xs-10">
                     <h1><a href="<%=request.getContextPath()%>/">Dream-Shop</a></h1>
-                    <img src="https://graph.facebook.com/762694757258295/picture?type=square" alt="dsdsd">
+                    <%--<img src="https://graph.facebook.com/762694757258295/picture?type=square" alt="dsdsd">--%>
                 </div>
                 <div class="shopping-item col-xs-2 hidden-lg hidden-md hidden-sm">
                     <a href="<%=request.getContextPath()%>/gio-hang"><i class="fa fa-shopping-cart"></i> <span
@@ -101,7 +101,7 @@
             </div>
             <div class="col-sm-8 col-xs-12">
                 <div class="col-sm-8 col-xs-12">
-                    <form:form action="${search}" class="form-horizontal" style="margin-top: 40px">
+                    <form:form action="${search}" class="form-horizontal" id="searchForm" style="margin-top: 40px">
                         <select class="selectSearch" style="border: 1px solid #ddd; margin-bottom: 15px; padding: 10px;"
                                 id="categoryId"
                                 name="categoryId">

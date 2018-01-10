@@ -25,13 +25,6 @@
 <body style="position: relative">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=299806640540917';
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <script>
     window.fbAsyncInit = function() {
         FB.init({
@@ -55,20 +48,21 @@
     function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
-            var imgLink = get_avatar_from_service('facebook',response.id , 'square');
-            alert(imgLink);
+
         });
     }
 
     function statusChangeCallback(response) {
         if (response.status === 'connected') {
             var accessToken = response.authResponse.accessToken;
-            testAPI();
-
             window.location.href = 'login-facebook?accessToken='+accessToken;
         } else {
-            document.getElementById('status').innerHTML = 'Please log ' +
-                'into this app.';
+            FB.login(function(response) {
+                if(response.authResponse) {
+                    var accessToken = response.authResponse.accessToken;
+                    window.location.href = 'login-facebook?accessToken='+accessToken;
+                }
+            },{scope:'email'});
         }
     }
 
@@ -80,7 +74,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<div style="position:fixed; z-index:9999999; right:10px; bottom:10px;" class="fb-page" data-tabs="messages" data-href="https://www.facebook.com/Shop-online-139809593375175/" data-width="250" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"<%-- data-show-facepile="true" --%>data-show-posts="false"></div>
+<div style="position:fixed; z-index:9999999; left:10px; bottom:0px;" class="fb-page hidden-xs hidden-sm" data-tabs="messages" data-href="https://www.facebook.com/Shop-online-139809593375175/" data-width="250" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"<%-- data-show-facepile="true" --%>data-show-posts="false"></div>
 <tiles:insertAttribute name="header"/>
 <tiles:insertAttribute name="mainmenu"/>
 <tiles:insertAttribute name="slider"/>
@@ -91,9 +85,9 @@
     <a href="#top" title="Go to top"><img src="<c:url value="/resources/web/img/arrow.png"/>"/></a>
 </p>
 <%--<iframe src="https://www2.cbox.ws/box/?boxid=2382234&boxtag=faq8Xy" width="100%" height="450" allowtransparency="yes" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>--%>
-<%--<script src="https://uhchat.net/code.php?f=a64d3d"></script>--%>
+<script src="https://uhchat.net/code.php?f=a64d3d"></script>
 
-<script src="<c:url value="/resources/web/js/jquery-1.8.3.min.js" />"></script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="<c:url value="/resources/web/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/resources/web/js/owl.carousel.min.js" />"></script>
 <script src="<c:url value="/resources/web/js/jquery.sticky.js" />"></script>
@@ -194,51 +188,6 @@
     });
 </script>
 <script type="text/javascript">
-    $uploadCrop = $('#upload-demo').croppie({
-        enableExif: true,
-        viewport: {
-            width: 120,
-            height: 120
-        },
-        boundary: {
-            width: 200,
-            height: 200
-        }
-    });
-
-    $('#upload').on('change', function () {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $uploadCrop.croppie('bind', {
-                url: e.target.result
-            }).then(function () {
-                console.log('jQuery bind complete');
-            });
-
-        }
-        reader.readAsDataURL(this.files[0]);
-    });
-
-    $('.upload-result').on('click', function (ev) {
-        $uploadCrop.croppie('result', {
-            type: 'canvas',
-            size: 'viewport'
-        }).then(function (resp) {
-            $('#imageUpload').val(resp);
-            $('#myform').submit();
-            /*$.ajax({
-                url: "san-pham/them-moi/luu",
-                type: "POST",
-                data: {"image":resp},
-                success: function (data) {
-                    alert();
-                    html = '<img src="' + resp + '" />';
-                    $("#upload-demo-i").html(html);
-                }
-            });*/
-        });
-    });
-
     function showMsgInfo(froms, align, a) {
         type = ['info'];
         color = Math.floor((Math.random() * 6) + 1);

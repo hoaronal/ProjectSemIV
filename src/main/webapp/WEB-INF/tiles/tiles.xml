@@ -204,9 +204,15 @@
         <put-attribute name="title" value="Cập nhật tin tức"/>
         <put-attribute name="content" value="/WEB-INF/views/manager/news/edit.jsp"/>
     </definition>
+    <definition name="report" extends="adminTemplate">
+        <put-attribute name="title" value="Báo cáo thống kê"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/report/index.jsp"/>
+    </definition>
 
-
-
+    <definition name="backup" extends="adminTemplate">
+        <put-attribute name="title" value="Sao lưu dữ liệu"/>
+        <put-attribute name="content" value="/WEB-INF/views/manager/backup/index.jsp"/>
+    </definition>
     <!--Web-->
     <!--Product-->
     <definition name="home-web" extends="webTemplate">

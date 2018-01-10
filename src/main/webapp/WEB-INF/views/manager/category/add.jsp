@@ -58,7 +58,7 @@
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button onclick="add()" class="btn btn-primary btn-block">
                                         <spring:message code="label.addbtn"/>
                                     </button>
                                 </div>
@@ -77,6 +77,29 @@
         </div>
     </div>
 </div>
-<script>
-
+<script type="text/javascript">
+    function add() {
+        $('.error').css("color", "red");
+        $("#myform").validate({
+            rules: {
+                name_category: {
+                    required: true
+                },
+                description: {
+                    maxlength: 500
+                }
+            },
+            messages: {
+                name_category: {
+                    required: "Tên danh mục không được để trống!",
+                },
+                description:{
+                    maxlength:"Nội dung có độ dài tối đa 500 kí tự!",
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    }
 </script>

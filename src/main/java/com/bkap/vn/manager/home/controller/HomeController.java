@@ -1,6 +1,10 @@
 package com.bkap.vn.manager.home.controller;
 
+import com.bkap.vn.common.entity.Admin;
+import com.bkap.vn.common.entity.HistoryAction;
 import com.bkap.vn.common.util.BaseController;
+import com.bkap.vn.manager.admin.service.AdminService;
+import com.bkap.vn.manager.history_action.service.HistoryActionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
@@ -14,10 +18,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 @Controller
 @RequestMapping("quan-tri")
 public class HomeController extends BaseController {
+
+    @Autowired
+    HistoryActionService historyActionService;
+
+    @Autowired
+    private AdminService adminService;
 
     @Autowired
     PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
@@ -44,21 +55,37 @@ public class HomeController extends BaseController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request) {
-        if (isCurrentAuthenticationAnonymous()) {
+        HistoryAction historyAction = new HistoryAction();
+        Admin adminLogin = adminService.getByAcount(getPrincipal());
+        try {
+            if (isCurrentAuthenticationAnonymous()) {
+                return "login";
+            } else {
+                return "redirect:/quan-tri";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
             return "login";
-        } else {
-            return "redirect:/quan-tri";
         }
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Admin adminLogin = adminService.getByAcount(getPrincipal());
         if (auth != null){
             //new SecurityContextLogoutHandler().logout(request, response, auth);
             persistentTokenBasedRememberMeServices.logout(request, response, auth);
             SecurityContextHolder.getContext().setAuthentication(null);
         }
+
+        HistoryAction historyAction = new HistoryAction();
+        historyAction.setClientInfo(BaseController.getClientIp(request));
+        historyAction.setAccessType("LOGOUT");
+        historyAction.setExecuteDate(new Date());
+        historyAction.setDescription("Đăng Xuất");
+        historyAction.setAdmin(adminLogin);
+        historyActionService.add(historyAction);
         return "redirect:/quan-tri/login?logout";
     }
 

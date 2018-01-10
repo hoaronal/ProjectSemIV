@@ -179,11 +179,9 @@
             </div>
             <!-- end content-->
         </div>
-        <!--  end card  -->
+        <!-- end col-md-12 -->
     </div>
-    <!-- end col-md-12 -->
-</div>
-<!-- end row -->
+    <!-- end row -->
 </div>
 <script type="text/javascript">
     window.onload = function() {

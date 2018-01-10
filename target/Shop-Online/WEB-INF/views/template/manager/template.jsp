@@ -28,19 +28,6 @@
     <link rel="stylesheet" href="<c:url value="/resources/editor/css/plugins/table.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/editor/css/plugins/video.css" />">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
-
-    <script>
-        $( function() {
-            $( "#dialog-message" ).dialog({
-                modal: true,
-                buttons: {
-                    Ok: function() {
-                        $( this ).dialog( "close" );
-                    }
-                }
-            });
-        } );
-    </script>
     <script type="text/javascript">
         function checkNullOrEmpty(value) {
             return (!value || value == undefined || value == "" || value.length == 0);
@@ -85,7 +72,8 @@
 <script type="text/javascript" src="<c:url value="/resources/js/demo.js" />"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
 <script type="text/javascript" src="<c:url value="/resources/editor/js/froala_editor.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/align.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/code_beautifier.min.js" />"></script>
@@ -103,13 +91,13 @@
 <script type="text/javascript" src="<c:url value="/resources/editor/js/plugins/entities.min.js" />"></script>
 
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         $('#edit').on('froalaEditor.initialized', function (e, editor) {
-                /*$('#edit').parents('form').on('submit', function () {
-                    /!*console.log($('#edit').val());*!/
-                    return true;
-                })*/
-            })
+            /*$('#edit').parents('form').on('submit', function () {
+                /!*console.log($('#edit').val());*!/
+                return true;
+            })*/
+        })
             .froalaEditor({enter: $.FroalaEditor.ENTER_P, placeholderText: null})
     });
 

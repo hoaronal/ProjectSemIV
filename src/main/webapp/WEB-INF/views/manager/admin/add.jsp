@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:url value="/quan-tri/quan-tri-vien/them-moi/luu" var="addAdminAction"/>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.validate.js" />"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -26,7 +27,6 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <label class="col-sm-2 label-on-left"><spring:message code="label.password"/></label>
                             <div class="col-sm-4">
                                 <div class="form-group label-floating is-empty ">
@@ -40,7 +40,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <input type="password" name="rePassword" class="form-control">
+                                    <input type="password" name="confirm_password" class="form-control">
                                     <span class="material-input" style="color: red"></span></div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button onclick="add()" class="btn btn-primary btn-block">
                                         <spring:message code="label.addbtn"/>
                                     </button>
                                 </div>
@@ -142,3 +142,54 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function add() {
+        $('.error').css("color", "red");
+        $("#myform").validate({
+            rules: {
+                account: {
+                    required: true,
+                    minlength: 2
+                },
+                password: {
+                    required: true,
+                    minlength: 8
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 8,
+                    equalTo: "#password"
+                },
+                roleadmin:{
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                account: {
+                    required: "Tài khoản không được để trống!",
+                    minlength: "Tài khoản phải dài ít nhất 5 kí tự!"
+                },
+                password: {
+                    required: "Mật khẩu không được để trống!",
+                    minlength: "Mật khẩu phải dài tối thiểu 8 kí tự!"
+                },
+                confirm_password: {
+                    required: "Mật khẩu nhập lại không được để trống!",
+                    minlength: "Bạn phải nhập mật khẩu ít nhất 8 kí tự!",
+                    equalTo: "Mật khẩu nhập lại không khớp với mật khẩu!"
+                },
+                roleadmin:{
+                    required: "Quyền không được để trống!",
+                },
+                email: "Email bạn nhập không hợp lệ!"
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    }
+</script>

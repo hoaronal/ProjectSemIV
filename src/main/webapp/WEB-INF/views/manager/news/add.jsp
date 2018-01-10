@@ -45,7 +45,7 @@
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button onclick="add()" class="btn btn-primary btn-block">
                                         <spring:message code="label.addbtn"/>
                                     </button>
                                 </div>
@@ -66,7 +66,26 @@
 </div>
 
 <script type="text/javascript">
-
+    function add() {
+        $('.error').css("color", "red");
+        $("#myform").validate({
+            rules: {
+                title: {
+                    required: true,
+                    minlength: 2
+                }
+            },
+            messages: {
+                title: {
+                    required: "Tiêu đề không được để trống!",
+                    minlength: "Tiêu đề phải dài ít nhất 5 kí tự!"
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    }
     window.onload = function () {
         var roleNameMsg = '${msgroleName}';
         if (!checkNullOrEmpty(roleNameMsg)) {

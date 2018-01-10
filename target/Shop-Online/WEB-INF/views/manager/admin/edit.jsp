@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:url value="/quan-tri/quan-tri-vien/cap-nhat/luu" var="editAdminAction"/>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.validate.js" />"></script>
 <spring:message code="label.account" var="account"/>
 <spring:message code="label.password" var="password"/>
 <spring:message code="label.repassword" var="repassword"/>
@@ -49,7 +50,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <input class="form-control" name="re_password" id="re_password" placeholder="${repassword}"/>
+                                    <input class="form-control" name="confirm_password" id="confirm_password" placeholder="${repassword}"/>
                                     <span class="material-input" style="color: red"> </span>
                                 </div>
                             </div>
@@ -133,7 +134,7 @@
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button onclick="edit()" class="btn btn-primary btn-block">
                                         <spring:message code="label.updatebtn"/>
                                     </button>
                                 </div>
@@ -152,3 +153,54 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function edit() {
+        $("#myform").validate({
+            rules: {
+                account: {
+                    required: true,
+                    minlength: 5
+                },
+                password: {
+                    required: true,
+                    minlength: 8
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 8,
+                    equalTo: "#password"
+                },
+                roleadmin:{
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                account: {
+                    required: "Tài khoản không được để trống!",
+                    minlength: "Tài khoản phải dài ít nhất 5 kí tự!"
+                },
+                password: {
+                    required: "Mật khẩu không được để trống!",
+                    minlength: "Mật khẩu phải dài tối thiểu 8 kí tự!"
+                },
+                confirm_password: {
+                    required: "Mật khẩu nhập lại không được để trống!",
+                    minlength: "Bạn phải nhập mật khẩu ít nhất 8 kí tự!",
+                    equalTo: "Mật khẩu nhập lại không khớp với mật khẩu!"
+                },
+                roleadmin:{
+                    required: "Quyền không được để trống!",
+                },
+                email: "Email bạn nhập không hợp lệ!"
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    }
+</script>

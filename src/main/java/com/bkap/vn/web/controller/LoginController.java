@@ -4,7 +4,6 @@ package com.bkap.vn.web.controller;
 import com.bkap.vn.common.entity.Users;
 import com.bkap.vn.common.util.BaseController;
 import com.bkap.vn.common.util.Constant;
-import com.bkap.vn.common.util.FBConnection;
 import com.bkap.vn.common.util.PatternUtil;
 import com.bkap.vn.manager.user.service.UserService;
 import com.restfb.DefaultFacebookClient;

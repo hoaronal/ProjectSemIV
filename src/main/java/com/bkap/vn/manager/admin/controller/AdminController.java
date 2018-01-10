@@ -86,7 +86,7 @@ public class AdminController extends BaseController {
         Admin adminUpdate = adminService.getById(admin.getId());
         Admin adminLogin = adminService.getByAcount(getPrincipal());
         try {
-            if (adminUpdate != null) {
+            if (adminUpdate != null && validateUpdate(admin)) {
 
                 if (StringUtils.isBlank(admin.getPassword())) {
                     admin.setPassword(adminUpdate.getPassword());
@@ -120,10 +120,10 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "/thong-tin", method = RequestMethod.GET)
-    public String info(Model model, HttpServletRequest request, @ModelAttribute("admin") Admin admin, HttpServletResponse response, RedirectAttributes attributes, Locale locale) {
-        admin = adminService.getById(1);
-        if (admin != null) {
-            model.addAttribute("admin", admin);
+    public String info(Model model, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes, Locale locale) {
+        Admin adminLogin = adminService.getByAcount(getPrincipal());
+        if (adminLogin != null) {
+            model.addAttribute("admin", adminLogin);
             return "admin-info";
         } else {
             if (locale.getLanguage().equals("en")) {

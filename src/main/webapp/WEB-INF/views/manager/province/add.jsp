@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:url value="/quan-tri/tinh-thanh/them-moi/luu" var="addProvinceAction"/>
-
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.validate.js" />"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -55,7 +55,7 @@
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary btn-block" >
+                                    <button onclick="addProvince()" class="btn btn-primary btn-block" >
                                         <spring:message code="label.addbtn"/>
                                     </button>
                                 </div>
@@ -74,9 +74,30 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
-
+    function addProvince() {
+        $("#myform").validate({
+            rules: {
+                provinceName: {
+                    required: true
+                },
+                code: {
+                    required: true
+                }
+            },
+            messages: {
+                provinceName: {
+                    required: "Tên tỉnh không được để trống!",
+                },
+                code: {
+                    required: "Mã tỉnh không được để trống!"
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    }
     window.onload = function() {
         var roleNameMsg='${msgroleName}';
         if(!checkNullOrEmpty(roleNameMsg)){

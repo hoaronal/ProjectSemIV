@@ -9,6 +9,8 @@ import com.bkap.vn.manager.category.service.CategoryService;
 import com.bkap.vn.manager.product.service.ProductService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,14 +22,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.xml.bind.DatatypeConverter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 @Controller
 @RequestMapping("quan-tri/san-pham")
+@PropertySource("classpath:system.properties")
 public class ProductController extends BaseController {
+
+    @Autowired
+    protected Environment env;
 
     @Autowired
     private ProductService productService;
@@ -135,30 +143,45 @@ public class ProductController extends BaseController {
         List<Category> listCategory = categoryService.listCategory();
         model.addAttribute("product", new Product());
         model.addAttribute("listCategory", listCategory);
-        return "product-edit";
+        return "product-add";
     }
 
     @RequestMapping(value = "/them-moi/luu", method = RequestMethod.POST)
     public ModelAndView add(@RequestParam(value = "categoryId", required = false) String categoryId,
-                            @RequestParam(value = "image", required = false) String image,
+                            @RequestParam(value = "imgData", required = false) String imgData,
                             @ModelAttribute(value = "product") Product product,
                             @RequestParam(value = "upload", required = false) MultipartFile file,HttpServletRequest request, RedirectAttributes attributes) {
-        if (file != null && !file.isEmpty()) {
             try {
+                String base64 = imgData.substring(imgData.indexOf("base64,") + 7);
+                String rootPath = env.getRequiredProperty("system_upload_folder");
+                File dir = new File(rootPath + File.separator + "tmpFiles");
+                if (!dir.exists())
+                    dir.mkdirs();
+
                 String fileName = new Date().getTime() + ".png";
                 String phyPath = request.getSession().getServletContext().getRealPath("/");
                 String filepath = phyPath + "resources/img/" + fileName;
-                File files = new File(filepath);
+                File serverFile = new File(filepath);
+                /*File serverFile = new File(dir.getAbsolutePath()
+                        + File.separator + fileName);*/
+                FileOutputStream outThumbnail = new FileOutputStream(serverFile);
+                outThumbnail.write(DatatypeConverter.parseBase64Binary(base64));
+                outThumbnail.close();
+                product.setImageLink(fileName);
+                /*// Create the file on server
+
+
+
+
                 if (!files.exists()) {
                     files.createNewFile();
                 }
                 file.transferTo(files);
-                product.setImageLink(fileName);
+                */
                 //file.transferTo(resourceLoader.getResource("resources/upload/images/"+).getFile());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
         Category category = categoryService.getById(Integer.parseInt(categoryId));
         if (product != null && category != null) {
                 product.setUpdateDate(new Date());

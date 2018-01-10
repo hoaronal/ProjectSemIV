@@ -38,13 +38,19 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public int countAll(String filter) {
-        return orderDAO.findAll(Order.class).size();
+        return orderDAO.countAll(Order.class, filter);
     }
 
     @Override
     @Transactional
     public int countAllByKeySearch(String filter) {
         return 0;
+    }
+
+    @Override
+    @Transactional
+    public int countByMonth(String datefrom, String dateTo) {
+        return orderDAO.countByMonth(datefrom,dateTo);
     }
 
     @Override

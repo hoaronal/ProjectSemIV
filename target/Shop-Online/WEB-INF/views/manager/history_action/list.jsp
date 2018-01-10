@@ -11,8 +11,6 @@
                 </div>
                 <div class="card-content">
                     <h4 class="card-title"><spring:message code="label.historyAction"/></h4>
-                    <a style="float: right" href="<%=request.getContextPath()%>/quan-tri/lich-su-he-thong/them-moi"
-                       class="btn btn-primary"><spring:message code="label.addbtn"/></a>
                     <div class="material-datatables">
                         <div id="datatables_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                             <div class="row">

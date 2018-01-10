@@ -24,4 +24,6 @@ public interface OrderService {
     public PaggingResult findRange(int firstRow, int lastRow, String filter);
 
     public String generateQuerySearchOrder(String keySearch);
+
+    public int countByMonth(String datefrom, String dateTo);
 }

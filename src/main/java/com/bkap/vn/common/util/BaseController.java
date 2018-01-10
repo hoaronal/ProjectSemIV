@@ -26,6 +26,7 @@ public class BaseController {
 
 
 
+
     public static void trimAllFieldOfObject(Object item) {
         if (item == null) {
             return;

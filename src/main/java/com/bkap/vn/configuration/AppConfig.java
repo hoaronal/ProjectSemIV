@@ -6,7 +6,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -17,14 +20,18 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+import java.io.File;
 import java.util.Locale;
 
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.bkap.vn.*")
+@PropertySource(value = {"classpath:system.properties"})
 public class AppConfig extends WebMvcConfigurerAdapter {
-	
+
+    @Autowired
+    private Environment environment;
 	
 	@Autowired
 	RoleConverter roleConverter;
@@ -51,7 +58,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        String rootPath = environment.getRequiredProperty("system_upload_folder");
+        File dir = new File(rootPath + File.separator + "tmpFiles");
+        registry.addResourceHandler("/resources/**","/tmpFiles*//**").addResourceLocations("/resources/","file:///"+dir.getAbsolutePath());
     }
 
     /**
@@ -98,6 +107,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configurePathMatch(PathMatchConfigurer matcher) {
         matcher.setUseRegisteredSuffixPatternMatch(true);
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 }
 
