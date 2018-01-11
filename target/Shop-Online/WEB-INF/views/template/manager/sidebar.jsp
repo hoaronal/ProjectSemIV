@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="sidebar" data-active-color="rose" data-background-color="black"
      data-image="<%=request.getContextPath()%>/resources/img/sidebar-1.jpg">
 
@@ -59,16 +59,6 @@
                         <li id="listCategoryClass">
                             <a href="<%=request.getContextPath()%>/quan-tri/danh-muc/1">
                                 <span> Danh sách danh mục </span>
-                            </a>
-                        </li>
-                        <%--<li id="listRoleClass">
-                            <a href="<%=request.getContextPath()%>/quan-tri/danh-sach-quyen/1">
-                                <span> Danh sách quyền </span>
-                            </a>
-                        </li>--%>
-                        <li id="listAccessoriesClass">
-                            <a href="<%=request.getContextPath()%>/quan-tri/phu-kien/1">
-                                <span> Danh sách phụ kiện </span>
                             </a>
                         </li>
                         <li id="listProvinceClass">

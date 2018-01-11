@@ -18,6 +18,8 @@ public interface TransactionService {
 
     public int countAllByKeySearch(String filter);
 
+    public List<Transaction> getTransactionByUserId(int id);
+
     public List<Transaction> listTransaction();
 
     public PaggingResult findRange(int firstRow, int lastRow, String filter);

@@ -1,10 +1,7 @@
 package com.bkap.vn.web.controller;
 
 
-import com.bkap.vn.common.entity.Order;
-import com.bkap.vn.common.entity.Product;
-import com.bkap.vn.common.entity.Province;
-import com.bkap.vn.common.entity.Transaction;
+import com.bkap.vn.common.entity.*;
 import com.bkap.vn.manager.order.service.OrderService;
 import com.bkap.vn.manager.province.service.ProvinceService;
 import com.bkap.vn.manager.transaction.service.TransactionService;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,6 +67,7 @@ public class UserOrderController {
         List<Province> provinceList = provinceService.listProvince();
         Map<String, List<Product>> map = (Map<String, List<Product>>) request.getSession().getAttribute("CART");
         Integer transactionId= null;
+        Users users = (Users) request.getSession().getAttribute(request.getSession().getId());
         List<Product> products = new ArrayList<>();
         Order order = new Order();
         int subtotal = 0;
@@ -77,6 +76,9 @@ public class UserOrderController {
                 for (Map.Entry<String, List<Product>> entry : map.entrySet()) {
                     products.add(entry.getValue().get(0));
                     subtotal += entry.getValue().size() * Integer.parseInt(entry.getValue().get(0).getPrice());
+                }
+                if(users != null){
+                    transaction.setUserId(users.getId());
                 }
                 transaction.setUserEmail(email);
                 transaction.setUserPhone(phone);
@@ -120,7 +122,12 @@ public class UserOrderController {
 
     @RequestMapping(value = "/lich-su-dat-hang",method = RequestMethod.GET)
     public String orderhistory(Model model, HttpServletRequest request, HttpServletResponse response) {
-
+        HttpSession session = request.getSession();
+        Users users = (Users) session.getAttribute(session.getId());
+        if(users != null){
+            List<Transaction> transactions = transactionService.getTransactionByUserId(users.getId());
+            model.addAttribute("transactions",transactions);
+        }
         return "orderHistory";
     }
 }

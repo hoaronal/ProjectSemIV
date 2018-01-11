@@ -6,6 +6,7 @@ import com.bkap.vn.common.entity.Product;
 import com.bkap.vn.common.pagination.PaggingResult;
 import com.bkap.vn.common.util.BaseController;
 import com.bkap.vn.manager.category.service.CategoryService;
+import com.bkap.vn.manager.order.service.OrderService;
 import com.bkap.vn.manager.product.service.ProductService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class ProductController extends BaseController {
     private CategoryService categoryService;
 
     @Autowired
-    private ResourceLoader resourceLoader;
+    private OrderService orderService;
 
     @RequestMapping(value = {"/{page}", "/danh-sach-san-pham/{page}"}, method = RequestMethod.GET)
     public ModelAndView list(@ModelAttribute("product") Product product,
@@ -190,6 +191,7 @@ public class ProductController extends BaseController {
                 /*user.setAdminByAdminUpdate(new Admin());
                 user.setAdminByAdminCreate(new Admin());*/
                 product.setStatus((byte) 1);
+            product.setCountView(Double.valueOf("1"));
                 int check = productService.add(product);
                 if (check > 0) {
                     attributes.addFlashAttribute("style", "info");

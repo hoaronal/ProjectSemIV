@@ -18,6 +18,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -60,9 +62,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        http.addFilterBefore(filter,CsrfFilter.class);
         http.authorizeRequests().antMatchers("/quan-tri/login", "/quan-tri/logout").permitAll();
-        http.authorizeRequests().antMatchers("/quan-tri/**","/quan-tri/nguoi-dung/**", "/quan-tri/quan-tri-vien/**", "/quan-tri/phu-kien/**","/quan-tri/danh-muc/**","/quan-tri/qua-tang/**","/quan-tri/lich-su-he-thong/**","/quan-tri/tin-tuc/**","/quan-tri/don-hang/**","/quan-tri/san-pham/**","/quan-tri/tinh-thanh/**","/quan-tri/bao-cao/**","/quan-tri/giao-dich/**").hasAnyRole(ADMIN,USER,MANAGER);
-        http.authorizeRequests().antMatchers("/quan-tri/nguoi-dung/cap-nhat/**","/quan-tri/quan-tri-vien/cap-nhat/**","/quan-tri/phu-kien/cap-nhat/**","/quan-tri/danh-muc/cap-nhat/**","/quan-tri/qua-tang/cap-nhat/**","/quan-tri/tin-tuc/cap-nhat/**","/quan-tri/don-hang/cap-nhat/**","/quan-tri/san-pham/cap-nhat/**","/quan-tri/tinh-thanh/cap-nhat/**","/quan-tri/giao-dich/cap-nhat/**").hasAnyRole(ADMIN,MANAGER);
+        http.authorizeRequests().antMatchers("/quan-tri/lich-su-he-thong/*","/quan-tri/nguoi-dung/*", "/quan-tri/quan-tri-vien/*", "/quan-tri/phu-kien/*","/quan-tri/danh-muc/*","/quan-tri/qua-tang/*","/quan-tri/lich-su-he-thong/*","/quan-tri/tin-tuc/*","/quan-tri/don-hang/**","/quan-tri/san-pham/*","/quan-tri/tinh-thanh/*","/quan-tri/bao-cao/*","/quan-tri/giao-dich/*").hasAnyRole(ADMIN,USER,MANAGER);
+        http.authorizeRequests().antMatchers("/quan-tri/sao-luu-du-lieu","/quan-tri/nguoi-dung/cap-nhat/**","/quan-tri/quan-tri-vien/cap-nhat/**","/quan-tri/phu-kien/cap-nhat/**","/quan-tri/danh-muc/cap-nhat/**","/quan-tri/qua-tang/cap-nhat/**","/quan-tri/tin-tuc/cap-nhat/**","/quan-tri/don-hang/cap-nhat/**","/quan-tri/san-pham/cap-nhat/**","/quan-tri/tinh-thanh/cap-nhat/**","/quan-tri/giao-dich/cap-nhat/**").hasAnyRole(ADMIN,MANAGER);
         http.authorizeRequests().antMatchers("/quan-tri/nguoi-dung/them-moi/**","/quan-tri/quan-tri-vien/them-moi/**","/quan-tri/phu-kien/them-moi/**","/quan-tri/danh-muc/them-moi/**","/quan-tri/qua-tang/them-moi/**","/quan-tri/tin-tuc/them-moi/**","/quan-tri/don-hang/them-moi/**","/quan-tri/san-pham/them-moi/**","/quan-tri/tinh-thanh/them-moi/**","/quan-tri/giao-dich/them-moi/**").hasAnyRole(ADMIN,MANAGER);
         http.authorizeRequests().antMatchers("/quan-tri/nguoi-dung/xoa/*","/quan-tri/quan-tri-vien/xoa/**","/quan-tri/quyen/xoa/**","/quan-tri/phu-kien/xoa/**","/quan-tri/danh-muc/xoa/**","/quan-tri/qua-tang/xoa/**","/quan-tri/tin-tuc/xoa/**","/quan-tri/don-hang/xoa/**","/quan-tri/san-pham/xoa/**","/quan-tri/tinh-thanh/xoa/**","/quan-tri/giao-dich/xoa/**").hasRole(MANAGER);
         http.authorizeRequests()

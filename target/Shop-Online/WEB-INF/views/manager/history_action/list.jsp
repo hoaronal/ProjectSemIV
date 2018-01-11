@@ -1,7 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -63,6 +64,10 @@
                                                 colspan="1">
                                                 <spring:message code="label.description"/>
                                             </th>
+                                            <th class="disabled-sorting text-right sorting" tabindex="0"
+                                                aria-controls="datatables" rowspan="1" colspan="1"><spring:message
+                                                    code="label.action"/>
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -77,35 +82,17 @@
                                                         value="${item.accessType}"/></td>
                                                 <td><c:out value="${item.executeDate}"/></td>
                                                 <td><c:out value="${item.description}"/></td>
+                                                <td class="text-right">
+                                                    <a href="" class="btn btn-simple btn-info btn-icon like"><i
+                                                            class="material-icons">favorite</i></a>
+                                                        <%--<a href="#"
+                                                           class="btn btn-simple btn-warning btn-icon edit"><i
+                                                                class="material-icons">edit</i></a>
+                                                        <a class="btn btn-simple btn-danger btn-icon remove"
+                                                           data-toggle="modal" data-target="#smallAlertModal${item.id}"><i
+                                                                class="material-icons">close</i></a>--%>
+                                                </td>
                                             </tr>
-                                            <div class="modal fade" style="margin-top: 50px"
-                                                 id="smallAlertModal${item.id}" tabindex="-1" role="dialog"
-                                                 aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-small ">
-                                                    <div class="modal-content">
-
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close"><span
-                                                                    aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel" s><i
-                                                                    class="material-icons"
-                                                                    style="color: orange">warning</i> Xóa tỉnh thành!
-                                                            </h4>
-                                                        </div>
-                                                        <div class="modal-body text-center">
-                                                            <h5>Bạn có muốn xóa tỉnh thành có mã là ${item.id}? </h5>
-                                                        </div>
-                                                        <div class="modal-footer text-center">
-                                                            <a class="btn btn-default" data-dismiss="modal"
-                                                               style="margin: 0px !important;">Hủy</a>
-                                                            <a href="<%=request.getContextPath()%>${deleteProvinceAction}/${item.id}"
-                                                               class="btn btn-primary" style="margin: 0px !important;">
-                                                                Đồng ý</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </c:forEach>
                                         </tbody>
                                     </table>

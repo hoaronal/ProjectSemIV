@@ -37,7 +37,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="<%=request.getContextPath()%>/quan-tri/chat">
+                    <a TARGET="_blank" href="<%=request.getContextPath()%>/quan-tri/chat">
                         <i class="material-icons">notifications</i>
                         <span class="notification">5</span>
                         <p class="hidden-lg hidden-md">

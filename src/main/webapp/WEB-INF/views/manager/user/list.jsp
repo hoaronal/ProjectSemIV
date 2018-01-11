@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -91,6 +91,8 @@
                                                 <td><c:out value="${item.birthday}"/></td>
                                                 <td><c:out value="${item.address}"/></td>
                                                 <td class="text-right">
+                                                    <a href="" class="btn btn-simple btn-info btn-icon like"><i
+                                                            class="material-icons">favorite</i></a>
                                                     <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
                                                         <a href="${editUserAction}/${item.id}"
                                                            class="btn btn-simple btn-warning btn-icon edit"><i

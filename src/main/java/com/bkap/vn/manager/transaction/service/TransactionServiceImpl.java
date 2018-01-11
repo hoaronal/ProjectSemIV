@@ -65,6 +65,11 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    public List<Transaction> getTransactionByUserId(int id) {
+        return transactionDAO.findByProperty(Transaction.class,"userId",id);
+    }
+
+    @Override
     public String generateQuerySearchTransaction(String keySearch) {
         StringBuilder sql = new StringBuilder(" where 1=1");
         if (!StringUtils.isBlank(keySearch)) {

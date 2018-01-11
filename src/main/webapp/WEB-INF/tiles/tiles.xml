@@ -117,22 +117,6 @@
         <put-attribute name="content" value="/WEB-INF/views/manager/role/edit.jsp"/>
     </definition>
 
-    <!--gift-->
-    <definition name="gift-list" extends="adminTemplate">
-        <put-attribute name="title" value="Danh sách quà tặng"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/gift/list.jsp"/>
-    </definition>
-
-    <definition name="gift-add" extends="adminTemplate">
-        <put-attribute name="title" value="Thêm mới quà tặng"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/gift/add.jsp"/>
-    </definition>
-
-    <definition name="gift-edit" extends="adminTemplate">
-        <put-attribute name="title" value="Cập nhật quà tặng"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/gift/edit.jsp"/>
-    </definition>
-
     <!--order-->
     <definition name="order-list" extends="adminTemplate">
         <put-attribute name="title" value="Danh sách đơn hàng"/>
@@ -171,23 +155,6 @@
         <put-attribute name="title" value="Lịch sử hệ thống"/>
         <put-attribute name="content" value="/WEB-INF/views/manager/history_action/list.jsp"/>
     </definition>
-
-    <!--news-->
-    <definition name="accessories-list" extends="adminTemplate">
-        <put-attribute name="title" value="Danh sách phụ kiện"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/accessories/list.jsp"/>
-    </definition>
-
-    <definition name="accessories-add" extends="adminTemplate">
-        <put-attribute name="title" value="Thêm mới phụ kiện"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/accessories/add.jsp"/>
-    </definition>
-
-    <definition name="accessories-edit" extends="adminTemplate">
-        <put-attribute name="title" value="Cập nhật phụ kiện"/>
-        <put-attribute name="content" value="/WEB-INF/views/manager/accessories/edit.jsp"/>
-    </definition>
-
 
     <!--news-->
     <definition name="news-list" extends="adminTemplate">

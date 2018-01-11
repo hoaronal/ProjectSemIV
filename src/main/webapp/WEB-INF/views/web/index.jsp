@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <div class="promo-area hidden-xs">
     <div class="zigzag-bottom"></div>
@@ -106,7 +106,7 @@
                             <a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">
                                 <img src="<%=request.getContextPath()%>/resources/img/${item.imageLink}" alt=""
                                     class="product-thumb"></a>
-                            <h2><a href="single-product.html">${item.productName}</a></h2>
+                            <h2><a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">${item.productName}</a></h2>
                             <div class="product-wid-rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -132,7 +132,7 @@
                             <a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">
                                 <img src="<%=request.getContextPath()%>/resources/img/${item.imageLink}" alt=""
                                      class="product-thumb"></a>
-                            <h2><a href="single-product.html">${item.productName}</a></h2>
+                            <h2><a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">${item.productName}</a></h2>
                             <div class="product-wid-rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -157,7 +157,7 @@
                             <a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">
                                 <img src="<%=request.getContextPath()%>/resources/img/${item.imageLink}" alt=""
                                      class="product-thumb"></a>
-                            <h2><a href="single-product.html">${item.productName}</a></h2>
+                            <h2><a href="<%=request.getContextPath()%>/san-pham/chi-tiet/${item.id}">${item.productName}</a></h2>
                             <div class="product-wid-rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>

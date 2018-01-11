@@ -55,12 +55,12 @@
     function statusChangeCallback(response) {
         if (response.status === 'connected') {
             var accessToken = response.authResponse.accessToken;
-            window.location.href = 'login-facebook?accessToken='+accessToken;
+            window.location.replace('http://localhost:8888/login-facebook?accessToken='+accessToken);
         } else {
             FB.login(function(response) {
                 if(response.authResponse) {
                     var accessToken = response.authResponse.accessToken;
-                    window.location.href = 'login-facebook?accessToken='+accessToken;
+                    window.location.replace('http://localhost:8888/login-facebook?accessToken='+accessToken);
                 }
             },{scope:'email'});
         }
@@ -74,7 +74,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<div style="position:fixed; z-index:9999999; left:10px; bottom:0px;" class="fb-page hidden-xs hidden-sm" data-tabs="messages" data-href="https://www.facebook.com/Shop-online-139809593375175/" data-width="250" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"<%-- data-show-facepile="true" --%>data-show-posts="false"></div>
+<div style="position:fixed; z-index:9999999; left:10px; bottom:0px;" class="fb-page hidden-xs" data-tabs="messages" data-href="https://www.facebook.com/Shop-online-139809593375175/" data-width="250" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"<%-- data-show-facepile="true" --%>data-show-posts="false"></div>
 <tiles:insertAttribute name="header"/>
 <tiles:insertAttribute name="mainmenu"/>
 <tiles:insertAttribute name="slider"/>
@@ -104,6 +104,27 @@
     function checkNullOrEmpty(value) {
         return (!value || value == undefined || value == "" || value.length == 0);
     }
+    $('#updatecart').click(function () {
+        var valueCart = '';
+        $('input[name=quality]').each(function(index){
+            valueCart += $(this).val() + ',';
+
+        });
+        valueCart = valueCart.substring(0, valueCart.length - 1);
+        $('#capnhatcartvalue').val(valueCart);
+        $('#capnhatcart').submit();
+        /*$.ajax({
+            type: "POST",
+            url: "/cap-nhat-gio-hang",
+            data: valueCart,
+            error: function (request, status, error) {
+                console.log('Error ' + request.responseText + "\n" + status + "\n" + error);
+            },
+            success: function (data) {
+
+            }
+        });*/
+    });
     $(document).ready(function () {
         $("#back-top").hide();
 

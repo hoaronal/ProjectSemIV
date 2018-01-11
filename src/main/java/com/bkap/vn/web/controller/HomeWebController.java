@@ -181,7 +181,11 @@ public class HomeWebController {
         Product product = productService.getById(id);
         PaggingResult paggingResult = productService.findRange(1, 10, " WHERE category_id = " + product.getCategory().getId() + " ORDER BY id DESC ");
         if (product != null) {
-            product.setCountView(product.getCountView() + 1);
+            if(product.getCountView() != null){
+                product.setCountView(product.getCountView() + 1);
+            }else{
+                product.setCountView(Double.valueOf("1"));
+            }
             productService.update(product);
             if (!StringUtils.isBlank(product.getImageList())) {
                 String[] listImg = product.getImageList().split(",");

@@ -1,6 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:url value="/quan-tri/tinh-thanh/xoa" var="deleteProvinceAction"/>
 <spring:url value="/quan-tri/tinh-thanh/cap-nhat" var="editProvinceAction"/>
@@ -75,15 +76,21 @@
                                                 <td class="provinceName" id="provinceName<c:out value="${item.id}"/>"><c:out
                                                         value="${item.code}"/></td>
                                                 <td><c:out value="${item.description}"/></td>
+
+
                                                 <td class="text-right">
                                                     <a href="" class="btn btn-simple btn-info btn-icon like"><i
                                                             class="material-icons">favorite</i></a>
-                                                    <a href="${editProvinceAction}/${item.id}"
-                                                       class="btn btn-simple btn-warning btn-icon edit"><i
-                                                            class="material-icons">edit</i></a>
-                                                    <a class="btn btn-simple btn-danger btn-icon remove"
-                                                       data-toggle="modal" data-target="#smallAlertModal${item.id}"><i
-                                                            class="material-icons">close</i></a>
+                                                    <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
+                                                        <a href="${editProvinceAction}/${item.id}"
+                                                           class="btn btn-simple btn-warning btn-icon edit"><i
+                                                                class="material-icons">edit</i></a>
+                                                    </sec:authorize>
+                                                    <sec:authorize access="hasRole('MANAGER')">
+                                                        <a class="btn btn-simple btn-danger btn-icon remove"
+                                                           data-toggle="modal" data-target="#smallAlertModal${item.id}"><i
+                                                                class="material-icons">close</i></a>
+                                                    </sec:authorize>
                                                 </td>
                                             </tr>
                                             <div class="modal fade" style="margin-top: 50px"

@@ -1,7 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <spring:url value="/quan-tri/quyen/xoa" var="deleteRoleAction"/>
 <spring:url value="/quan-tri/quyen/cap-nhat" var="editRoleAction"/>
 <div class="container-fluid">
@@ -81,12 +82,12 @@
                                                 <td class="text-right">
                                                     <a href="" class="btn btn-simple btn-info btn-icon like"><i
                                                             class="material-icons">favorite</i></a>
-                                                    <a href="#"
+                                                    <%--<a href="#"
                                                        class="btn btn-simple btn-warning btn-icon edit"><i
                                                             class="material-icons">edit</i></a>
                                                     <a class="btn btn-simple btn-danger btn-icon remove"
                                                        data-toggle="modal" data-target="#smallAlertModal${item.id}"><i
-                                                            class="material-icons">close</i></a>
+                                                            class="material-icons">close</i></a>--%>
                                                 </td>
                                             </tr>
                                         </c:forEach>

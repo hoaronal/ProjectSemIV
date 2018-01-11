@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -65,8 +65,7 @@
                                 </form>
 
                                 <div class="product-inner-category">
-                                    <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a
-                                            href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
+                                    <p>Danh mục: ${product.category.name_category}</p>
                                 </div>
 
                                 <div role="tabpanel">
@@ -84,25 +83,7 @@
                                             </p>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
-                                            <h2>Reviews</h2>
-                                            <div class="submit-review">
-                                                <p><label>Name</label> <input name="name" type="text"></p>
-                                                <p><label>Email</label> <input name="email" type="email"></p>
-                                                <div class="rating-chooser">
-                                                    <p>Your rating</p>
-
-                                                    <div class="rating-wrap-post">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <p><label>Your review</label> <textarea name="review" id="" cols="30"
-                                                                                        rows="10"></textarea></p>
-                                                <p><input type="submit" value="Submit"></p>
-                                            </div>
+                                            <div class="fb-comments" data-href="http://localhost:8888/san-pham/chi-tiet/${product.id}" data-width="300" data-numposts="3"></div>
                                         </div>
                                     </div>
                                 </div>

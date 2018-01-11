@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="footer-top-area">
 
     <div class="zigzag-bottom"></div>
@@ -30,19 +30,18 @@
                         <li class="pc"><a href="<%=request.getContextPath()%>/san-pham/may-tinh/1">Máy tính</a></li>
                         <li class="laptop"><a href="<%=request.getContextPath()%>/san-pham/lap-top/1">Laptop</a></li>
                         <li class="accessories"><a href="<%=request.getContextPath()%>/san-pham/phu-kien/1">Phụ kiện</a></li>
-                        <li class="other"><a href="<%=request.getContextPath()%>/san-pham/danh-sach/1">Sản phẩm khác</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="col-md-3 col-sm-6">
                 <div class="footer-newsletter">
-                    <h2 class="footer-wid-title">Newsletter</h2>
-                    <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                    <h2 class="footer-wid-title">Đăng kí nhận mail</h2>
+                    <p>Đăng kí nhận mail từ chúng tôi để nhận những thông tin khuyến mãi sớm nhất.</p>
                     <div class="newsletter-form">
                         <form action="#">
-                            <input type="email" placeholder="Type your email">
-                            <input type="submit" value="Subscribe">
+                            <input type="email" placeholder="Nhập email của bạn">
+                            <input type="submit" value="Đăng kí">
                         </form>
                     </div>
                 </div>
@@ -56,18 +55,18 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="copyright">
-                    <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
+                    <p>&copy; 2018 All Rights Reserved.</p>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <%--<div class="col-md-4">
                 <div class="footer-card-icon">
                     <i class="fa fa-cc-discover"></i>
                     <i class="fa fa-cc-mastercard"></i>
                     <i class="fa fa-cc-paypal"></i>
                     <i class="fa fa-cc-visa"></i>
                 </div>
-            </div>
+            </div>--%>
         </div>
     </div>
 </div> <!-- End footer bottom area -->

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -163,13 +163,10 @@
                     minlength: 5
                 },
                 password: {
-                    required: true,
                     minlength: 8
                 },
                 confirm_password: {
-                    required: true,
-                    minlength: 8,
-                    equalTo: "#password"
+                    minlength: 8
                 },
                 roleadmin:{
                     required: true
@@ -185,13 +182,10 @@
                     minlength: "Tài khoản phải dài ít nhất 5 kí tự!"
                 },
                 password: {
-                    required: "Mật khẩu không được để trống!",
                     minlength: "Mật khẩu phải dài tối thiểu 8 kí tự!"
                 },
                 confirm_password: {
-                    required: "Mật khẩu nhập lại không được để trống!",
-                    minlength: "Bạn phải nhập mật khẩu ít nhất 8 kí tự!",
-                    equalTo: "Mật khẩu nhập lại không khớp với mật khẩu!"
+                    minlength: "Bạn phải nhập mật khẩu ít nhất 8 kí tự!"
                 },
                 roleadmin:{
                     required: "Quyền không được để trống!",

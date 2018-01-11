@@ -1,6 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:url value="/quan-tri/don-hang/xoa" var="deleteOrderAction"/>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
@@ -78,7 +79,7 @@
                                                 <td tabindex="0" class="sorting_1"><c:out value="${item.id}"/></td>
                                                 <td class="Ordername" id="Ordername<c:out value="${item.id}"/>"><c:out
                                                         value="${item.qty}"/></td>
-                                                <td><fmt:formatNumber value = "${item.amount}" type = "currency"/></td>
+                                                <td><fmt:formatNumber value = "${item.amount}" currencySymbol="" type ="currency"/></td>
                                                 <td>
                                                     <c:if test="${item.status == 1}">
                                                         Đã giao hàng
